@@ -93,7 +93,8 @@ fun FavoriteScreenContent(
         )
         Crossfade(
             modifier = Modifier.fillMaxSize(),
-            targetState = notEmpty
+            targetState = notEmpty,
+            label = ""
         ) { notEmpty ->
             if (notEmpty) {
                 PresentableGridSection(

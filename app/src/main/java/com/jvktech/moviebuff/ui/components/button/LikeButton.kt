@@ -11,13 +11,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.jvktech.moviebuff.ui.theme.spacing
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -27,7 +26,7 @@ fun LikeButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    Button(
+    IconButton(
         modifier = modifier.padding(end = MaterialTheme.spacing.extraSmall),
         onClick = onClick,
     ) {
@@ -48,13 +47,13 @@ fun LikeButton(
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "add to favourite",
-                    tint = Color.White
+                    tint = MaterialTheme.colorScheme.primary
                 )
             } else {
                 Icon(
                     imageVector = Icons.Outlined.FavoriteBorder,
                     contentDescription = "remove from favourites",
-                    tint = Color.White
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
