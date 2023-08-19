@@ -9,6 +9,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,7 +29,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.*
 import com.jvktech.moviebuff.data.model.tvshow.TvShowDetails
-import com.jvktech.moviebuff.ui.components.button.BackButton
 import com.jvktech.moviebuff.ui.components.button.LikeButton
 import com.jvktech.moviebuff.ui.components.dialogs.ErrorDialog
 import com.jvktech.moviebuff.ui.components.others.AnimatedContentContainer
@@ -264,7 +267,8 @@ fun TvShowDetailsScreenContent(
                 Spacer(modifier = Modifier.weight(1f))
                 Crossfade(
                     modifier = Modifier.fillMaxWidth(),
-                    targetState = uiState.associatedContent.externalIds
+                    targetState = uiState.associatedContent.externalIds,
+                    label = ""
                 ) { ids ->
                     if (ids != null) {
                         ExternalIdsSection(
@@ -396,9 +400,12 @@ fun TvShowDetailsScreenContent(
             scrollState = scrollState,
             transparentScrollValueLimit = topSectionScrollLimitValue,
             action = {
-                BackButton(
-                    onBackClicked
-                )
+                IconButton(onClick = onBackClicked) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "go back",
+                    )
+                }
             },
             trailing = {
                 LikeButton(

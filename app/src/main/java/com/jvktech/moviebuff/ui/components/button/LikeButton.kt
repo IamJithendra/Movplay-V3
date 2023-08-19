@@ -10,7 +10,7 @@ import androidx.compose.animation.with
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -48,11 +48,11 @@ fun LikeButton(
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "add to favourite",
-                    tint = Color.Red
+                    tint = Color.White
                 )
             } else {
                 Icon(
-                    imageVector = Icons.Filled.FavoriteBorder,
+                    imageVector = Icons.Outlined.FavoriteBorder,
                     contentDescription = "remove from favourites",
                     tint = Color.White
                 )
