@@ -20,11 +20,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.movplayv3"
+    namespace = "com.jvktech.moviebuff"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.movplayv3"
+        applicationId = "com.jvktech.moviebuff"
         minSdk = 28
         targetSdk = 33
         versionCode = 1

@@ -1,0 +1,19 @@
+package com.jvktech.moviebuff.data.local.db.tvshow
+
+import androidx.room.*
+import com.jvktech.moviebuff.data.model.tvshow.TvShowEntityType
+import com.jvktech.moviebuff.data.model.tvshow.TvShowsRemoteKeys
+import com.jvktech.moviebuff.utils.TvShowEntityTypeConverters
+
+@TypeConverters(TvShowEntityTypeConverters::class)
+@Dao
+interface TvShowsRemoteKeysDao {
+    @Query("SELECT * FROM TvShowsRemoteKeys WHERE type=:type AND language=:language")
+    suspend fun getRemoteKey(type: TvShowEntityType, language: String): TvShowsRemoteKeys?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertKey(remoteKey: TvShowsRemoteKeys)
+
+    @Query("DELETE FROM TvShowsRemoteKeys WHERE type=:type AND language=:language")
+    suspend fun deleteRemoteKeysOfType(type: TvShowEntityType, language: String)
+}

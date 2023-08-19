@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "758635631449",
-    "project_id": "movie-play-20d23",
-    "storage_bucket": "movie-play-20d23.appspot.com"
+    "project_number": "611587444299",
+    "project_id": "tmdb-movies-70346",
+    "storage_bucket": "tmdb-movies-70346.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:758635631449:android:f7936049e7767470d77248",
+        "mobilesdk_app_id": "1:611587444299:android:ab6c7d8fe86e10886107ce",
         "android_client_info": {
-          "package_name": "com.example.movplayv3"
+          "package_name": "com.jvktech.moviebuff"
         }
       },
       "oauth_client": [
         {
-          "client_id": "758635631449-isfnjnk06aqk39ij68npaddrtubbg20n.apps.googleusercontent.com",
+          "client_id": "611587444299-jihj73rb6vet71lsjqvrb9dv10q163lk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDqMthTKD1MkM7SErqSbAwPliRqQk2LNsM"
+          "current_key": "AIzaSyA7IC2uJiak262lBPAa8Y4FOUIHCUa7pUQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "758635631449-isfnjnk06aqk39ij68npaddrtubbg20n.apps.googleusercontent.com",
+              "client_id": "611587444299-jihj73rb6vet71lsjqvrb9dv10q163lk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
