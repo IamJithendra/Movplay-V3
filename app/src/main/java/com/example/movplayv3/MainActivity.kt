@@ -20,6 +20,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -65,6 +66,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        installSplashScreen().apply {
+            setKeepOnScreenCondition(
+                condition = { configDataSource.isInitialized.value }
+            )
+        }
 
         setContent {
             val mainViewModel: MainViewModel = hiltViewModel(this)
@@ -150,7 +157,6 @@ class MainActivity : ComponentActivity() {
                     }
                     val snackbarHostState = remember { SnackbarHostState() }
                     Scaffold(
-
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                         bottomBar = {
                             BottomBar(
@@ -172,7 +178,6 @@ class MainActivity : ComponentActivity() {
                         Surface(
                             modifier = Modifier
                                 .fillMaxSize()
-//                                .padding(innerPadding),
                                 .padding(
                                     bottom = if (showBottomBar) {
                                         innerPadding.calculateBottomPadding()
