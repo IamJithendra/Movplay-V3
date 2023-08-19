@@ -1,11 +1,11 @@
 package com.jvktech.moviebuff.domain.usecase.tvshow
 
 import com.jvktech.moviebuff.data.model.tvshow.TvShowDetails
-import com.jvktech.moviebuff.data.repository.favorites.FavouritesRepository
+import com.jvktech.moviebuff.data.repository.favorites.FavoritesRepository
 import javax.inject.Inject
 
 class LikeTvShowUseCaseImpl @Inject constructor(
-    private val favoritesRepository: FavouritesRepository
+    private val favoritesRepository: FavoritesRepository
 ) {
     operator fun invoke(details: TvShowDetails) {
         return favoritesRepository.likeTvShow(details)

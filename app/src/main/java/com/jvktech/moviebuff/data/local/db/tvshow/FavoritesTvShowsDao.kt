@@ -5,23 +5,23 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.jvktech.moviebuff.data.model.tvshow.TvShowFavourite
+import com.jvktech.moviebuff.data.model.tvshow.TvShowFavorite
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoritesTvShowsDao {
-    @Query("SELECT * FROM TvShowFavourite ORDER BY added_date DESC ")
-    fun getAllFavoriteTvShows(): DataSource.Factory<Int, TvShowFavourite>
+    @Query("SELECT * FROM TvShowFavorite ORDER BY added_date DESC ")
+    fun getAllFavoriteTvShows(): DataSource.Factory<Int, TvShowFavorite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun likeTvShow(vararg tvShowDetails: TvShowFavourite)
+    suspend fun likeTvShow(vararg tvShowDetails: TvShowFavorite)
 
-    @Query("DELETE FROM TvShowFavourite WHERE id = :tvShowId")
+    @Query("DELETE FROM TvShowFavorite WHERE id = :tvShowId")
     suspend fun unlikeTvShow(tvShowId: Int)
 
-    @Query("SELECT id FROM TvShowFavourite")
+    @Query("SELECT id FROM TvShowFavorite")
     fun favoriteTvShowIds(): Flow<List<Int>>
 
-    @Query("SELECT COUNT(id) FROM TvShowFavourite")
+    @Query("SELECT COUNT(id) FROM TvShowFavorite")
     fun favoriteTvShowCount(): Flow<Int>
 }

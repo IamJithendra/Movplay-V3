@@ -12,8 +12,8 @@ import com.jvktech.moviebuff.utils.DateConverters
 
 @Database(
     entities = [
-        MovieFavourite::class,
-        TvShowFavourite::class,
+        MovieFavorite::class,
+        TvShowFavorite::class,
         RecentlyBrowsedMovie::class,
         RecentlyBrowsedTvShow::class,
         SearchQuery::class,
@@ -32,7 +32,7 @@ import com.jvktech.moviebuff.utils.DateConverters
 abstract class AppDatabase : RoomDatabase() {
     //Movies
     abstract fun moviesDao(): MoviesDao
-    abstract fun favouriteMoviesDao(): FavouritesMoviesDao
+    abstract fun favoritesMoviesDao(): FavoritesMoviesDao
     abstract fun recentlyBrowsedMovies(): RecentlyBrowsedMoviesDao
     abstract fun moviesRemoteKeysDao(): MoviesRemoteKeysDao
     abstract fun moviesDetailsDao(): MoviesDetailsDao
@@ -40,7 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     //Tv Shows
     abstract fun tvShowsDao(): TvShowsDao
-    abstract fun favouriteTvShowDao(): FavoritesTvShowsDao
+    abstract fun favoritesTvShowDao(): FavoritesTvShowsDao
     abstract fun recentlyBrowsedTvShows(): RecentlyBrowsedTvShowsDao
     abstract fun tvShowsRemoteKeysDao(): TvShowsRemoteKeysDao
     abstract fun tvShowsDetailsDao(): TvShowsDetailsDao

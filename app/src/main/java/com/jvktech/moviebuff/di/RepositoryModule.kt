@@ -9,8 +9,8 @@ import com.jvktech.moviebuff.data.repository.browsed.RecentlyBrowsedRepository
 import com.jvktech.moviebuff.data.repository.browsed.RecentlyBrowsedRepositoryImpl
 import com.jvktech.moviebuff.data.repository.config.ConfigRepository
 import com.jvktech.moviebuff.data.repository.config.ConfigRepositoryImpl
-import com.jvktech.moviebuff.data.repository.favorites.FavouritesRepository
-import com.jvktech.moviebuff.data.repository.favorites.FavouritesRepositoryImpl
+import com.jvktech.moviebuff.data.repository.favorites.FavoritesRepository
+import com.jvktech.moviebuff.data.repository.favorites.FavoritesRepositoryImpl
 import com.jvktech.moviebuff.data.repository.movie.MovieRepository
 import com.jvktech.moviebuff.data.repository.movie.MovieRepositoryImpl
 import com.jvktech.moviebuff.data.repository.person.PersonRepository
@@ -73,7 +73,7 @@ object RepositoryModule {
 
         @Binds
         @Singleton
-        fun bindFavouritesRepository(impl: FavouritesRepositoryImpl): FavouritesRepository
+        fun bindFavouritesRepository(impl: FavoritesRepositoryImpl): FavoritesRepository
 
         @Binds
         @Singleton

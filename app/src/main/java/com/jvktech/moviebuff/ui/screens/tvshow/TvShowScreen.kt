@@ -209,7 +209,7 @@ fun TvShowsScreenContent(
                     state = favoritesLazyItems,
                     onPresentableClick = onTvShowClicked,
                     onMoreClick = {
-                        onBrowseTvShowClicked(TvShowType.Favourite)
+                        onBrowseTvShowClicked(TvShowType.Favorite)
                     }
                 )
             }

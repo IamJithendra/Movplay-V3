@@ -18,21 +18,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.jvktech.moviebuff.data.model.FavouriteType
+import com.jvktech.moviebuff.data.model.FavoriteType
 import com.jvktech.moviebuff.ui.theme.spacing
 
 @Composable
 fun FavoriteTypeSelector(
-    selected: FavouriteType,
+    selected: FavoriteType,
     modifier: Modifier = Modifier,
-    onSelected: (FavouriteType) -> Unit = {}
+    onSelected: (FavoriteType) -> Unit = {}
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
-        FavouriteType.values().map { type ->
+        FavoriteType.values().map { type ->
             FavouriteTypeButton(
                 type = type,
                 selected = type == selected,
@@ -45,7 +45,7 @@ fun FavoriteTypeSelector(
 
 @Composable
 fun FavouriteTypeButton(
-    type: FavouriteType,
+    type: FavoriteType,
     selected: Boolean,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}

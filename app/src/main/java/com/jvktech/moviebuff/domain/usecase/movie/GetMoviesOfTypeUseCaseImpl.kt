@@ -14,7 +14,7 @@ class GetMoviesOfTypeUseCaseImpl @Inject constructor(
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCaseImpl,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCaseImpl,
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCaseImpl,
-    private val getFavoritesMoviesUseCaseImpl: GetFavouriteMoviesUseCaseImpl,
+    private val getFavoritesMoviesUseCaseImpl: GetFavoritesMoviesUseCaseImpl,
     private val getRecentlyBrowsedMoviesUseCase: GetRecentlyBrowsedMoviesUseCaseImpl,
     private val getTrendingMoviesUseCase: GetTrendingMoviesUseCaseImpl
 ) {

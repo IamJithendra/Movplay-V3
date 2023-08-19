@@ -21,7 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import com.jvktech.moviebuff.ui.screens.destinations.FavouriteScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.jvktech.moviebuff.R
@@ -39,7 +39,7 @@ fun BottomBar(
         mutableSetOf(
             MovieScreenDestination.route,
             TvShowScreenDestination.route,
-            FavouriteScreenDestination.route,
+            FavoriteScreenDestination.route,
         )
     }
 
@@ -84,9 +84,9 @@ fun BottomBar(
                 contentDescription = "Tv Show"
             )
             NavBarItem(
-                selected = selectedRoute == FavouriteScreenDestination.route,
+                selected = selectedRoute == FavoriteScreenDestination.route,
                 onClick = {
-                    onItemClicked(FavouriteScreenDestination.route)
+                    onItemClicked(FavoriteScreenDestination.route)
                 },
                 label = stringResource(R.string.favourites_label),
                 selectedIcon = Icons.Filled.Favorite,

@@ -19,7 +19,7 @@ class MovieScreenViewModel @Inject constructor(
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCaseImpl,
     private val getTrendingMoviesUseCase: GetTrendingMoviesUseCaseImpl,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCaseImpl,
-    private val favouritesMoviesUseCase: GetFavouriteMoviesUseCaseImpl,
+    private val favoritesMoviesUseCase: GetFavoritesMoviesUseCaseImpl,
     private val getRecentlyBrowsedMoviesUseCase: GetRecentlyBrowsedMoviesUseCaseImpl
 ) : ViewModel() {
     private val deviceLanguage: Flow<DeviceLanguage> = getDeviceLanguageUseCase()
@@ -39,7 +39,7 @@ class MovieScreenViewModel @Inject constructor(
     val uiState: StateFlow<MovieScreenUIState> = moviesState.mapLatest { moviesState ->
         MovieScreenUIState(
             moviesState = moviesState,
-            favourites = favouritesMoviesUseCase().cachedIn(viewModelScope),
+            favorites = favoritesMoviesUseCase().cachedIn(viewModelScope),
             recentlyBrowsed = getRecentlyBrowsedMoviesUseCase().cachedIn(viewModelScope)
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, MovieScreenUIState.default)

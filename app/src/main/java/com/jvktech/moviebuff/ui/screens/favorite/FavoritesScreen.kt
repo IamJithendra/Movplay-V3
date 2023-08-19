@@ -2,7 +2,6 @@ package com.jvktech.moviebuff.ui.screens.favorite
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -12,8 +11,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.jvktech.moviebuff.data.model.FavouriteType
-import com.jvktech.moviebuff.ui.components.others.FavouriteEmptyState
+import com.jvktech.moviebuff.data.model.FavoriteType
+import com.jvktech.moviebuff.ui.components.others.FavoriteEmptyState
 import com.jvktech.moviebuff.ui.components.sections.PresentableGridSection
 import com.jvktech.moviebuff.ui.components.selectors.FavoriteTypeSelector
 import com.jvktech.moviebuff.ui.screens.destinations.*
@@ -26,24 +25,24 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun AnimatedVisibilityScope.FavoriteScreen(
-    viewModel: FavouritesScreenViewModel = hiltViewModel(),
+    viewModel: FavoritesScreenViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val onFavoriteTypeSelected: (type: FavouriteType) -> Unit = viewModel::onFavoriteTypeSelected
+    val onFavoriteTypeSelected: (type: FavoriteType) -> Unit = viewModel::onFavoriteTypeSelected
     val onFavoriteClicked: (favoriteId: Int) -> Unit = { id ->
         val destination = when (uiState.selectedFavouriteType) {
-            FavouriteType.Movie -> {
+            FavoriteType.Movie -> {
                 MovieDetailsScreenDestination(
                     movieId = id,
-                    startRoute = FavouriteScreenDestination.route
+                    startRoute = FavoriteScreenDestination.route
                 )
             }
 
-            FavouriteType.TvShow -> {
+            FavoriteType.TvShow -> {
                 TvShowDetailsScreenDestination(
                     tvShowId = id,
-                    startRoute = FavouriteScreenDestination.route
+                    startRoute = FavoriteScreenDestination.route
                 )
             }
         }
@@ -74,32 +73,27 @@ fun AnimatedVisibilityScope.FavoriteScreen(
 
 @Composable
 fun FavoriteScreenContent(
-    uiState: FavouritesScreenUIState,
-    onFavoriteTypeSelected: (type: FavouriteType) -> Unit,
+    uiState: FavoritesScreenUIState,
+    onFavoriteTypeSelected: (type: FavoriteType) -> Unit,
     onFavoriteClicked: (favouriteId: Int) -> Unit,
     onNavigateToMoviesButtonClicked: () -> Unit,
     onNavigateToTvShowButtonClicked: () -> Unit
 ) {
-    val favouritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
-    val notEmpty = favouritesLazyItems.isNotEmpty()
+    val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
+    val notEmpty = favoritesLazyItems.isNotEmpty()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.background)
             .statusBarsPadding()
     ) {
         FavoriteTypeSelector(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(MaterialTheme.spacing.medium),
             selected = uiState.selectedFavouriteType,
             onSelected = onFavoriteTypeSelected
         )
         Crossfade(
             modifier = Modifier.fillMaxSize(),
-            targetState = notEmpty,
-            label = ""
+            targetState = notEmpty
         ) { notEmpty ->
             if (notEmpty) {
                 PresentableGridSection(
@@ -110,20 +104,20 @@ fun FavoriteScreenContent(
                         end = MaterialTheme.spacing.small,
                         bottom = MaterialTheme.spacing.large
                     ),
-                    state = favouritesLazyItems,
+                    state = favoritesLazyItems,
                     showRefreshLoading = false,
                     onPresentableClick = onFavoriteClicked
                 )
             } else {
-                FavouriteEmptyState(
+                FavoriteEmptyState(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = MaterialTheme.spacing.medium)
                         .padding(top = MaterialTheme.spacing.extraLarge),
                     type = uiState.selectedFavouriteType,
                     onButtonClick = when (uiState.selectedFavouriteType) {
-                        FavouriteType.Movie -> onNavigateToMoviesButtonClicked
-                        FavouriteType.TvShow -> onNavigateToTvShowButtonClicked
+                        FavoriteType.Movie -> onNavigateToMoviesButtonClicked
+                        FavoriteType.TvShow -> onNavigateToTvShowButtonClicked
                     }
                 )
             }

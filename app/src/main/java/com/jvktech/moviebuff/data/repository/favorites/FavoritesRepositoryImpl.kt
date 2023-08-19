@@ -3,12 +3,12 @@ package com.jvktech.moviebuff.data.repository.favorites
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jvktech.moviebuff.data.local.db.movie.FavouritesMoviesDao
+import com.jvktech.moviebuff.data.local.db.movie.FavoritesMoviesDao
 import com.jvktech.moviebuff.data.local.db.tvshow.FavoritesTvShowsDao
 import com.jvktech.moviebuff.data.model.movie.MovieDetails
-import com.jvktech.moviebuff.data.model.movie.MovieFavourite
+import com.jvktech.moviebuff.data.model.movie.MovieFavorite
 import com.jvktech.moviebuff.data.model.tvshow.TvShowDetails
-import com.jvktech.moviebuff.data.model.tvshow.TvShowFavourite
+import com.jvktech.moviebuff.data.model.tvshow.TvShowFavorite
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,16 +21,16 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FavouritesRepositoryImpl @Inject constructor(
+class FavoritesRepositoryImpl @Inject constructor(
     private val externalScope: CoroutineScope,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
-    private val favoritesMoviesDao: FavouritesMoviesDao,
+    private val favoritesMoviesDao: FavoritesMoviesDao,
     private val favoritesTvShowsDao: FavoritesTvShowsDao
-) : FavouritesRepository {
+) : FavoritesRepository {
     override fun likeMovie(movieDetails: MovieDetails) {
         externalScope.launch(defaultDispatcher) {
             val favoriteMovie = movieDetails.run {
-                MovieFavourite(
+                MovieFavorite(
                     id = id,
                     posterPath = posterPath,
                     title = title,
@@ -45,7 +45,7 @@ class FavouritesRepositoryImpl @Inject constructor(
     override fun likeTvShow(tvShowDetails: TvShowDetails) {
         externalScope.launch(defaultDispatcher) {
             val favoriteTvShow = tvShowDetails.run {
-                TvShowFavourite(
+                TvShowFavorite(
                     id = id,
                     posterPath = posterPath,
                     name = name,
@@ -68,13 +68,13 @@ class FavouritesRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun favoriteMovies(): Flow<PagingData<MovieFavourite>> = Pager(
+    override fun favoriteMovies(): Flow<PagingData<MovieFavorite>> = Pager(
         PagingConfig(pageSize = 20)
     ) {
         favoritesMoviesDao.getAllFavoriteMovies().asPagingSourceFactory()()
     }.flow.flowOn(defaultDispatcher)
 
-    override fun favoriteTvShows(): Flow<PagingData<TvShowFavourite>> = Pager(
+    override fun favoriteTvShows(): Flow<PagingData<TvShowFavorite>> = Pager(
         PagingConfig(pageSize = 20)
     ) {
         favoritesTvShowsDao.getAllFavoriteTvShows().asPagingSourceFactory()()

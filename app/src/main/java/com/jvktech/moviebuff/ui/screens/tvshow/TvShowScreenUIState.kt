@@ -5,14 +5,14 @@ import androidx.paging.PagingData
 import com.jvktech.moviebuff.data.model.DetailPresentable
 import com.jvktech.moviebuff.data.model.Presentable
 import com.jvktech.moviebuff.data.model.tvshow.RecentlyBrowsedTvShow
-import com.jvktech.moviebuff.data.model.tvshow.TvShowFavourite
+import com.jvktech.moviebuff.data.model.tvshow.TvShowFavorite
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
 @Stable
 data class TvShowScreenUIState(
     val tvShowsState: TvShowsState,
-    val favorites: Flow<PagingData<TvShowFavourite>>,
+    val favorites: Flow<PagingData<TvShowFavorite>>,
     val recentlyBrowsed: Flow<PagingData<RecentlyBrowsedTvShow>>
 ) {
     companion object {

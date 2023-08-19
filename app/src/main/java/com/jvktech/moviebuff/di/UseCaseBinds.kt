@@ -65,7 +65,7 @@
 //    ): GetEpisodeStillsUseCase
 //
 //    @Binds
-//    fun provideGetFavouriteMoviesIdsUseCase(
+//    fun provideGetFavoriteMoviesIdsUseCase(
 //        impl: GetFavoriteMoviesIdsUseCaseImpl
 //    ): GetFavoriteMoviesIdsUseCase
 //
