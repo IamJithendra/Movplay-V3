@@ -16,7 +16,7 @@ class GetTvShowOfTypeUseCaseImpl @Inject constructor(
     private val getTopRatedTvShowsUseCase: GetTopRatedTvShowsUseCaseImpl,
     private val getAiringTodayTvShowsUseCase: GetAiringTodayTvShowsUseCaseImpl,
     private val getTrendingTvShowsUseCase: GetTrendingTvShowsUseCaseImpl,
-    private val getFavouriteTvShowsUseCase: GetFavoritesTvShowsUseCaseImpl,
+    private val getFavouriteTvShowsUseCase: GetFavouritesTvShowsUseCaseImpl,
     private val getRecentlyBrowsedTvShowsUseCase: GetRecentlyBrowsedTvShowsUseCaseImpl,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -29,7 +29,7 @@ class GetTvShowOfTypeUseCaseImpl @Inject constructor(
             TvShowType.TopRated -> getTopRatedTvShowsUseCase(deviceLanguage)
             TvShowType.AiringToday -> getAiringTodayTvShowsUseCase(deviceLanguage)
             TvShowType.Trending -> getTrendingTvShowsUseCase(deviceLanguage)
-            TvShowType.Favorite -> getFavouriteTvShowsUseCase()
+            TvShowType.Favourite -> getFavouriteTvShowsUseCase()
             TvShowType.RecentlyBrowsed -> getRecentlyBrowsedTvShowsUseCase()
         }.mapLatest { data -> data.map { it } }
     }

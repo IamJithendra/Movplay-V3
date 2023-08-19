@@ -104,7 +104,7 @@ fun MoviesScreenContent(
     val topRatedLazyItems = uiState.moviesState.topRated.collectAsLazyPagingItems()
     val trendingLazyItems = uiState.moviesState.trending.collectAsLazyPagingItems()
     val nowPlayingLazyItems = uiState.moviesState.nowPlaying.collectAsLazyPagingItems()
-    val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
+    val favoritesLazyItems = uiState.favourites.collectAsLazyPagingItems()
     val recentlyBrowsedLazyItems = uiState.recentlyBrowsed.collectAsLazyPagingItems()
 
     var topSectionHeight: Float? by remember {

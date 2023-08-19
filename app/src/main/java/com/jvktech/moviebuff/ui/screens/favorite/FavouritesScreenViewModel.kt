@@ -3,7 +3,7 @@ package com.jvktech.moviebuff.ui.screens.favorite
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.jvktech.moviebuff.data.model.FavoriteType
+import com.jvktech.moviebuff.data.model.FavouriteType
 import com.jvktech.moviebuff.domain.usecase.GetFavoritesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,23 +12,23 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoritesScreenViewModel @Inject constructor(
+class FavouritesScreenViewModel @Inject constructor(
     private val getFavouritesUseCaseImpl: GetFavoritesUseCaseImpl
 ) : ViewModel() {
-    private val _selectedFavouriteType: MutableStateFlow<FavoriteType> =
-        MutableStateFlow(FavoriteType.Movie)
+    private val _selectedFavouriteType: MutableStateFlow<FavouriteType> =
+        MutableStateFlow(FavouriteType.Movie)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val uiState: StateFlow<FavoritesScreenUIState> = _selectedFavouriteType.mapLatest { type ->
+    val uiState: StateFlow<FavouritesScreenUIState> = _selectedFavouriteType.mapLatest { type ->
         val favorites = getFavouritesUseCaseImpl(type).cachedIn(viewModelScope)
 
-        FavoritesScreenUIState(
+        FavouritesScreenUIState(
             selectedFavouriteType = type,
             favorites = favorites
         )
-    }.stateIn(viewModelScope, SharingStarted.Eagerly, FavoritesScreenUIState.default)
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, FavouritesScreenUIState.default)
 
-    fun onFavoriteTypeSelected(type: FavoriteType) {
+    fun onFavoriteTypeSelected(type: FavouriteType) {
         viewModelScope.launch {
             _selectedFavouriteType.emit(type)
         }

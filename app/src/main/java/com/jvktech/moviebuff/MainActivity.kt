@@ -31,7 +31,7 @@ import com.jvktech.moviebuff.data.model.SnackBarEvent
 import com.jvktech.moviebuff.data.paging.ConfigDataSource
 import com.jvktech.moviebuff.ui.components.others.BottomBar
 import com.jvktech.moviebuff.ui.screens.NavGraphs
-import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.FavouriteScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.jvktech.moviebuff.ui.theme.MovieBuffTheme
@@ -114,7 +114,7 @@ class MainActivity : ComponentActivity() {
                     null,
                     MovieScreenDestination.route,
                     TvShowScreenDestination.route,
-                    FavoriteScreenDestination.route,
+                    FavouriteScreenDestination.route,
                 )
             }
 

@@ -25,12 +25,12 @@ object DatabaseModule {
             .build()
 
     @Provides
-    fun provideFavoritesMoviesDao(database: AppDatabase): FavoritesMoviesDao =
-        database.favoritesMoviesDao()
+    fun provideFavouriteMoviesDao(database: AppDatabase): FavouritesMoviesDao =
+        database.favouriteMoviesDao()
 
     @Provides
-    fun provideFavoriteTvSeriesDao(database: AppDatabase): FavoritesTvShowsDao =
-        database.favoritesTvShowDao()
+    fun provideFavouriteTvSeriesDao(database: AppDatabase): FavoritesTvShowsDao =
+        database.favouriteTvShowDao()
 
     @Provides
     fun provideRecentlyBrowsedMoviesDao(database: AppDatabase): RecentlyBrowsedMoviesDao =

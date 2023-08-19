@@ -3,7 +3,7 @@ package com.jvktech.moviebuff.data.model
 import androidx.annotation.StringRes
 import com.jvktech.moviebuff.R
 
-enum class FavoriteType {
+enum class FavouriteType {
     Movie, TvShow;
 
     @StringRes

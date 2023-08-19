@@ -73,7 +73,7 @@ fun BrowseTvShowScreenContent(
         TvShowType.OnTheAir -> stringResource(R.string.all_tv_series_on_the_air_label)
         TvShowType.TopRated -> stringResource(R.string.all_tv_series_top_rated_label)
         TvShowType.AiringToday -> stringResource(R.string.all_tv_series_airing_today_label)
-        TvShowType.Favorite -> stringResource(
+        TvShowType.Favourite -> stringResource(
             R.string.all_tv_series_favourites_label,
             uiState.favoriteTvShowsCount
         )

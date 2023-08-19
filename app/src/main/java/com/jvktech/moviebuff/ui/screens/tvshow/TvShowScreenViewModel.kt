@@ -19,7 +19,7 @@ class TvShowScreenViewModel @Inject constructor(
     private val getTopRatedTvShowsUseCase: GetTopRatedTvShowsUseCaseImpl,
     private val getTrendingTvShowsUseCase: GetTrendingTvShowsUseCaseImpl,
     private val getAiringTodayTvShowsUseCase: GetAiringTodayTvShowsUseCaseImpl,
-    private val getFavoritesTvShowsUseCase: GetFavoritesTvShowsUseCaseImpl,
+    private val getFavouritesTvShowsUseCase: GetFavouritesTvShowsUseCaseImpl,
     private val getRecentlyBrowsedTvShowsUseCase: GetRecentlyBrowsedTvShowsUseCaseImpl
 ) : ViewModel() {
     private val deviceLanguage: Flow<DeviceLanguage> = getDeviceLanguageUseCase()
@@ -44,7 +44,7 @@ class TvShowScreenViewModel @Inject constructor(
     val uiState: StateFlow<TvShowScreenUIState> = tvShowsState.mapLatest { tvShowsState ->
         TvShowScreenUIState(
             tvShowsState = tvShowsState,
-            favorites = getFavoritesTvShowsUseCase(),
+            favorites = getFavouritesTvShowsUseCase(),
             recentlyBrowsed = getRecentlyBrowsedTvShowsUseCase()
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, TvShowScreenUIState.default)

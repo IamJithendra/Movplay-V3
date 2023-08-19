@@ -2,12 +2,12 @@ package com.jvktech.moviebuff.data.repository.favorites
 
 import androidx.paging.PagingData
 import com.jvktech.moviebuff.data.model.movie.MovieDetails
-import com.jvktech.moviebuff.data.model.movie.MovieFavorite
+import com.jvktech.moviebuff.data.model.movie.MovieFavourite
 import com.jvktech.moviebuff.data.model.tvshow.TvShowDetails
-import com.jvktech.moviebuff.data.model.tvshow.TvShowFavorite
+import com.jvktech.moviebuff.data.model.tvshow.TvShowFavourite
 import kotlinx.coroutines.flow.Flow
 
-interface FavoritesRepository {
+interface FavouritesRepository {
     fun likeMovie(movieDetails: MovieDetails)
 
     fun likeTvShow(tvShowDetails: TvShowDetails)
@@ -16,9 +16,9 @@ interface FavoritesRepository {
 
     fun unlikeTvShows(tvShowDetails: TvShowDetails)
 
-    fun favoriteMovies(): Flow<PagingData<MovieFavorite>>
+    fun favoriteMovies(): Flow<PagingData<MovieFavourite>>
 
-    fun favoriteTvShows(): Flow<PagingData<TvShowFavorite>>
+    fun favoriteTvShows(): Flow<PagingData<TvShowFavourite>>
 
     fun getFavoriteMoviesIds(): Flow<List<Int>>
 
