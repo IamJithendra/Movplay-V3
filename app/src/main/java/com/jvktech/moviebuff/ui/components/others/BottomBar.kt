@@ -9,6 +9,9 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.material.icons.outlined.SmartDisplay
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -57,7 +60,7 @@ fun BottomBar(
     ) {
         NavigationBar(
             modifier = modifier
-            ) {
+        ) {
             NavBarItem(
                 selected = selectedRoute == MovieScreenDestination.route,
                 onClick = {
@@ -66,10 +69,9 @@ fun BottomBar(
                 label = stringResource(R.string.movies_label),
                 selectedIcon = Icons.Filled.Movie,
                 unSelectedIcon = Icons.Outlined.Movie,
-                contentDescription = "Movie"
-//                icon = {
-//                    Icon(imageVector = Icons.Filled.Home, contentDescription = "Movie")
-//                }
+                contentDescription = "Movie",
+                badgeCount = 7
+
             )
             NavBarItem(
                 selected = selectedRoute == TvShowScreenDestination.route,
@@ -80,9 +82,6 @@ fun BottomBar(
                 selectedIcon = Icons.Filled.SmartDisplay,
                 unSelectedIcon = Icons.Outlined.SmartDisplay,
                 contentDescription = "Tv Show"
-//                icon = {
-//                    Icon(imageVector = Icons.Filled.Home, contentDescription = "Tv Show")
-//                }
             )
             NavBarItem(
                 selected = selectedRoute == FavoriteScreenDestination.route,
@@ -92,10 +91,9 @@ fun BottomBar(
                 label = stringResource(R.string.favourites_label),
                 selectedIcon = Icons.Filled.Favorite,
                 unSelectedIcon = Icons.Outlined.FavoriteBorder,
-                contentDescription = "Favorites"
-//                icon = {
-//                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
-//                }
+                contentDescription = "Favorites",
+                hasNews = true
+
             )
 
 //            NavBarItem(
@@ -115,11 +113,14 @@ fun BottomBar(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RowScope.NavBarItem(
     label: String,
 //    icon: @Composable () -> Unit,
     selected: Boolean,
+    hasNews: Boolean? = false,
+    badgeCount: Int? = null,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     selectedIcon: ImageVector,
@@ -134,10 +135,22 @@ fun RowScope.NavBarItem(
             Text(label)
         },
         icon = {
-            Icon(
-                imageVector = if (selected) selectedIcon else unSelectedIcon,
-                contentDescription = contentDescription
-            )
+            BadgedBox(
+                badge = {
+                    if (badgeCount != null) {
+                        Badge {
+                            Text(text = badgeCount.toString())
+                        }
+                    } else if (hasNews == true) {
+                        Badge()
+                    }
+                }
+            ) {
+                Icon(
+                    imageVector = if (selected) selectedIcon else unSelectedIcon,
+                    contentDescription = contentDescription
+                )
+            }
         }
     )
 }
