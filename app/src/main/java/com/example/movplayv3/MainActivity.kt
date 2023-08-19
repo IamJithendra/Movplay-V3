@@ -32,7 +32,6 @@ import com.example.movplayv3.ui.components.others.MovplayBottomBar
 import com.example.movplayv3.ui.screens.NavGraphs
 import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
-import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.example.movplayv3.ui.theme.MovplayV3Theme
 import com.example.movplayv3.ui.theme.spacing
@@ -109,7 +108,6 @@ class MainActivity : ComponentActivity() {
                     MovieScreenDestination.route,
                     TvShowScreenDestination.route,
                     FavoriteScreenDestination.route,
-                    SearchScreenDestination.route
                 )
             }
 

@@ -22,10 +22,6 @@ import com.example.movplayv3.data.model.MediaType
 import com.example.movplayv3.data.model.SearchQuery
 import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
 import com.example.movplayv3.ui.components.sections.MovplaySearchGridSection
-import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
-import com.example.movplayv3.ui.screens.destinations.ScannerScreenDestination
-import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
-import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.search.components.MovplayQueryTextField
 import com.example.movplayv3.ui.screens.search.components.MovplaySearchEmptyState
 import com.example.movplayv3.ui.theme.spacing
@@ -36,80 +32,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.result.NavResult
 import com.ramcosta.composedestinations.result.ResultRecipient
 import java.util.*
-
-@OptIn(ExperimentalLifecycleComposeApi::class)
-@Destination
-@Composable
-fun AnimatedVisibilityScope.SearchScreen(
-    viewModel: SearchScreenViewModel = hiltViewModel(),
-    navigator: DestinationsNavigator,
-    resultRecipient: ResultRecipient<ScannerScreenDestination, String>
-
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val onQueryChanged: (query: String) -> Unit = viewModel::onQueryChange
-    val onQueryCleared: () -> Unit = viewModel::onQueryClear
-    val onAddSearchQuerySuggestions: (SearchQuery) -> Unit = viewModel::addQuerySuggestion
-
-    val onCameraClicked = {
-        navigator.navigate(ScannerScreenDestination)
-    }
-    val onResultClicked: (id: Int, type: MediaType) -> Unit = { id, type ->
-        val destination = when (type) {
-            MediaType.Movie -> {
-                MovieDetailsScreenDestination(
-                    movieId = id,
-                    startRoute = SearchScreenDestination.route
-                )
-            }
-
-            MediaType.Tv -> {
-                TvShowDetailsScreenDestination(
-                    tvShowId = id,
-                    startRoute = SearchScreenDestination.route
-                )
-            }
-
-            else -> null
-        }
-
-        if (destination != null) {
-            val searchQuery = SearchQuery(
-                query = uiState.query.orEmpty(),
-                lastUseDate = Date()
-            )
-            onAddSearchQuerySuggestions(searchQuery)
-
-            navigator.navigate(destination)
-        }
-    }
-    val onMovieClicked = { movieId: Int ->
-        val destination = MovieDetailsScreenDestination(
-            movieId = movieId,
-            startRoute = SearchScreenDestination.route
-        )
-
-        navigator.navigate(destination)
-    }
-    val onQuerySuggestionSelected: (String) -> Unit = viewModel::onQuerySuggestionSelected
-    resultRecipient.onNavResult { result ->
-        when (result) {
-            is NavResult.Value -> {
-                viewModel.onQueryChange(result.value)
-            }
-            else -> Unit
-        }
-    }
-    SearchScreenContent(
-        uiState = uiState,
-        onQueryChanged = onQueryChanged,
-        onQueryCleared = onQueryCleared,
-        onQuerySuggestionSelected = onQuerySuggestionSelected,
-        onCameraClicked = onCameraClicked,
-        onResultClicked = onResultClicked,
-        onMovieClicked = onMovieClicked
-    )
-}
 
 @Composable
 fun SearchScreenContent(

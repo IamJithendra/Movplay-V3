@@ -7,7 +7,6 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.navigation.NavBackStackEntry
 import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
-import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.ramcosta.composedestinations.spec.DestinationStyle
 
@@ -17,8 +16,7 @@ object TvShowDetailsScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.enterTransition(): EnterTransition? {
         return when (initialState.destination.route) {
             TvShowDetailsScreenDestination.route,
-            FavoriteScreenDestination.route,
-            SearchScreenDestination.route -> slideIntoContainer(
+            FavoriteScreenDestination.route  -> slideIntoContainer(
                 towards = AnimatedContentScope.SlideDirection.Up,
                 animationSpec = tween(300)
             )
@@ -29,8 +27,7 @@ object TvShowDetailsScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.popEnterTransition(): EnterTransition? {
         return when (initialState.destination.route) {
             TvShowDetailsScreenDestination.route,
-            FavoriteScreenDestination.route,
-            SearchScreenDestination.route -> slideIntoContainer(
+            FavoriteScreenDestination.route  -> slideIntoContainer(
                 towards = AnimatedContentScope.SlideDirection.Up,
                 animationSpec = tween(300)
             )
@@ -41,8 +38,7 @@ object TvShowDetailsScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.exitTransition(): ExitTransition? {
         return when (targetState.destination.route) {
             TvShowDetailsScreenDestination.route,
-            FavoriteScreenDestination.route,
-            SearchScreenDestination.route -> slideOutOfContainer(
+            FavoriteScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
             )
@@ -53,8 +49,7 @@ object TvShowDetailsScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.popExitTransition(): ExitTransition? {
         return when (targetState.destination.route) {
             TvShowDetailsScreenDestination.route,
-            FavoriteScreenDestination.route,
-            SearchScreenDestination.route -> slideOutOfContainer(
+            FavoriteScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
             )

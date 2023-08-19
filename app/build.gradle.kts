@@ -9,7 +9,7 @@ plugins {
     id("com.google.firebase.firebase-perf")
     id("com.google.gms.google-services")
     id("kotlin-kapt")
-    id("com.google.devtools.ksp") version "1.7.10-1.0.6"
+    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
 }
 
 fun getApiKey(): String {
@@ -31,26 +31,34 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.0-rc01"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
     packagingOptions {
         resources {
@@ -140,7 +148,7 @@ dependencies {
     implementation(libs.androidx.camera.camera.extensions)
 
     //MLKit
-    implementation(libs.com.google.mlkit.text.recognition)
+//    implementation(libs.com.google.mlkit.text.recognition)
 
     //Timber
     implementation(libs.com.jakewharton.timber)

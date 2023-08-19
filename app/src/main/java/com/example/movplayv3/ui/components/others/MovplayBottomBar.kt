@@ -22,7 +22,6 @@ import androidx.compose.ui.res.stringResource
 import com.example.movplayv3.R
 import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
-import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 
 @Composable
@@ -38,7 +37,6 @@ fun MovplayBottomBar(
             MovieScreenDestination.route,
             TvShowScreenDestination.route,
             FavoriteScreenDestination.route,
-            SearchScreenDestination.route
         )
     }
 
@@ -99,19 +97,19 @@ fun MovplayBottomBar(
 //                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
 //                }
             )
-            MovplayNavBarItem(
-                selected = selectedRoute == SearchScreenDestination.route,
-                onClick = {
-                    onItemClicked(SearchScreenDestination.route)
-                },
-                label = stringResource(R.string.search_label),
-                selectedIcon = Icons.Filled.ZoomIn,
-                unSelectedIcon = Icons.Outlined.Search,
-                contentDescription = "Search"
-//                icon = {
-//                    Icon(imageVector = Icons.Filled.Search, contentDescription = "Search")
-//                }
-            )
+//            MovplayNavBarItem(
+//                selected = selectedRoute == SearchScreenDestination.route,
+//                onClick = {
+//                    onItemClicked(SearchScreenDestination.route)
+//                },
+//                label = stringResource(R.string.search_label),
+//                selectedIcon = Icons.Filled.ZoomIn,
+//                unSelectedIcon = Icons.Outlined.Search,
+//                contentDescription = "Search"
+////                icon = {
+////                    Icon(imageVector = Icons.Filled.Search, contentDescription = "Search")
+////                }
+//            )
         }
     }
 }

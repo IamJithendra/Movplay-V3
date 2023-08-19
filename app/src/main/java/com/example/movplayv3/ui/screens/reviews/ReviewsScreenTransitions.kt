@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.navigation.NavBackStackEntry
 import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
-import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.ramcosta.composedestinations.spec.DestinationStyle
 
@@ -17,8 +16,7 @@ object ReviewsScreenTransitions : DestinationStyle.Animated {
         return when (targetState.destination.route) {
             MovieScreenDestination.route,
             TvShowScreenDestination.route,
-            FavoriteScreenDestination.route,
-            SearchScreenDestination.route -> slideOutOfContainer(
+            FavoriteScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
             )
@@ -30,8 +28,7 @@ object ReviewsScreenTransitions : DestinationStyle.Animated {
         return when (targetState.destination.route) {
             MovieScreenDestination.route,
             TvShowScreenDestination.route,
-            FavoriteScreenDestination.route,
-            SearchScreenDestination.route -> slideOutOfContainer(
+            FavoriteScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
             )

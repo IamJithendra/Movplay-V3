@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "758635631449",
+    "project_id": "movie-play-20d23",
+    "storage_bucket": "movie-play-20d23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758635631449:android:f7936049e7767470d77248",
+        "android_client_info": {
+          "package_name": "com.example.movplayv3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758635631449-isfnjnk06aqk39ij68npaddrtubbg20n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqMthTKD1MkM7SErqSbAwPliRqQk2LNsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758635631449-isfnjnk06aqk39ij68npaddrtubbg20n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
