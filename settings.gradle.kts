@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MovplayV3"
+rootProject.name = "Movie Buff"
 include(":app")
