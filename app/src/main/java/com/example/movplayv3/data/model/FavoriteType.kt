@@ -9,6 +9,6 @@ enum class FavoriteType {
     @StringRes
     fun getLabelResourceId() = when (this) {
         Movie -> R.string.favourite_type_movie_label
-        TvShow -> R.string.favourite_type_tv_show_label
+        TvShow -> R.string.favourite_type_tv_series_label
     }
 }
