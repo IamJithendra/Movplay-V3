@@ -12,17 +12,16 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.movplayv3.R
-import com.example.movplayv3.ui.components.lists.MovplayProvidersSourceList
-import com.example.movplayv3.ui.components.others.MovplayLabeledSwitch
-import com.example.movplayv3.ui.components.others.MovplaySectionDivider
-import com.example.movplayv3.ui.components.others.MovplayVoteRangeSlider
-import com.example.movplayv3.ui.components.sections.MovplayExpandableSection
-import com.example.movplayv3.ui.components.selectors.MovplayDateRangeSelector
-import com.example.movplayv3.ui.components.selectors.MovplayGenresSelector
+import com.example.movplayv3.ui.components.lists.ProvidersSourceList
+import com.example.movplayv3.ui.components.others.LabeledSwitch
+import com.example.movplayv3.ui.components.others.SectionDivider
+import com.example.movplayv3.ui.components.others.VoteRangeSlider
+import com.example.movplayv3.ui.components.sections.ExpandableSection
+import com.example.movplayv3.ui.components.selectors.DateRangeSelector
+import com.example.movplayv3.ui.components.selectors.GenresSelector
 import com.example.movplayv3.ui.screens.discover.movies.MovieFilterState
 import com.example.movplayv3.ui.theme.spacing
 
@@ -93,17 +92,17 @@ fun FilterMoviesModalBottomSheetContent(
         ) {
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
-            MovplayExpandableSection(
+            ExpandableSection(
                 modifier = Modifier.fillMaxWidth(),
                 label = stringResource(R.string.movie_filter_bottom_sheet_genres_section_label),
                 infoText = stringResource(R.string.movie_filter_bottom_sheet_genres_info_label),
                 expanded = genresSectionExpanded,
                 onClick = { genresSectionExpanded = !genresSectionExpanded },
                 trailing = {
-                    MovplaySectionDivider(modifier = Modifier.fillMaxWidth())
+                    SectionDivider(modifier = Modifier.fillMaxWidth())
                 }
             ) {
-                MovplayGenresSelector(
+                GenresSelector(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -129,17 +128,17 @@ fun FilterMoviesModalBottomSheetContent(
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
             }
 
-            MovplayExpandableSection(
+            ExpandableSection(
                 modifier = Modifier.fillMaxWidth(),
                 label = stringResource(R.string.movie_filter_bottom_sheet_availability_label),
                 infoText = stringResource(R.string.movie_filter_bottom_sheet_availability_info_label),
                 expanded = watchProvidersSectionExpanded,
                 onClick = { watchProvidersSectionExpanded = !watchProvidersSectionExpanded },
                 trailing = {
-                    MovplaySectionDivider(modifier = Modifier.fillMaxWidth())
+                    SectionDivider(modifier = Modifier.fillMaxWidth())
                 }
             ) {
-                MovplayProvidersSourceList(
+                ProvidersSourceList(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -164,17 +163,17 @@ fun FilterMoviesModalBottomSheetContent(
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
             }
 
-            MovplayExpandableSection(
+            ExpandableSection(
                 modifier = Modifier.fillMaxWidth(),
                 label = stringResource(R.string.movie_filter_bottom_sheet_score_section_label),
                 infoText = stringResource(R.string.movie_filter_bottom_sheet_score_info_label),
                 expanded = voteRangeSectionExpanded,
                 onClick = { voteRangeSectionExpanded = !voteRangeSectionExpanded },
                 trailing = {
-                    MovplaySectionDivider(modifier = Modifier.fillMaxWidth())
+                    SectionDivider(modifier = Modifier.fillMaxWidth())
                 }
             ) {
-                MovplayVoteRangeSlider(
+                VoteRangeSlider(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -194,17 +193,17 @@ fun FilterMoviesModalBottomSheetContent(
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
             }
 
-            MovplayExpandableSection(
+            ExpandableSection(
                 modifier = Modifier.fillMaxWidth(),
                 label = stringResource(R.string.movie_filter_bottom_sheet_date_section_label),
                 infoText = stringResource(R.string.movie_filter_bottom_sheet_date_info_label),
                 expanded = dateSectionExpanded,
                 onClick = { dateSectionExpanded = !dateSectionExpanded },
                 trailing = {
-                    MovplaySectionDivider(modifier = Modifier.fillMaxWidth())
+                    SectionDivider(modifier = Modifier.fillMaxWidth())
                 }
             ) {
-                MovplayDateRangeSelector(
+                DateRangeSelector(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -247,14 +246,14 @@ fun FilterMoviesModalBottomSheetContent(
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
             }
 
-            MovplayExpandableSection(
+            ExpandableSection(
                 modifier = Modifier.fillMaxWidth(),
                 label = stringResource(R.string.movie_filter_bottom_sheet_other_section_label),
                 infoText = stringResource(R.string.movie_filter_bottom_sheet_other_info_label),
                 expanded = otherSectionExpanded,
                 onClick = { otherSectionExpanded = !otherSectionExpanded }
             ) {
-                MovplayLabeledSwitch(
+                LabeledSwitch(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -270,7 +269,7 @@ fun FilterMoviesModalBottomSheetContent(
                     }
                 )
 
-                MovplayLabeledSwitch(
+                LabeledSwitch(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -286,7 +285,7 @@ fun FilterMoviesModalBottomSheetContent(
                     }
                 )
 
-                MovplayLabeledSwitch(
+                LabeledSwitch(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(

@@ -26,17 +26,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.movplayv3.R
-import com.example.movplayv3.ui.components.chips.MovplayEpisodeChip
+import com.example.movplayv3.ui.components.chips.EpisodeChip
 
-import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
-import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
-import com.example.movplayv3.ui.components.others.MovplayBasicAppBar
-import com.example.movplayv3.ui.components.sections.MovplayMemberSection
-import com.example.movplayv3.ui.components.sections.MovplayPresentableDetailsTopSection
-import com.example.movplayv3.ui.components.sections.MovplayVideosSection
-import com.example.movplayv3.ui.components.texts.MovplayExpandableText
-import com.example.movplayv3.ui.components.texts.MovplayLabeledText
-import com.example.movplayv3.ui.components.texts.MovplaySectionLabel
+import com.example.movplayv3.ui.components.dialogs.ErrorDialog
+import com.example.movplayv3.ui.components.others.AnimatedContentContainer
+import com.example.movplayv3.ui.components.others.BasicAppBar
+import com.example.movplayv3.ui.components.sections.MemberSection
+import com.example.movplayv3.ui.components.sections.PresentableDetailsTopSection
+import com.example.movplayv3.ui.components.sections.VideosSection
+import com.example.movplayv3.ui.components.texts.ExpandableText
+import com.example.movplayv3.ui.components.texts.LabeledText
+import com.example.movplayv3.ui.components.texts.SectionLabel
 import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.formatted
@@ -102,7 +102,7 @@ fun SeasonDetailsContent(
     }
 
     if (showErrorDialog) {
-        MovplayErrorDialog(
+        ErrorDialog(
             onDismissRequest = {
                 showErrorDialog = false
             },
@@ -122,7 +122,7 @@ fun SeasonDetailsContent(
             modifier = Modifier.fillMaxSize()
         ) {
             item {
-                MovplayPresentableDetailsTopSection(
+                PresentableDetailsTopSection(
                     modifier = Modifier
                         .fillMaxWidth(),
                     presentable = uiState.seasonDetails
@@ -131,19 +131,19 @@ fun SeasonDetailsContent(
                         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
                     ) {
                         uiState.seasonDetails?.seasonNumber?.let { number ->
-                            MovplayLabeledText(
+                            LabeledText(
                                 label = stringResource(R.string.season_details_season_number_label),
                                 text = number.toString()
                             )
                         }
                         uiState.episodeCount?.let { count ->
-                            MovplayLabeledText(
+                            LabeledText(
                                 label = stringResource(R.string.season_details_episodes_count_label),
                                 text = count.toString()
                             )
                         }
                         uiState.seasonDetails?.airDate?.let { date ->
-                            MovplayLabeledText(
+                            LabeledText(
                                 label = stringResource(R.string.season_details_air_date_label),
                                 text = date.formatted()
                             )
@@ -153,7 +153,7 @@ fun SeasonDetailsContent(
             }
 
             item {
-                MovplayAnimatedContentContainer(
+                AnimatedContentContainer(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = MaterialTheme.spacing.medium),
@@ -171,7 +171,7 @@ fun SeasonDetailsContent(
                             )
 
                             if (uiState.seasonDetails.overview.isNotBlank()) {
-                                MovplayExpandableText(
+                                ExpandableText(
                                     modifier = Modifier.fillMaxSize(),
                                     text = uiState.seasonDetails.overview
                                 )
@@ -182,13 +182,13 @@ fun SeasonDetailsContent(
             }
 
             item {
-                MovplayAnimatedContentContainer(
+                AnimatedContentContainer(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = MaterialTheme.spacing.medium),
                     visible = !uiState.aggregatedCredits?.cast.isNullOrEmpty()
                 ) {
-                    MovplayMemberSection(
+                    MemberSection(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.season_details_cast_label),
                         members = uiState.aggregatedCredits?.cast ?: emptyList(),
@@ -199,13 +199,13 @@ fun SeasonDetailsContent(
             }
 
             item {
-                MovplayAnimatedContentContainer(
+                AnimatedContentContainer(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = MaterialTheme.spacing.medium),
                     visible = !uiState.aggregatedCredits?.crew.isNullOrEmpty()
                 ) {
-                    MovplayMemberSection(
+                    MemberSection(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.season_details_crew_label),
                         members = uiState.aggregatedCredits?.crew ?: emptyList(),
@@ -216,13 +216,13 @@ fun SeasonDetailsContent(
             }
 
             item {
-                MovplayAnimatedContentContainer(
+                AnimatedContentContainer(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = MaterialTheme.spacing.medium),
                     visible = !uiState.videos.isNullOrEmpty()
                 ) {
-                    MovplayVideosSection(
+                    VideosSection(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.tv_series_details_videos),
                         videos = uiState.videos ?: emptyList(),
@@ -239,7 +239,7 @@ fun SeasonDetailsContent(
             uiState.seasonDetails?.episodes?.let { episodes ->
                 if (episodes.isNotEmpty()) {
                     item {
-                        MovplaySectionLabel(
+                        SectionLabel(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = MaterialTheme.spacing.medium)
@@ -269,7 +269,7 @@ fun SeasonDetailsContent(
                             defaultValue = { null })
                     }
 
-                    MovplayEpisodeChip(
+                    EpisodeChip(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = MaterialTheme.spacing.medium)
@@ -296,7 +296,7 @@ fun SeasonDetailsContent(
             }
         }
 
-        MovplayBasicAppBar(
+        BasicAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
             title = stringResource(R.string.season_details_appbar_label),
             action = {

@@ -5,7 +5,6 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,9 +12,9 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.data.model.FavoriteType
-import com.example.movplayv3.ui.components.others.MovplayFavoriteEmptyState
-import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
-import com.example.movplayv3.ui.components.selectors.MovplayFavoriteTypeSelector
+import com.example.movplayv3.ui.components.others.FavoriteEmptyState
+import com.example.movplayv3.ui.components.sections.PresentableGridSection
+import com.example.movplayv3.ui.components.selectors.FavoriteTypeSelector
 import com.example.movplayv3.ui.screens.destinations.*
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isNotEmpty
@@ -88,7 +87,7 @@ fun FavoriteScreenContent(
             .fillMaxSize()
             .statusBarsPadding()
     ) {
-        MovplayFavoriteTypeSelector(
+        FavoriteTypeSelector(
             selected = uiState.selectedFavouriteType,
             onSelected = onFavoriteTypeSelected
         )
@@ -97,7 +96,7 @@ fun FavoriteScreenContent(
             targetState = notEmpty
         ) { notEmpty ->
             if (notEmpty) {
-                MovplayPresentableGridSection(
+                PresentableGridSection(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(
                         top = MaterialTheme.spacing.medium,
@@ -110,7 +109,7 @@ fun FavoriteScreenContent(
                     onPresentableClick = onFavoriteClicked
                 )
             } else {
-                MovplayFavoriteEmptyState(
+                FavoriteEmptyState(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = MaterialTheme.spacing.medium)

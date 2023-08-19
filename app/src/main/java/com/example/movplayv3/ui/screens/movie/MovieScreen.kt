@@ -24,9 +24,9 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.movie.MovieType
-import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
-import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
-import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
+import com.example.movplayv3.ui.components.dialogs.ExitDialog
+import com.example.movplayv3.ui.components.sections.PresentableSection
+import com.example.movplayv3.ui.components.sections.PresentableTopSection
 import com.example.movplayv3.ui.screens.destinations.BrowseMoviesScreenDestination
 import com.example.movplayv3.ui.screens.destinations.DiscoverMoviesScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
@@ -123,7 +123,7 @@ fun MoviesScreenContent(
     }
 
     if (showExitDialog) {
-        MovplayExitDialog(
+        ExitDialog(
             onDismissRequest = dismissDialog,
             onCancelClick = dismissDialog,
             onConfirmClick = {
@@ -184,7 +184,7 @@ fun MoviesScreenContent(
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
         ) {
-            MovplayPresentableTopSection(
+            PresentableTopSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .onGloballyPositioned { coordinates ->
@@ -199,7 +199,7 @@ fun MoviesScreenContent(
                     onBrowseMoviesClicked(MovieType.NowPlaying)
                 }
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
@@ -208,7 +208,7 @@ fun MoviesScreenContent(
                 onPresentableClick = onMovieClicked,
                 onMoreClick = onDiscoverMoviesClicked
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
@@ -219,7 +219,7 @@ fun MoviesScreenContent(
                     onBrowseMoviesClicked(MovieType.Upcoming)
                 }
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
@@ -228,7 +228,7 @@ fun MoviesScreenContent(
                 onPresentableClick = onMovieClicked,
                 onMoreClick = { onBrowseMoviesClicked(MovieType.Trending) }
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
@@ -238,7 +238,7 @@ fun MoviesScreenContent(
                 onMoreClick = { onBrowseMoviesClicked(MovieType.TopRated) }
             )
             if (favoritesLazyItems.isNotEmpty()){
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .animateContentSize(),
@@ -249,7 +249,7 @@ fun MoviesScreenContent(
                 )
             }
             if (recentlyBrowsedLazyItems.isNotEmpty()) {
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .animateContentSize(),

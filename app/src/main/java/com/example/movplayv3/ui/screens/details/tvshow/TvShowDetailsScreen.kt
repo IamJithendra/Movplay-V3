@@ -25,15 +25,15 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
-import com.example.movplayv3.ui.components.button.MovplayBackButton
-import com.example.movplayv3.ui.components.button.MovplayLikeButton
-import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
-import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
-import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
+import com.example.movplayv3.ui.components.button.BackButton
+import com.example.movplayv3.ui.components.button.LikeButton
+import com.example.movplayv3.ui.components.dialogs.ErrorDialog
+import com.example.movplayv3.ui.components.others.AnimatedContentContainer
+import com.example.movplayv3.ui.components.others.DetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.*
-import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsInfoSection
-import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsTopContent
+import com.example.movplayv3.ui.screens.details.components.TvShowDetailsInfoSection
+import com.example.movplayv3.ui.screens.details.components.TvShowDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isNotEmpty
 import com.example.movplayv3.utils.openExternalId
@@ -219,7 +219,7 @@ fun TvShowDetailsScreenContent(
     }
 
     if (showErrorDialog) {
-        MovplayErrorDialog(
+        ErrorDialog(
             onDismissRequest = {
                 showErrorDialog = false
             },
@@ -236,7 +236,7 @@ fun TvShowDetailsScreenContent(
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
         ) {
-            MovplayPresentableDetailsTopSection(
+            PresentableDetailsTopSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .onGloballyPositioned { coordinates ->
@@ -256,7 +256,7 @@ fun TvShowDetailsScreenContent(
                         )
                         .padding(MaterialTheme.spacing.small)
                 ) {
-                    MovplayTvShowDetailsTopContent(
+                    TvShowDetailsTopContent(
                         modifier = Modifier.fillMaxWidth(),
                         tvShowDetails = uiState.tvShowDetails
                     )
@@ -267,7 +267,7 @@ fun TvShowDetailsScreenContent(
                     targetState = uiState.associatedContent.externalIds
                 ) { ids ->
                     if (ids != null) {
-                        MovplayExternalIdsSection(
+                        ExternalIdsSection(
                             modifier = Modifier.fillMaxWidth(),
                             externalIds = ids,
                             onExternalIdClick = onExternalIdClicked
@@ -275,7 +275,7 @@ fun TvShowDetailsScreenContent(
                     }
                 }
             }
-            MovplayTvShowDetailsInfoSection(
+            TvShowDetailsInfoSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = MaterialTheme.spacing.medium)
@@ -285,23 +285,23 @@ fun TvShowDetailsScreenContent(
                 imdbExternalId = imdbExternalId,
                 onShareClicked = onShareClicked
             )
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.additionalTvShowDetailsInfo.watchProviders != null
             ) {
                 if (uiState.additionalTvShowDetailsInfo.watchProviders != null) {
-                    MovplayWatchProvidersSection(
+                    WatchProvidersSection(
                         modifier = Modifier.fillMaxWidth(),
                         watchProviders = uiState.additionalTvShowDetailsInfo.watchProviders,
                         title = stringResource(R.string.available_at)
                     )
                 }
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.tvShowDetails?.creators.isNullOrEmpty()
             ){
-                MovplayMemberSection(
+                MemberSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.tv_series_details_creators),
                     members = uiState.tvShowDetails?.creators ?: emptyList(),
@@ -309,11 +309,11 @@ fun TvShowDetailsScreenContent(
                     onMemberClick = onCreatorClicked
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.tvShowDetails?.seasons.isNullOrEmpty()
             ){
-                MovplaySeasonSection(
+                SeasonSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.surface)
@@ -323,11 +323,11 @@ fun TvShowDetailsScreenContent(
                     onSeasonClick = onSeasonClicked
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = recommendations.isNotEmpty()
             ) {
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.tv_series_details_recommendations),
                     state = recommendations,
@@ -342,11 +342,11 @@ fun TvShowDetailsScreenContent(
                     }
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = similar.isNotEmpty()
             ) {
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.tv_series_details_similar),
                     state = similar,
@@ -361,11 +361,11 @@ fun TvShowDetailsScreenContent(
                     }
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.associatedContent.videos.isNullOrEmpty()
             ) {
-                MovplayVideosSection(
+                VideosSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.tv_series_details_videos),
                     videos = uiState.associatedContent.videos ?: emptyList(),
@@ -373,11 +373,11 @@ fun TvShowDetailsScreenContent(
                     onVideoClicked = onVideoClicked
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.additionalTvShowDetailsInfo.reviewsCount > 0
             ) {
-                MovplayReviewSection(
+                ReviewSection(
                     modifier = Modifier.fillMaxWidth(),
                     count = uiState.additionalTvShowDetailsInfo.reviewsCount,
                     onClick = onReviewsClicked
@@ -389,19 +389,19 @@ fun TvShowDetailsScreenContent(
                 )
             )
         }
-        MovplayDetailsAppBar(
+        DetailsAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
             title = null,
             backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
             scrollState = scrollState,
             transparentScrollValueLimit = topSectionScrollLimitValue,
             action = {
-                MovplayBackButton(
+                BackButton(
                     onBackClicked
                 )
             },
             trailing = {
-                MovplayLikeButton(
+                LikeButton(
                     isFavourite = uiState.additionalTvShowDetailsInfo.isFavorite,
                     onClick = {
                         val details = uiState.tvShowDetails

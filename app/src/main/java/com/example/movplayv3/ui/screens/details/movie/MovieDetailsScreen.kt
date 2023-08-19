@@ -25,18 +25,18 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.MovieDetails
-import com.example.movplayv3.ui.components.button.MovplayBackButton
-import com.example.movplayv3.ui.components.button.MovplayLikeButton
-import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
-import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
-import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
+import com.example.movplayv3.ui.components.button.BackButton
+import com.example.movplayv3.ui.components.button.LikeButton
+import com.example.movplayv3.ui.components.dialogs.ErrorDialog
+import com.example.movplayv3.ui.components.others.AnimatedContentContainer
+import com.example.movplayv3.ui.components.others.DetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.RelatedMoviesScreenDestination
 import com.example.movplayv3.ui.screens.destinations.ReviewsScreenDestination
-import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
-import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
+import com.example.movplayv3.ui.screens.details.components.MovieDetailsInfoSection
+import com.example.movplayv3.ui.screens.details.components.MovieDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.*
 import com.ramcosta.composedestinations.annotation.Destination
@@ -208,7 +208,7 @@ fun MovieDetailsScreenContent(
     }
 
     if (showErrorDialog) {
-        MovplayErrorDialog(
+        ErrorDialog(
             onDismissRequest = {
                 showErrorDialog = false
             },
@@ -226,7 +226,7 @@ fun MovieDetailsScreenContent(
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
         ) {
-            MovplayPresentableDetailsTopSection(
+            PresentableDetailsTopSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .onGloballyPositioned { coordinates ->
@@ -246,7 +246,7 @@ fun MovieDetailsScreenContent(
                         )
                         .padding(MaterialTheme.spacing.small)
                 ) {
-                    MovplayMovieDetailsTopContent(
+                    MovieDetailsTopContent(
                         modifier = Modifier.fillMaxWidth(),
                         movieDetails = uiState.movieDetails
                     )
@@ -257,7 +257,7 @@ fun MovieDetailsScreenContent(
                     targetState = uiState.associatedContent.externalIds
                 ) { ids ->
                     if (ids != null) {
-                        MovplayExternalIdsSection(
+                        ExternalIdsSection(
                             modifier = Modifier.fillMaxWidth(),
                             externalIds = ids,
                             onExternalIdClick = onExternalIdClicked
@@ -265,7 +265,7 @@ fun MovieDetailsScreenContent(
                     }
                 }
             }
-            MovplayMovieDetailsInfoSection(
+            MovieDetailsInfoSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = MaterialTheme.spacing.medium)
@@ -276,24 +276,24 @@ fun MovieDetailsScreenContent(
                 onShareClicked = onShareClicked
             )
 
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.additionalMovieDetailsInfo.watchProviders != null
             ) {
                 if (uiState.additionalMovieDetailsInfo.watchProviders != null) {
-                    MovplayWatchProvidersSection(
+                    WatchProvidersSection(
                         modifier = Modifier.fillMaxWidth(),
                         watchProviders = uiState.additionalMovieDetailsInfo.watchProviders,
                         title = stringResource(R.string.available_at)
                     )
                 }
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.additionalMovieDetailsInfo.credits?.cast.isNullOrEmpty()
             ) {
                 uiState.additionalMovieDetailsInfo.credits?.cast?.ifNotNullAndEmpty { members ->
-                    MovplayMemberSection(
+                    MemberSection(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.movie_details_cast),
                         members = members,
@@ -302,12 +302,12 @@ fun MovieDetailsScreenContent(
                     )
                 }
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.additionalMovieDetailsInfo.credits?.crew.isNullOrEmpty()
             ) {
                 uiState.additionalMovieDetailsInfo.credits?.crew.ifNotNullAndEmpty { members ->
-                    MovplayMemberSection(
+                    MemberSection(
                         modifier = Modifier.fillMaxWidth(),
                         title = stringResource(R.string.movie_details_crew),
                         members = members,
@@ -316,14 +316,14 @@ fun MovieDetailsScreenContent(
                     )
                 }
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.associatedMovies.collection?.run { parts.isNotEmpty() } == true
             ) {
                 val movieCollection = uiState.associatedMovies.collection
 
                 if (movieCollection != null && movieCollection.parts.isNotEmpty()) {
-                    MovplayPresentableListSection(
+                    PresentableListSection(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(MaterialTheme.colorScheme.surface)
@@ -341,11 +341,11 @@ fun MovieDetailsScreenContent(
                     )
                 }
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = otherDirectorMoviesState.isNotEmpty()
             ) {
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(
                         id = R.string.movie_details_director_movies,
@@ -364,11 +364,11 @@ fun MovieDetailsScreenContent(
                     }
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = moviesRecommendationState.isNotEmpty()
             ) {
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.movie_details_recommendations),
                     state = moviesRecommendationState,
@@ -383,13 +383,13 @@ fun MovieDetailsScreenContent(
                     }
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = similarMoviesState.isNotEmpty()
             ) {
                 val movieCollection = uiState.associatedMovies.collection
 
-                MovplayPresentableSection(
+                PresentableSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = if (movieCollection != null) {
                         "Similar with ${movieCollection.name}"
@@ -412,11 +412,11 @@ fun MovieDetailsScreenContent(
                     }
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.associatedContent.videos.isNullOrEmpty()
             ) {
-                MovplayVideosSection(
+                VideosSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.season_details_videos_label),
                     videos = uiState.associatedContent.videos ?: emptyList(),
@@ -424,11 +424,11 @@ fun MovieDetailsScreenContent(
                     onVideoClicked = onVideoClicked
                 )
             }
-            MovplayAnimatedContentContainer(
+            AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.additionalMovieDetailsInfo.reviewsCount > 0
             ) {
-                MovplayReviewSection(
+                ReviewSection(
                     modifier = Modifier.fillMaxWidth(),
                     count = uiState.additionalMovieDetailsInfo.reviewsCount,
                     onClick = onReviewsClicked
@@ -440,19 +440,19 @@ fun MovieDetailsScreenContent(
                 )
             )
         }
-        MovplayDetailsAppBar(
+        DetailsAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
             title = null,
             backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
             scrollState = scrollState,
             transparentScrollValueLimit = topSectionScrollLimitValue,
             action = {
-                MovplayBackButton(
+                BackButton(
                     onBackClicked
                 )
             },
             trailing = {
-                MovplayLikeButton(
+                LikeButton(
                     isFavourite = uiState.additionalMovieDetailsInfo.isFavorite,
                     onClick = {
                         val details = uiState.movieDetails

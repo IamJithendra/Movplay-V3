@@ -1,11 +1,9 @@
 package com.example.movplayv3.ui.screens.browse.movies
 
-import android.app.Activity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,8 +16,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
@@ -27,13 +23,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.movie.MovieType
-import com.example.movplayv3.ui.components.dialogs.MovplayInfoDialog
-import com.example.movplayv3.ui.components.others.MovplayBasicAppBar
-import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
+import com.example.movplayv3.ui.components.dialogs.InfoDialog
+import com.example.movplayv3.ui.components.others.BasicAppBar
+import com.example.movplayv3.ui.components.sections.PresentableGridSection
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.FlowPreview
@@ -99,7 +94,7 @@ fun BrowseMoviesScreenContent(
         showClearDialog = false
     }
     if (showClearDialog) {
-        MovplayInfoDialog(
+        InfoDialog(
             infoText = stringResource(R.string.clear_recent_movies_dialog_text),
             onDismissRequest = dismissDialog,
             onCancelClick = dismissDialog,
@@ -114,7 +109,7 @@ fun BrowseMoviesScreenContent(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        MovplayBasicAppBar(
+        BasicAppBar(
             title = appbarTitle,
             action = {
                 IconButton(
@@ -142,7 +137,7 @@ fun BrowseMoviesScreenContent(
                 }
             }
         )
-        MovplayPresentableGridSection(
+        PresentableGridSection(
             modifier = Modifier
                 .fillMaxSize()
                 .navigationBarsPadding(),

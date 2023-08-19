@@ -12,7 +12,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -22,8 +21,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.RelationType
-import com.example.movplayv3.ui.components.others.MovplayBasicAppBar
-import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
+import com.example.movplayv3.ui.components.others.BasicAppBar
+import com.example.movplayv3.ui.components.sections.PresentableGridSection
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
@@ -79,7 +78,7 @@ fun RelatedTvSeriesScreenContent(
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background)
     ) {
-        MovplayBasicAppBar(
+        BasicAppBar(
             title = appbarTitle,
             action = {
                 IconButton(onClick = onBackButtonClicked) {
@@ -91,7 +90,7 @@ fun RelatedTvSeriesScreenContent(
             },
         )
 
-        MovplayPresentableGridSection(
+        PresentableGridSection(
             modifier = Modifier
                 .fillMaxSize()
                 .navigationBarsPadding(),

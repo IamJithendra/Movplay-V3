@@ -28,12 +28,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.paging.ConfigDataSource
-import com.example.movplayv3.ui.components.others.MovplayBottomBar
+import com.example.movplayv3.ui.components.others.BottomBar
 import com.example.movplayv3.ui.screens.NavGraphs
 import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
-import com.example.movplayv3.ui.theme.MovplayV3Theme
+import com.example.movplayv3.ui.theme.MovieBuffTheme
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.ImageUrlParser
 import com.example.movplayv3.utils.safeNavigate
@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
             }
 
             CompositionLocalProvider(LocalImageUrlParser provides imageUrlParser) {
-                MovplayV3Theme {
+                MovieBuffTheme {
                     val navigationBarColor = MaterialTheme.colorScheme.surface
                     val experiment = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                     val checkTheme = isSystemInDarkTheme()
@@ -153,7 +153,7 @@ class MainActivity : ComponentActivity() {
 
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                         bottomBar = {
-                            MovplayBottomBar(
+                            BottomBar(
                                 modifier = Modifier.navigationBarsPadding(),
                                 currentRoute = currentRoute,
                                 backQueueRoutes = backQueueRoutes,

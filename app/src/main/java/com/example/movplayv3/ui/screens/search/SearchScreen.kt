@@ -6,32 +6,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.MediaType
-import com.example.movplayv3.data.model.SearchQuery
-import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
-import com.example.movplayv3.ui.components.sections.MovplaySearchGridSection
-import com.example.movplayv3.ui.screens.search.components.MovplayQueryTextField
-import com.example.movplayv3.ui.screens.search.components.MovplaySearchEmptyState
+import com.example.movplayv3.ui.components.sections.PresentableGridSection
+import com.example.movplayv3.ui.components.sections.SearchGridSection
+import com.example.movplayv3.ui.screens.search.components.QueryTextField
+import com.example.movplayv3.ui.screens.search.components.SearchEmptyState
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.CaptureSpeechToText
 import com.example.movplayv3.utils.isNotEmpty
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.ramcosta.composedestinations.result.NavResult
-import com.ramcosta.composedestinations.result.ResultRecipient
-import java.util.*
 
 @Composable
 fun SearchScreenContent(
@@ -61,7 +50,7 @@ fun SearchScreenContent(
             .fillMaxSize()
             .statusBarsPadding()
     ) {
-        MovplayQueryTextField(
+        QueryTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacing.extraSmall)
@@ -108,7 +97,7 @@ fun SearchScreenContent(
                     val popular = state.popular.collectAsLazyPagingItems()
 
                     if (popular.isNotEmpty()) {
-                        MovplayPresentableGridSection(
+                        PresentableGridSection(
                             modifier = Modifier.fillMaxSize(),
                             contentPadding = PaddingValues(
                                 top = MaterialTheme.spacing.medium,
@@ -125,7 +114,7 @@ fun SearchScreenContent(
                     val result = state.result.collectAsLazyPagingItems()
 
                     if (result.isNotEmpty()) {
-                        MovplaySearchGridSection(
+                        SearchGridSection(
                             modifier = Modifier.fillMaxSize(),
                             contentPadding = PaddingValues(
                                 top = MaterialTheme.spacing.medium,
@@ -140,7 +129,7 @@ fun SearchScreenContent(
                             }
                         )
                     } else {
-                        MovplaySearchEmptyState(
+                        SearchEmptyState(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = MaterialTheme.spacing.medium)

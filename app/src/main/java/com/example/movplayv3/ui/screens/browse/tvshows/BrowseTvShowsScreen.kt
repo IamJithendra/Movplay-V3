@@ -22,9 +22,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.tvshow.TvShowType
-import com.example.movplayv3.ui.components.dialogs.MovplayInfoDialog
-import com.example.movplayv3.ui.components.others.MovplayBasicAppBar
-import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
+import com.example.movplayv3.ui.components.dialogs.InfoDialog
+import com.example.movplayv3.ui.components.others.BasicAppBar
+import com.example.movplayv3.ui.components.sections.PresentableGridSection
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.example.movplayv3.ui.theme.spacing
@@ -93,7 +93,7 @@ fun BrowseTvShowScreenContent(
     }
 
     if (showClearDialog) {
-        MovplayInfoDialog(
+        InfoDialog(
             infoText = stringResource(R.string.clear_recent_tv_series_dialog_text),
             onDismissRequest = dismissDialog,
             onCancelClick = dismissDialog,
@@ -107,7 +107,7 @@ fun BrowseTvShowScreenContent(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        MovplayBasicAppBar(
+        BasicAppBar(
             title = appbarTitle, action = {
                 IconButton(
                     onClick = onBackClicked
@@ -135,7 +135,7 @@ fun BrowseTvShowScreenContent(
             }
         )
 
-        MovplayPresentableGridSection(
+        PresentableGridSection(
             modifier = Modifier
                 .fillMaxSize()
                 .navigationBarsPadding(),

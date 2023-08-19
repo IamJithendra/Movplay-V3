@@ -9,7 +9,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -18,8 +17,8 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
-import com.example.movplayv3.ui.components.lists.MovplayReviewsList
-import com.example.movplayv3.ui.components.others.MovplayBasicAppBar
+import com.example.movplayv3.ui.components.lists.ReviewsList
+import com.example.movplayv3.ui.components.others.BasicAppBar
 import com.example.movplayv3.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -60,7 +59,7 @@ fun ReviewsScreenContent(
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background)
     ) {
-        MovplayBasicAppBar(
+        BasicAppBar(
             title = stringResource(R.string.reviews_screen_appbar_title),
             action = {
                 IconButton(onClick = onBackClicked) {
@@ -73,7 +72,7 @@ fun ReviewsScreenContent(
             },
         )
 
-        MovplayReviewsList(
+        ReviewsList(
             reviews = reviewsLazyItems,
             modifier = Modifier
                 .fillMaxSize()

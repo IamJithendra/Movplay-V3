@@ -19,15 +19,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -37,11 +33,11 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.SortOrder
 import com.example.movplayv3.data.model.SortType
-import com.example.movplayv3.ui.components.button.MovplayFilterFloatingButton
-import com.example.movplayv3.ui.components.button.MovplaySortTypeDropdownButton
-import com.example.movplayv3.ui.components.others.MovplayBasicAppBar
-import com.example.movplayv3.ui.components.others.MovplayFilterEmptyState
-import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
+import com.example.movplayv3.ui.components.button.FilterFloatingButton
+import com.example.movplayv3.ui.components.button.SortTypeDropdownButton
+import com.example.movplayv3.ui.components.others.BasicAppBar
+import com.example.movplayv3.ui.components.others.FilterEmptyState
+import com.example.movplayv3.ui.components.sections.PresentableGridSection
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.discover.components.FilterTvShowsModalBottomSheetContent
@@ -157,7 +153,7 @@ fun DiscoverTvSeriesScreenContent(
                 .background(color = MaterialTheme.colorScheme.background)
         ) {
             Column(modifier = Modifier.fillMaxSize()) {
-                MovplayBasicAppBar(
+                BasicAppBar(
                     title = stringResource(R.string.discover_tv_series_appbar_title),
                     action = {
                         IconButton(onClick = onBackClicked) {
@@ -186,7 +182,7 @@ fun DiscoverTvSeriesScreenContent(
                                 )
                             }
 
-                            MovplaySortTypeDropdownButton(
+                            SortTypeDropdownButton(
                                 selectedType = uiState.sortInfo.sortType,
                                 onTypeSelected = onSortTypeChanged
                             )
@@ -200,7 +196,7 @@ fun DiscoverTvSeriesScreenContent(
                     targetState = !tvSeries.isEmpty()
                 ) { hasFilterResults ->
                     if (hasFilterResults) {
-                        MovplayPresentableGridSection(
+                        PresentableGridSection(
                             modifier = Modifier.fillMaxSize(),
                             gridState = gridState,
                             contentPadding = PaddingValues(
@@ -213,7 +209,7 @@ fun DiscoverTvSeriesScreenContent(
                             onPresentableClick = onTvShowClicked
                         )
                     } else {
-                        MovplayFilterEmptyState(
+                        FilterEmptyState(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = MaterialTheme.spacing.medium)
@@ -240,7 +236,7 @@ fun DiscoverTvSeriesScreenContent(
                     targetScale = 0.3f
                 )
             ) {
-                MovplayFilterFloatingButton(
+                FilterFloatingButton(
                     modifier = Modifier
                         .padding(MaterialTheme.spacing.medium)
                         .navigationBarsPadding()

@@ -3,14 +3,11 @@ package com.example.movplayv3.ui.screens.tvshow
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
@@ -23,8 +20,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.tvshow.TvShowType
-import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
-import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
+import com.example.movplayv3.ui.components.sections.PresentableSection
+import com.example.movplayv3.ui.components.sections.PresentableTopSection
 import com.example.movplayv3.ui.screens.destinations.BrowseTvShowsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.DiscoverTvShowScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
@@ -161,7 +158,7 @@ fun TvShowsScreenContent(
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
         ) {
-            MovplayPresentableTopSection(
+            PresentableTopSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .onGloballyPositioned { coordinates ->
@@ -176,13 +173,13 @@ fun TvShowsScreenContent(
                     onBrowseTvShowClicked(TvShowType.OnTheAir)
                 }
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 title = stringResource(R.string.explore_tv_series),
                 state = discoverLazyItems,
                 onPresentableClick = onTvShowClicked,
                 onMoreClick = onDiscoverTvShowClicked
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 title = stringResource(R.string.top_rated_tv_series),
                 state = topRatedLazyItems,
                 onPresentableClick = onTvShowClicked,
@@ -190,7 +187,7 @@ fun TvShowsScreenContent(
                     onBrowseTvShowClicked(TvShowType.TopRated)
                 }
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 title = stringResource(R.string.trending_tv_series),
                 state = trendingLazyItems,
                 onPresentableClick = onTvShowClicked,
@@ -198,7 +195,7 @@ fun TvShowsScreenContent(
                     onBrowseTvShowClicked(TvShowType.Trending)
                 }
             )
-            MovplayPresentableSection(
+            PresentableSection(
                 title = stringResource(R.string.today_airing_tv_series),
                 state = airingTodayLazyItems,
                 onPresentableClick = onTvShowClicked,
@@ -207,7 +204,7 @@ fun TvShowsScreenContent(
                 }
             )
             if(favoritesLazyItems.isNotEmpty()){
-                MovplayPresentableSection(
+                PresentableSection(
                     title = stringResource(R.string.favourites_tv_series),
                     state = favoritesLazyItems,
                     onPresentableClick = onTvShowClicked,
@@ -217,7 +214,7 @@ fun TvShowsScreenContent(
                 )
             }
             if (recentlyBrowsedLazyItems.isNotEmpty()){
-                MovplayPresentableSection(
+                PresentableSection(
                     title = stringResource(R.string.recently_browsed_tv_series),
                     state = recentlyBrowsedLazyItems,
                     onPresentableClick = onTvShowClicked,
