@@ -1,3 +1,10 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
+
+fun getApiKey(): String {
+    return gradleLocalProperties(rootDir).getProperty("TMDB_API_KEY")
+}
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -12,10 +19,8 @@ plugins {
     id("com.google.devtools.ksp") version "1.8.21-1.0.11"
 }
 
-fun getApiKey(): String {
-    return com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir).getProperty("TMDB_API_KEY")
-}
 android {
+    namespace = "com.example.movplayv3"
     compileSdk = 33
 
     defaultConfig {
@@ -43,29 +48,37 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         buildConfig = true
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"
     }
-    packagingOptions {
+
+    packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    namespace = "com.example.movplayv3"
+
     applicationVariants.all {
         kotlin.sourceSets {
             getByName(name) {
@@ -90,6 +103,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.activity.compose)
     implementation(libs.androidx.runner)
+
+    // Splash Screen API
+    implementation(libs.androidx.core.splashscreen)
 
     // Foundation
     implementation(libs.androidx.compose.foundation)
