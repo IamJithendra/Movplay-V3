@@ -22,7 +22,7 @@ fun DetailPresentableItem(
     size: Size = MaterialTheme.sizes.presentableItemSmall,
     selected: Boolean = false,
     showTitle: Boolean = true,
-    showScore: Boolean = false,
+    showScore: Boolean = true,
     showAdult: Boolean = false,
     transformations: GraphicsLayerScope.() -> Unit = {},
     onClick: (() -> Unit)? = null
