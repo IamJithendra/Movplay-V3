@@ -88,6 +88,9 @@ fun FavoriteScreenContent(
             .statusBarsPadding()
     ) {
         FavoriteTypeSelector(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(MaterialTheme.spacing.medium),
             selected = uiState.selectedFavouriteType,
             onSelected = onFavoriteTypeSelected
         )

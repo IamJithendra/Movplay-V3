@@ -79,7 +79,8 @@ fun FavouriteTypeButton(
     ) {
         Text(
             text = stringResource(type.getLabelResourceId()),
-            color = textColor, fontWeight = FontWeight.Bold
+            color = textColor,
+            fontWeight = FontWeight.Bold
         )
     }
 }
