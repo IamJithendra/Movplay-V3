@@ -16,7 +16,6 @@ fun SectionLabel(
         modifier = modifier,
         text = text,
         style = MaterialTheme.typography.headlineSmall,
-//        fontWeight = FontWeight.Bold,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )

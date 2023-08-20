@@ -11,7 +11,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -30,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
 import androidx.paging.compose.LazyPagingItems
 import coil.compose.AsyncImagePainter
@@ -193,18 +196,16 @@ fun PresentableTopSection(
                     text = title,
                     color = contentColor,
                     style = MaterialTheme.typography.headlineSmall,
-//                    fontWeight = FontWeight.Bold
                 )
 
                 if (showMoreButton) {
-                    TextButton(onClick = onMoreClick) {
-                        Text(
-                            text = stringResource(R.string.movies_more),
-                            color = contentColor,
-                            style = MaterialTheme.typography.titleSmall
-                        )
+                    IconButton(
+                        onClick = onMoreClick,
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    ) {
                         Icon(
-                            imageVector = Icons.Filled.KeyboardArrowRight,
+                            imageVector = Icons.Outlined.ArrowForward,
+                            tint = contentColor,
                             contentDescription = null
                         )
                     }
@@ -229,7 +230,7 @@ fun PresentableTopSection(
                         DetailPresentableItemState.Result(it)
                     } ?: DetailPresentableItemState.Loading
 
-                    MovplayPresentableTopSectionItem(
+                    PresentableTopSectionItem(
                         modifier = Modifier.fillMaxWidth(),
                         presentableItemState = presentableItemState,
                         isSelected = selectedPresentable == presentable,
@@ -277,7 +278,7 @@ fun PresentableTopSection(
 }
 
 @Composable
-fun MovplayPresentableTopSectionItem(
+fun PresentableTopSectionItem(
     presentableItemState: DetailPresentableItemState,
     isSelected: Boolean,
     modifier: Modifier = Modifier,

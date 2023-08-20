@@ -9,18 +9,25 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
@@ -50,6 +57,11 @@ fun PresentableSection(
     val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val isScrollingLeft = listState.isScrollingTowardsStart()
+
+    var isDark by rememberSaveable { mutableStateOf(true) }
+    val contentColor by animateColorAsState(targetValue = if (isDark) Color.White else Color.Black,
+        label = ""
+    )
 
     val showScrollToBeginningButton by derivedStateOf {
         val visibleMaxItem = listState.firstVisibleItemIndex > scrollToBeginningItemsStart
@@ -83,13 +95,13 @@ fun PresentableSection(
                     text = title
                 )
                 if (showMoreButton) {
-                    TextButton(onClick = onMoreClick) {
-                        Text(
-                            text = stringResource(R.string.movies_more),
-                            style = MaterialTheme.typography.titleSmall
-                        )
+                    IconButton(
+                        onClick = onMoreClick,
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    ) {
                         Icon(
-                            imageVector = Icons.Filled.KeyboardArrowRight,
+                            imageVector = Icons.Outlined.ArrowForward,
+                            tint = contentColor,
                             contentDescription = null
                         )
                     }
