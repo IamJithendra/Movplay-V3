@@ -63,7 +63,9 @@ fun PresentableTopSection(
     val density = LocalDensity.current
     val pagerState = rememberPagerState()
     var isDark by rememberSaveable { mutableStateOf(true) }
-    val contentColor by animateColorAsState(targetValue = if (isDark) Color.White else Color.Black)
+    val contentColor by animateColorAsState(targetValue = if (isDark) Color.White else Color.Black,
+        label = ""
+    )
     val selectedPresentable by derivedStateOf {
         val snapShot = state.itemSnapshotList
         if (snapShot.isNotEmpty()) snapShot.getOrNull(pagerState.currentPage) else null
@@ -88,7 +90,8 @@ fun PresentableTopSection(
             val (maxWidth, maxHeight) = getMaxSizeInt()
             Crossfade(
                 targetState = selectedPresentable,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                label = ""
             ) { movie ->
                 val backdropScale = remember {
                     androidx.compose.animation.core.Animatable(1f)
@@ -189,8 +192,8 @@ fun PresentableTopSection(
                 Text(
                     text = title,
                     color = contentColor,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.headlineSmall,
+//                    fontWeight = FontWeight.Bold
                 )
 
                 if (showMoreButton) {
