@@ -95,6 +95,8 @@ fun AnimatedVisibilityScope.MovieScreen(
         navigator.navigate(DiscoverMoviesScreenDestination)
     }
 
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -109,10 +111,11 @@ fun AnimatedVisibilityScope.MovieScreen(
                         Image(
                             painter = painterResource(id = R.drawable.ic_launcher_foreground),
                             contentDescription = "App Logo",
-                            Modifier.size(40.dp)
+                            Modifier.size(65.dp)
                         )
                     }
-                }
+                },
+                scrollBehavior = scrollBehavior
             )
         },
         content = {_ ->
@@ -202,7 +205,7 @@ fun MoviesScreenContent(
 
     SwipeRefresh(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize().statusBarsPadding(),
         state = swipeRefreshState,
         indicator = { state, trigger ->
             SwipeRefreshIndicator(
