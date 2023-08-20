@@ -3,7 +3,6 @@ package com.jvktech.moviebuff.ui.components.items
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,23 +17,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.jvktech.moviebuff.ui.theme.DarkGreen
 import com.jvktech.moviebuff.ui.theme.DarkRed
 import com.jvktech.moviebuff.ui.theme.LightGreen
 import com.jvktech.moviebuff.ui.theme.Orange
 import com.jvktech.moviebuff.ui.theme.Red
 import com.jvktech.moviebuff.ui.theme.Yellow
-import com.jvktech.moviebuff.ui.theme.spacing
 
 @Composable
 fun PresentableScoreItem(
@@ -46,8 +36,6 @@ fun PresentableScoreItem(
     val progress = score / scoreRange.run { endInclusive - start }
 
     val animatedProgress = remember { Animatable(0f) }
-
-    val percent = (progress * 100).toInt()
 
     val oneDecimalScore = ((score * 10).toInt() / 10.0).toString()
 
@@ -71,33 +59,9 @@ fun PresentableScoreItem(
         label = ""
     )
 
-    val backgroundColor = MaterialTheme.colorScheme.background.copy(alpha = 0.7f)
-
-    val scoreText = buildAnnotatedString {
-        withStyle(
-            style = SpanStyle(
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
-                color = Color.White
-            )
-        ) {
-            append(percent.toString())
-        }
-        withStyle(
-            style = SpanStyle(
-                fontWeight = FontWeight.Bold,
-                fontSize = 8.sp,
-                color = Color.White
-            )
-        ) {
-            append("%")
-        }
-    }
-
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor)
     ) {
 
         Surface(
@@ -106,7 +70,7 @@ fun PresentableScoreItem(
                 .align(Alignment.TopEnd)
                 .clip(RoundedCornerShape(12.dp)),
             // TODO use little more better background
-            color = MaterialTheme.colorScheme.tertiaryContainer
+            color = MaterialTheme.colorScheme.background
 
         ) {
             Text(
@@ -127,11 +91,3 @@ fun PresentableScoreItem(
 
     }
 }
-
-//@Preview
-//@Composable
-//fun PresentableScoreItemPreview() {
-//    PresentableScoreItem(
-//        score = 10f
-//    )
-//}
