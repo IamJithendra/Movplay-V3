@@ -16,7 +16,6 @@ import com.jvktech.moviebuff.data.model.PresentableItemState
 import com.jvktech.moviebuff.ui.theme.Size
 import com.jvktech.moviebuff.ui.theme.sizes
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PresentableItem(
     presentableState: PresentableItemState,

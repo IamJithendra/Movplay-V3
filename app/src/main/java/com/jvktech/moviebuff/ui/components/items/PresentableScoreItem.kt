@@ -3,9 +3,13 @@ package com.jvktech.moviebuff.ui.components.items
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,32 +17,39 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.inset
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jvktech.moviebuff.ui.theme.*
+import com.jvktech.moviebuff.ui.theme.DarkGreen
+import com.jvktech.moviebuff.ui.theme.DarkRed
+import com.jvktech.moviebuff.ui.theme.LightGreen
+import com.jvktech.moviebuff.ui.theme.Orange
+import com.jvktech.moviebuff.ui.theme.Red
+import com.jvktech.moviebuff.ui.theme.Yellow
+import com.jvktech.moviebuff.ui.theme.spacing
 
 @Composable
 fun PresentableScoreItem(
     score: Float,
     modifier: Modifier = Modifier,
     scoreRange: ClosedFloatingPointRange<Float> = 0f..10f,
-    animationEnabled: Boolean = true,
-    strokeWidth: Dp = 3.dp
+    animationEnabled: Boolean = true
 ) {
     val progress = score / scoreRange.run { endInclusive - start }
 
     val animatedProgress = remember { Animatable(0f) }
 
     val percent = (progress * 100).toInt()
+
+    val oneDecimalScore = ((score * 10).toInt() / 10.0).toString()
 
     LaunchedEffect(progress, animationEnabled) {
         if (animationEnabled) {
@@ -56,7 +67,8 @@ fun PresentableScoreItem(
             in 0.45f..0.7f -> Yellow
             in 0.7f..0.85f -> LightGreen
             else -> DarkGreen
-        }
+        },
+        label = ""
     )
 
     val backgroundColor = MaterialTheme.colorScheme.background.copy(alpha = 0.7f)
@@ -82,47 +94,44 @@ fun PresentableScoreItem(
         }
     }
 
-    Box(modifier = modifier.padding(strokeWidth / 2), contentAlignment = Alignment.Center) {
-        Canvas(
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+    ) {
+
+        Surface(
             modifier = Modifier
-                .matchParentSize()
-                .aspectRatio(1f)
-        ) {
-            drawCircle(color = backgroundColor)
+                .padding(end = 8.dp, top = 8.dp)
+                .align(Alignment.TopEnd)
+                .clip(RoundedCornerShape(12.dp)),
+            // TODO use little more better background
+            color = MaterialTheme.colorScheme.tertiaryContainer
 
-            inset(
-                horizontal = strokeWidth.toPx() / 2,
-                vertical = strokeWidth.toPx() / 2
-            ) {
-                drawArc(
-                    color = indicatorColor.copy(alpha = 0.3f),
-                    startAngle = 0f,
-                    sweepAngle = 360f,
-                    useCenter = false,
-                    style = Stroke(width = strokeWidth.toPx())
-                )
-                drawArc(
-                    color = indicatorColor,
-                    startAngle = -90f,
-                    sweepAngle = animatedProgress.value * 360f,
-                    useCenter = false,
-                    style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round)
-                )
-            }
-
-        }
-        Column(
-            modifier = Modifier.padding(12.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = scoreText,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 12.sp,
-                maxLines = 1
+                text = oneDecimalScore,
+                modifier = Modifier
+                    .padding(
+                        start = 8.dp,
+                        top = 2.dp,
+                        end = 8.dp,
+                        bottom = 2.dp
+                    ),
+                color = indicatorColor,
+                style = MaterialTheme.typography.labelLarge,
+                maxLines = 1,
+                fontWeight = FontWeight.Bold
             )
         }
+
     }
 }
+
+//@Preview
+//@Composable
+//fun PresentableScoreItemPreview() {
+//    PresentableScoreItem(
+//        score = 10f
+//    )
+//}

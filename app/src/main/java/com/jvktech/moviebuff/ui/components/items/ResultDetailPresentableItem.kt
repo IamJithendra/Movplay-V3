@@ -84,13 +84,13 @@ fun ResultDetailPresentableItem(
 
         if (presentable.voteCount > 0 && showScore) {
             PresentableScoreItem(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(
-                        end = MaterialTheme.spacing.extraSmall,
-                        top = MaterialTheme.spacing.extraSmall
-                    ),
                 score = presentable.voteAverage,
+//                modifier = Modifier
+//                    .align(Alignment.TopEnd)
+//                    .padding(
+//                        end = MaterialTheme.spacing.extraSmall,
+//                        top = MaterialTheme.spacing.extraSmall
+//                    ),
             )
         }
 
