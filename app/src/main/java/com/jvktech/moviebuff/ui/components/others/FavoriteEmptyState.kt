@@ -39,7 +39,7 @@ fun FavoriteEmptyState(
         FavoriteType.TvShow -> R.string.favourite_empty_navigate_to_tv_series_button_label
     }
 
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_empty))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_empty_favourite))
     val dynamicProperties = rememberLottieDynamicProperties(
         rememberLottieDynamicProperty(
             property = LottieProperty.COLOR_FILTER,

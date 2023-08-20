@@ -79,26 +79,26 @@
     <string name="tv_series_details_creators">Creators</string>
     <string name="tv_series_details_reviews" formatted="true">Reviews (%d)</string>
 
-    <string name="all_movies_top_rated_label">Top rated movies</string>
-    <string name="all_movies_now_playing_label">Now playing movies</string>
-    <string name="all_movies_upcoming_label">Upcoming movies</string>
-    <string name="all_movies_popular_label">Popular movies</string>
-    <string name="all_movies_favourites_label" formatted="true">Favourites movies (%d)</string>
-    <string name="all_movies_recently_browsed_label">Recently browsed movies</string>
-    <string name="all_movies_trending_label">Trending movies</string>
+    <string name="all_movies_top_rated_label">Top rated Movies</string>
+    <string name="all_movies_now_playing_label">Now playing Movies</string>
+    <string name="all_movies_upcoming_label">Upcoming Movies</string>
+    <string name="all_movies_popular_label">Popular Movies</string>
+    <string name="all_movies_favourites_label" formatted="true">Favourites Movies (%d)</string>
+    <string name="all_movies_recently_browsed_label">Recently browsed Movies</string>
+    <string name="all_movies_trending_label">Trending Movies</string>
 
-    <string name="all_tv_series_on_the_air_label">On the air tv series</string>
-    <string name="all_tv_series_top_rated_label">Top rated tv series</string>
-    <string name="all_tv_series_airing_today_label">Airing today tv series</string>
-    <string name="all_tv_series_popular_label">Popular tv series</string>
-    <string name="all_tv_series_favourites_label" formatted="true">Favourites tv series (%d)</string>
-    <string name="all_tv_series_recently_browsed_label">Recently browsed tv series</string>
-    <string name="all_tv_series_trending_label">Trending tv series</string>
+    <string name="all_tv_series_on_the_air_label">On the air Tv series</string>
+    <string name="all_tv_series_top_rated_label">Top rated Tv series</string>
+    <string name="all_tv_series_airing_today_label">Airing today Tv series</string>
+    <string name="all_tv_series_popular_label">Popular Tv series</string>
+    <string name="all_tv_series_favourites_label" formatted="true">Favourites Tv series (%d)</string>
+    <string name="all_tv_series_recently_browsed_label">Recently browsed Tv series</string>
+    <string name="all_tv_series_trending_label">Trending Tv series</string>
 
-    <string name="favourite_empty_movies_info_text">Currently you don\'t have favourite movies</string>
-    <string name="favourite_empty_tv_series_info_text">Currently you don\'t have favourite tv series</string>
-    <string name="favourite_empty_navigate_to_movies_button_label">Navigate to movies</string>
-    <string name="favourite_empty_navigate_to_tv_series_button_label">Navigate to tv series</string>
+    <string name="favourite_empty_movies_info_text">Currently you don\'t have favourite Movies</string>
+    <string name="favourite_empty_tv_series_info_text">Currently you don\'t have favourite Tv series</string>
+    <string name="favourite_empty_navigate_to_movies_button_label">Navigate to Movies</string>
+    <string name="favourite_empty_navigate_to_tv_series_button_label">Navigate to Tv series</string>
 
     <string name="search_placeholder">Type title to search</string>
     <string name="search_empty_state">No search results</string>
@@ -143,8 +143,8 @@
 
     <string name="error_dialog_default_text">Whoops, something went wrong.</string>
 
-    <string name="clear_recent_movies_dialog_text">Are you sure you want to clear recent browsed movies?</string>
-    <string name="clear_recent_tv_series_dialog_text">Are you sure you want to clear recent browsed tv series?</string>
+    <string name="clear_recent_movies_dialog_text">Are you sure you want to clear recent browsed Movies?</string>
+    <string name="clear_recent_tv_series_dialog_text">Are you sure you want to clear recent browsed Tv series?</string>
 
     <string name="discover_movies_appbar_title">Explore</string>
     <string name="discover_tv_series_appbar_title">Explore</string>
