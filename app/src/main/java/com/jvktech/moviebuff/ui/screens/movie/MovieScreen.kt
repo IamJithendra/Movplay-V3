@@ -5,22 +5,38 @@ import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
+import coil.compose.rememberAsyncImagePainter
 import com.jvktech.moviebuff.MainViewModel
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
@@ -43,7 +59,7 @@ import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
+@OptIn(ExperimentalLifecycleComposeApi::class, ExperimentalMaterial3Api::class)
 @RootNavGraph(start = true)
 @Destination
 @Composable
@@ -78,12 +94,37 @@ fun AnimatedVisibilityScope.MovieScreen(
     val onDiscoverMoviesClicked = {
         navigator.navigate(DiscoverMoviesScreenDestination)
     }
-    MoviesScreenContent(
-        uiState = uiState,
-        scrollState = scrollState,
-        onMovieClicked = onMovieClicked,
-        onBrowseMoviesClicked = onBrowseMoviesClicked,
-        onDiscoverMoviesClicked = onDiscoverMoviesClicked
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .statusBarsPadding(),
+                title = {
+                    Box(
+                        Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                            contentDescription = "App Logo",
+                            Modifier.size(40.dp)
+                        )
+                    }
+                }
+            )
+        },
+        content = {_ ->
+
+            MoviesScreenContent(
+                uiState = uiState,
+                scrollState = scrollState,
+                onMovieClicked = onMovieClicked,
+                onBrowseMoviesClicked = onBrowseMoviesClicked,
+                onDiscoverMoviesClicked = onDiscoverMoviesClicked
+            )
+        }
     )
 }
 
@@ -237,7 +278,7 @@ fun MoviesScreenContent(
                 onPresentableClick = onMovieClicked,
                 onMoreClick = { onBrowseMoviesClicked(MovieType.TopRated) }
             )
-            if (favoritesLazyItems.isNotEmpty()){
+            if (favoritesLazyItems.isNotEmpty()) {
                 PresentableSection(
                     modifier = Modifier
                         .fillMaxWidth()
