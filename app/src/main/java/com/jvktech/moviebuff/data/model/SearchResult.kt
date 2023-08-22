@@ -14,7 +14,9 @@ data class SearchResult(
     val mediaType: MediaType,
     val overview: String?,
     @Json(name = "poster_path")
-    override val posterPath: String?
+    override val posterPath: String?,
+    override val voteAverage: Float,
+    override val voteCount: Int
 ) : Presentable {
     override val title: String = when {
         !movieTitle.isNullOrEmpty() -> movieTitle

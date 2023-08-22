@@ -16,5 +16,7 @@ data class MovieFavorite(
     @ColumnInfo(name = "original_title")
     val originalTitle: String,
     @ColumnInfo(name = "added_date")
-    val addedDate: Date
+    val addedDate: Date,
+    override val voteAverage: Float,
+    override val voteCount: Int
 ) : Presentable

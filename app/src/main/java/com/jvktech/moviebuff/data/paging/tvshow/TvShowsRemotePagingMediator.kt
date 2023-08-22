@@ -103,7 +103,9 @@ class TvShowsRemotePagingMediator(
                         title = tvSeries.title,
                         originalName = tvSeries.originalName,
                         posterPath = tvSeries.posterPath,
-                        language = deviceLanguage.languageCode
+                        language = deviceLanguage.languageCode,
+                        voteAverage = tvSeries.voteAverage,
+                        voteCount = tvSeries.voteCount
                     )
                 }
 

@@ -35,7 +35,9 @@ class FavoritesRepositoryImpl @Inject constructor(
                     posterPath = posterPath,
                     title = title,
                     originalTitle = originalTitle,
-                    addedDate = Date()
+                    addedDate = Date(),
+                    voteAverage = voteAverage,
+                    voteCount = voteCount
                 )
             }
             favoritesMoviesDao.likeMovie(favoriteMovie)
@@ -49,7 +51,9 @@ class FavoritesRepositoryImpl @Inject constructor(
                     id = id,
                     posterPath = posterPath,
                     name = name,
-                    addedDate = Date()
+                    addedDate = Date(),
+                    voteAverage = voteAverage,
+                    voteCount = voteCount
                 )
             }
             favoritesTvShowsDao.likeTvShow(favoriteTvShow)

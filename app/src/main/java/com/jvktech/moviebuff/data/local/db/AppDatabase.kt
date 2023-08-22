@@ -26,7 +26,7 @@ import com.jvktech.moviebuff.utils.DateConverters
         MovieDetailsRemoteKey::class,
         TvShowDetailsRemoteKey::class
     ],
-    version = 1
+    version = 3
 )
 @TypeConverters(DateConverters::class)
 abstract class AppDatabase : RoomDatabase() {

@@ -15,7 +15,10 @@ data class Season(
     @Json(name = "season_number")
     val seasonNumber: Int,
     @Json(name = "poster_path")
-    override val posterPath: String?
+    override val posterPath: String?,
+    override val voteAverage: Float,
+
+    override val voteCount: Int
 ) : Presentable {
     override val title: String = name
 }

@@ -14,5 +14,7 @@ data class RecentlyBrowsedMovie(
     override val posterPath: String?,
     override val title: String,
     @ColumnInfo(name = "added_date")
-    val addedDate: Date
+    val addedDate: Date,
+    override val voteAverage: Float,
+    override val voteCount: Int
 ) : Presentable

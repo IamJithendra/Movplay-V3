@@ -17,7 +17,9 @@ data class RecentlyBrowsedTvShow(
     val name: String,
 
     @ColumnInfo(name = "added_date")
-    val addedDate: Date
+    val addedDate: Date,
+    override val voteAverage: Float,
+    override val voteCount: Int
 ) : Presentable {
     @Transient
     override val title: String = name

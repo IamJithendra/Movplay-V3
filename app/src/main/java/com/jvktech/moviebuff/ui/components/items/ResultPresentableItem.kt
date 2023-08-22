@@ -29,7 +29,8 @@ import com.jvktech.moviebuff.utils.TmdbImage
 fun ResultPresentableItem(
     presentable: Presentable,
     modifier: Modifier = Modifier,
-    showTitle: Boolean = true,
+    showTitle: Boolean = false,
+    showScore: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {
     val hasPoster by derivedStateOf {
@@ -78,5 +79,12 @@ fun ResultPresentableItem(
                 )
             }
         }
+
+        if (presentable.voteCount > 0 && showScore) {
+            PresentableScoreItem(
+                score = presentable.voteAverage,
+            )
+        }
+
     }
 }

@@ -16,7 +16,9 @@ data class TvSeasonsResponse(
     override val posterPath: String?,
     @Json(name = "season_number")
     val seasonNumber: Int,
-    val episodes: List<Episode>
+    val episodes: List<Episode>,
+    override val voteAverage: Float,
+    override val voteCount: Int
 ) : Presentable {
     override val title: String = name
 }

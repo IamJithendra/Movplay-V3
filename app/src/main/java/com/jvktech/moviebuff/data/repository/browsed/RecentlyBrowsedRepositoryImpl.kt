@@ -37,7 +37,9 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
                     id = id,
                     posterPath = posterPath,
                     title = title,
-                    addedDate = Date()
+                    addedDate = Date(),
+                    voteAverage = voteAverage,
+                    voteCount = voteCount
                 )
             }
 
@@ -73,7 +75,9 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
                     id = id,
                     posterPath = posterPath,
                     name = title,
-                    addedDate = Date()
+                    addedDate = Date(),
+                    voteAverage = voteAverage,
+                    voteCount = voteCount
                 )
             }
 

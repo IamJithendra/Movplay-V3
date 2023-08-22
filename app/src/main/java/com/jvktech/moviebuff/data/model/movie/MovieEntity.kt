@@ -15,7 +15,9 @@ data class MovieEntity(
     override val title: String,
     @ColumnInfo(name = "original_title")
     val originalTitle: String,
-    val language: String
+    val language: String,
+    override val voteAverage: Float,
+    override val voteCount: Int
 ) : Presentable {
     @PrimaryKey(autoGenerate = true)
     var entityId: Int = 0

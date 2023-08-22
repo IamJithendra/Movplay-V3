@@ -106,7 +106,9 @@ class MoviesRemotePagingMediator(
                         title = movie.title,
                         originalTitle = movie.originalTitle,
                         posterPath = movie.posterPath,
-                        language = deviceLanguage.languageCode
+                        language = deviceLanguage.languageCode,
+                        voteAverage = movie.voteAverage,
+                        voteCount = movie.voteCount
                     )
                 }
 
