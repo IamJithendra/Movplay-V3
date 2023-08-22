@@ -111,7 +111,7 @@ fun AnimatedVisibilityScope.MovieScreen(
                         Image(
                             painter = painterResource(id = R.drawable.ic_launcher_foreground),
                             contentDescription = "App Logo",
-                            Modifier.size(65.dp)
+                            modifier = Modifier.size(65.dp)
                         )
                     }
                 },

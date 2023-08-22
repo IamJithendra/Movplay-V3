@@ -21,7 +21,7 @@ fun DetailPresentableItem(
     modifier: Modifier = Modifier,
     size: Size = MaterialTheme.sizes.presentableItemSmall,
     selected: Boolean = false,
-    showTitle: Boolean = true,
+    showTitle: Boolean = false,
     showScore: Boolean = true,
     showAdult: Boolean = false,
     transformations: GraphicsLayerScope.() -> Unit = {},
