@@ -101,7 +101,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.lifecycle.runtime.compose)
     implementation(libs.com.airbnb.android.lottie.compose)
     implementation(libs.androidx.lifecycle.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.activity.compose)
+    implementation(libs.androidx.compose.activity)
     implementation(libs.androidx.runner)
 
     // Splash Screen API
@@ -149,10 +149,10 @@ dependencies {
     ksp(libs.androidx.room.room.compiler)
 
     // Camera TODO remove
-    implementation(libs.androidx.camera.camera.core)
-    implementation(libs.androidx.camera.camera.camera2)
-    implementation(libs.androidx.camera.camera.lifecycle)
-    implementation(libs.androidx.camera.camera.video)
+//    implementation(libs.androidx.camera.camera.core)
+//    implementation(libs.androidx.camera2)
+//    implementation(libs.androidx.camera.camera.lifecycle)
+//    implementation(libs.androidx.camera.camera.video)
 
     implementation(libs.androidx.camera.camera.view)
     implementation(libs.androidx.camera.camera.extensions)
