@@ -28,7 +28,6 @@ fun SearchScreenContent(
     onQueryChanged: (query: String) -> Unit,
     onQueryCleared: () -> Unit,
     onResultClicked: (id: Int, type: MediaType) -> Unit,
-    onCameraClicked: () -> Unit = {},
     onMovieClicked: (Int) -> Unit,
     onQuerySuggestionSelected: (String) -> Unit
 ) {
@@ -51,17 +50,16 @@ fun SearchScreenContent(
             .statusBarsPadding()
     ) {
         QueryTextField(
+            query = uiState.query,
+            focusRequester = queryTextFieldFocusRequester,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacing.extraSmall)
                 .animateContentSize(),
-            query = uiState.query,
             suggestions = uiState.suggestions,
-            voiceSearchAvailable = uiState.searchOptionsState.voiceSearchAvailable,
-            cameraSearchAvailable = uiState.searchOptionsState.cameraSearchAvailable,
             loading = uiState.queryLoading,
             showClearButton = uiState.searchState !is SearchState.EmptyQuery,
-            focusRequester = queryTextFieldFocusRequester,
+            voiceSearchAvailable = uiState.searchOptionsState.voiceSearchAvailable,
             info = {
                 AnimatedVisibility(
                     enter = fadeIn() + slideInVertically(),
@@ -71,26 +69,25 @@ fun SearchScreenContent(
                     Text(text = stringResource(R.string.search_insufficient_query_length_info_text))
                 }
             },
-            onKeyboardSearchClicked = {
-                clearFocus()
-            },
             onQueryChange = onQueryChanged,
             onQueryClear = {
                 onQueryCleared()
                 queryTextFieldFocusRequester.requestFocus()
             },
+            onKeyboardSearchClicked = {
+                clearFocus()
+            },
             onVoiceSearchClick = {
                 speechToTextLauncher.launch(null)
-            },
-            onCameraSearchClick = onCameraClicked,
-            onSuggestionClick = { suggestion ->
-                clearFocus()
-                onQuerySuggestionSelected(suggestion)
             }
-        )
+        ) { suggestion ->
+            clearFocus()
+            onQuerySuggestionSelected(suggestion)
+        }
         Crossfade(
             modifier = Modifier.fillMaxSize(),
-            targetState = uiState.resultState
+            targetState = uiState.resultState,
+            label = ""
         ) { state ->
             when (state) {
                 is ResultState.Default -> {

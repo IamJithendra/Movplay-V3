@@ -37,13 +37,11 @@ fun QueryTextField(
     loading: Boolean = false,
     showClearButton: Boolean = false,
     voiceSearchAvailable: Boolean = false,
-    cameraSearchAvailable: Boolean = false,
     info: @Composable () -> Unit = {},
     onQueryChange: (String) -> Unit = {},
     onQueryClear: () -> Unit = {},
     onKeyboardSearchClicked: (KeyboardActionScope.() -> Unit)? = null,
     onVoiceSearchClick: () -> Unit = {},
-    onCameraSearchClick: () -> Unit = {},
     onSuggestionClick: (String) -> Unit = {}
 ) {
     var hasFocus by remember {
