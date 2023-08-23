@@ -91,92 +91,91 @@ android {
 dependencies {
 
     // Compose
-    implementation(libs.androidx.core.core.ktx)
-    implementation(libs.androidx.compose.ui)
+    implementation(libs.core.ktx)
+    implementation(libs.compose.ui)
 //    implementation("androidx.compose.ui:ui:1.3.0-rc01")
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.constraintlayout.constraintlayout.compose)
-    implementation(libs.androidx.compose.ui.ui.tooling.preview)
-    implementation(libs.androidx.lifecycle.lifecycle.runtime.compose)
-    implementation(libs.com.airbnb.android.lottie.compose)
-    implementation(libs.androidx.lifecycle.lifecycle.runtime.ktx)
-    implementation(libs.androidx.compose.activity)
-    implementation(libs.androidx.runner)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material)
+    implementation(libs.compose.constraintlayout)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.compose.lottie)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.compose.activity)
+    implementation(libs.test.runner)
 
     // Splash Screen API
-    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.core.splashscreen)
 
     // Foundation
-    implementation(libs.androidx.compose.foundation)
+    implementation(libs.compose.foundation)
 
     // Paging-Compose
-    implementation(libs.androidx.paging.paging.compose)
+    implementation(libs.paging.compose)
 
     // Icon
-    implementation(libs.androidx.compose.material.material.icons.extended)
+    implementation(libs.compose.material.icons.extended)
 
     // Dagger-hilt
-    implementation(libs.com.google.dagger.hilt.android)
-    kapt(libs.com.google.dagger.hilt.android.compiler)
-    implementation(libs.androidx.hilt.hilt.navigation.compose)
-    kapt(libs.androidx.hilt.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.compose.navigation)
+    kapt(libs.hilt.compiler)
 
     // Moshi
-    implementation(libs.com.squareup.moshi)
-    ksp(libs.com.squareup.moshi.moshi.kotlin.codegen)
+    implementation(libs.moshi)
+    ksp(libs.moshi.kotlin.codegen)
 
     // Retrofit
-    implementation(libs.com.squareup.retrofit2.retrofit)
-    implementation(libs.com.squareup.retrofit2.converter.moshi)
+    implementation(libs.retrofit)
+    implementation(libs.moshi.converter)
 
     // OkHttp
-    implementation(libs.com.squareup.okhttp3.okhttp)
-    implementation(libs.com.squareup.okhttp3.logging.interceptor)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp3.logging.interceptor)
 
     // Firebase
-    implementation(platform(libs.com.google.firebase.firebase.bom))
-    implementation(libs.com.google.firebase.firebase.crashlytics.ktx)
-    implementation(libs.com.google.firebase.firebase.analytics.ktx)
-    implementation(libs.com.google.firebase.firebase.perf.ktx)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.firebase.perf.ktx)
 
     // Coil
-    implementation(libs.io.coil.kt.coil.compose)
+    implementation(libs.coil.compose)
 
     // Room
-    implementation(libs.androidx.room.room.ktx)
-    implementation(libs.androidx.room.room.paging)
-    ksp(libs.androidx.room.room.compiler)
+    implementation(libs.room.ktx)
+    implementation(libs.room.paging)
+    ksp(libs.room.compiler)
 
     // Timber
-    implementation(libs.com.jakewharton.timber)
+    implementation(libs.timber)
 
     // Compose-Destinations
-    implementation(libs.io.github.raamcosta.compose.destinations.animations.core)
-    ksp(libs.io.github.raamcosta.compose.destinations.ksp)
+    implementation(libs.raamcosta.compose.destinations.animations.core)
+    ksp(libs.raamcosta.compose.destinations.ksp)
 
     // Accompanist
-    implementation(libs.com.google.accompanist.accompanist.systemuicontroller)
-    implementation(libs.com.google.accompanist.accompanist.placeholder)
-    implementation(libs.com.google.accompanist.accompanist.flowlayout)
-    implementation(libs.com.google.accompanist.accompanist.pager)
-    implementation(libs.com.google.accompanist.accompanist.swiperefresh)
-    implementation(libs.com.google.accompanist.accompanist.pager.indicators)
-    implementation(libs.com.google.accompanist.accompanist.permissions)
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.accompanist.placeholder)
+    implementation(libs.accompanist.flowlayout)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.swiperefresh)
+    implementation(libs.accompanist.pager.indicators)
+    implementation(libs.accompanist.permissions)
 
     // Chucker
-    debugImplementation(libs.com.github.chuckerteam.chucker.library)
-    releaseImplementation(libs.com.github.chuckerteam.chucker.library.no.op)
+    debugImplementation(libs.chucker.library)
+    releaseImplementation(libs.chucker.library.no.op)
 
     //Palette
-    implementation(libs.androidx.palette.palette.ktx)
+    implementation(libs.palette.ktx)
 
     // Unit test
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.espresso.espresso.core)
-    androidTestImplementation(libs.androidx.compose.ui.ui.test.junit4)
-    debugImplementation(libs.androidx.compose.ui.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.ui.test.manifest)
+    androidTestImplementation(libs.test.ext.junit)
+    androidTestImplementation(libs.test.espresso.core)
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.test.manifest)
 
 }
