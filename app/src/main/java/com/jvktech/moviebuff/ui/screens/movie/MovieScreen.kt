@@ -92,6 +92,7 @@ fun AnimatedVisibilityScope.MovieScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
+            .statusBarsPadding()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
@@ -220,16 +221,12 @@ fun MoviesScreenContent(
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
         ) {
-            PresentableTopSection(
+            PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .onGloballyPositioned { coordinates ->
-                        topSectionHeight = coordinates.size.height.toFloat()
-                    },
+                    .animateContentSize(),
                 title = stringResource(R.string.now_playing_movies),
                 state = nowPlayingLazyItems,
-                scrollState = scrollState,
-                scrollValueLimit = topSectionScrollLimitValue,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = {
                     onBrowseMoviesClicked(MovieType.NowPlaying)
