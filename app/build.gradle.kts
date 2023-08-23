@@ -5,18 +5,18 @@ fun getApiKey(): String {
     return gradleLocalProperties(rootDir).getProperty("TMDB_API_KEY")
 }
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-//    id 'com.github.ben-manes.versions'
-//    id 'dagger.hilt.android.plugin'
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.ksp)
+    kotlin("kapt")
+    // TOO move to alias
     id("kotlin-parcelize")
-    id("com.google.firebase.crashlytics")
-    id("com.google.firebase.firebase-perf")
-    id("com.google.gms.google-services")
-    id("kotlin-kapt")
-    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.firebase.perf)
+    alias(libs.plugins.google.gms.services)
 }
 
 android {
