@@ -148,18 +148,6 @@ dependencies {
     implementation(libs.androidx.room.room.paging)
     ksp(libs.androidx.room.room.compiler)
 
-    // Camera TODO remove
-//    implementation(libs.androidx.camera.camera.core)
-//    implementation(libs.androidx.camera2)
-//    implementation(libs.androidx.camera.camera.lifecycle)
-//    implementation(libs.androidx.camera.camera.video)
-
-    implementation(libs.androidx.camera.camera.view)
-    implementation(libs.androidx.camera.camera.extensions)
-
-    // MLKit
-    //    implementation(libs.com.google.mlkit.text.recognition)
-
     // Timber
     implementation(libs.com.jakewharton.timber)
 

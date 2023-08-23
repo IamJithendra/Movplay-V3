@@ -2,7 +2,6 @@ package com.jvktech.moviebuff.utils
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.camera.core.ImageProxy
 import java.nio.ByteBuffer
 
 data class Roi(
@@ -23,16 +22,6 @@ fun Bitmap.getRoi(roi: Roi): Bitmap {
     )
 }
 
-fun ImageProxy.toBitmap(rotation: Float? = null): Bitmap {
-    val buffer: ByteBuffer = planes[0].buffer
-    val bytes = ByteArray(buffer.remaining()).also {
-        buffer.get(it)
-    }
-    val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-
-    return rotation?.let { deg -> bitmap.rotate(deg) } ?: bitmap
-}
-
 fun Bitmap.rotate(degrees: Float): Bitmap {
     return Bitmap.createBitmap(
         this,
@@ -45,11 +34,3 @@ fun Bitmap.rotate(degrees: Float): Bitmap {
     )
 }
 
-//suspend fun Context.getCameraProvider(): ProcessCameraProvider =
-//    suspendCoroutine { continuation ->
-//        ProcessCameraProvider.getInstance(this).also { cameraProvider ->
-//            cameraProvider.addListener({
-//                continuation.run { resume(cameraProvider.get()) }
-//            }, ContextCompat.getMainExecutor(this))
-//        }
-//    }
