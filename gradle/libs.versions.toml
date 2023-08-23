@@ -90,23 +90,9 @@ raamcosta-compose-destinations-ksp = { module = "io.github.raamcosta.compose-des
 junit = { module = "junit:junit", version.ref = "junit" }
 
 [plugins]
-#com-android-application = "com.android.application:8.1.0"
-#com-android-library = "com.android.library:8.1.0"
-#com-github-ben-manes-versions = "com.github.ben-manes.versions:0.42.0"
-#com-google-dagger-hilt-android = "com.google.dagger.hilt.android:2.43.2"
-#com-google-devtools-ksp = "com.google.devtools.ksp:1.8.21-1.0.11"
-#com-google-firebase-crashlytics = "com.google.firebase.crashlytics:2.9.2"
-#com-google-firebase-firebase-perf = "com.google.firebase.firebase-perf:1.4.2"
-#com-google-gms-google-services = "com.google.gms.google-services:4.3.14"
-#dagger-hilt-android-plugin = "dagger.hilt.android.plugin:2.43.2"
-#nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.7.0"
-#org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.8.21"
-
-
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroid" }
-
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsKtx"}
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfKtx"}
