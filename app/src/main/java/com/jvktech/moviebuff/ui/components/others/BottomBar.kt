@@ -3,9 +3,15 @@ package com.jvktech.moviebuff.ui.components.others
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Movie
+import androidx.compose.material.icons.filled.SmartDisplay
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.material.icons.outlined.SmartDisplay
@@ -24,10 +30,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
-import com.jvktech.moviebuff.R
 
 
 @Composable
@@ -62,10 +68,7 @@ fun BottomBar(
         exit = slideOutVertically { it }
     ) {
         NavigationBar(
-            modifier = modifier,
             containerColor = MaterialTheme.colorScheme.background,
-            contentColor = Color.Cyan,
-            tonalElevation = 4.dp
         ) {
             NavBarItem(
                 selected = selectedRoute == MovieScreenDestination.route,
@@ -111,9 +114,6 @@ fun BottomBar(
 //                selectedIcon = Icons.Filled.ZoomIn,
 //                unSelectedIcon = Icons.Outlined.Search,
 //                contentDescription = "Search"
-////                icon = {
-////                    Icon(imageVector = Icons.Filled.Search, contentDescription = "Search")
-////                }
 //            )
         }
     }
