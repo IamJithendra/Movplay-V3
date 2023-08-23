@@ -10,16 +10,18 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -37,7 +39,6 @@ import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
 import com.jvktech.moviebuff.ui.components.dialogs.ExitDialog
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
-import com.jvktech.moviebuff.ui.components.sections.PresentableTopSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
@@ -89,30 +90,41 @@ fun AnimatedVisibilityScope.MovieScreen(
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Box(
-                        Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center,
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                        contentDescription = "App Logo",
+                        modifier = Modifier.size(100.dp)
+                    )
+                },
+                actions = {
+                    IconButton(
+                        onClick = { /*TODO*/ }
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                            contentDescription = "App Logo",
-                            modifier = Modifier.size(65.dp)
+                        Icon(
+                            imageVector = Icons.Default.MoreVert,
+                            contentDescription = "Mark as favorite"
                         )
                     }
                 },
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
             )
-        },
-        content = {innerPadding ->
+        }
+    ) { innerPadding ->
 
+        // Wrap MoviesScreenContent in a Box with top padding
+        Box(
+            modifier = Modifier
+                .padding(top = innerPadding.calculateTopPadding())
+                .fillMaxSize()
+        ) {
             MoviesScreenContent(
                 uiState = uiState,
                 scrollState = scrollState,
@@ -121,8 +133,9 @@ fun AnimatedVisibilityScope.MovieScreen(
                 onDiscoverMoviesClicked = onDiscoverMoviesClicked
             )
         }
-    )
+    }
 }
+
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -198,7 +211,8 @@ fun MoviesScreenContent(
 
     SwipeRefresh(
         modifier = Modifier
-            .fillMaxSize().statusBarsPadding(),
+            .fillMaxSize()
+            .statusBarsPadding(),
         state = swipeRefreshState,
         indicator = { state, trigger ->
             SwipeRefreshIndicator(
