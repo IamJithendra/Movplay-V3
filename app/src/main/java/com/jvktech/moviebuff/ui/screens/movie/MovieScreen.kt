@@ -7,6 +7,7 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -21,6 +22,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -90,11 +92,8 @@ fun AnimatedVisibilityScope.MovieScreen(
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
-
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
@@ -119,12 +118,12 @@ fun AnimatedVisibilityScope.MovieScreen(
         }
     ) { innerPadding ->
 
-        // Wrap MoviesScreenContent in a Box with top padding
-        Box(
+        Column(
             modifier = Modifier
-                .padding(top = innerPadding.calculateTopPadding())
                 .fillMaxSize()
+                .padding(top = innerPadding.calculateTopPadding())
         ) {
+
             MoviesScreenContent(
                 uiState = uiState,
                 scrollState = scrollState,
@@ -132,8 +131,10 @@ fun AnimatedVisibilityScope.MovieScreen(
                 onBrowseMoviesClicked = onBrowseMoviesClicked,
                 onDiscoverMoviesClicked = onDiscoverMoviesClicked
             )
+
         }
     }
+
 }
 
 
@@ -211,14 +212,12 @@ fun MoviesScreenContent(
 
     SwipeRefresh(
         modifier = Modifier
-            .fillMaxSize()
-            .statusBarsPadding(),
+            .fillMaxSize(),
         state = swipeRefreshState,
         indicator = { state, trigger ->
             SwipeRefreshIndicator(
                 modifier = Modifier
-                    .statusBarsPadding()
-                    .padding(top = MaterialTheme.spacing.large),
+                    .statusBarsPadding(),
                 state = state,
                 refreshTriggerDistance = trigger,
                 fade = true,
