@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Search
@@ -29,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.SearchScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 
 
@@ -79,9 +79,9 @@ fun BottomBar(
 
             )
             NavBarItem(
-                selected = selectedRoute == TvShowScreenDestination.route,
+                selected = selectedRoute == SearchScreenDestination.route,
                 onClick = {
-                    onItemClicked(TvShowScreenDestination.route)
+                    onItemClicked(SearchScreenDestination.route)
                 },
                 label = "Discover",
                 selectedIcon = Icons.Rounded.Search,
