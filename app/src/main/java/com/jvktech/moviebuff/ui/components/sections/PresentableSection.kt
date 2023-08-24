@@ -94,7 +94,6 @@ fun PresentableSection(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.ArrowForward,
-                            tint = contentColor,
                             contentDescription = null
                         )
                     }
