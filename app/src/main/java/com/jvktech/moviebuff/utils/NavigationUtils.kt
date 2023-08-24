@@ -1,7 +1,7 @@
 package com.jvktech.moviebuff.utils
 
 import androidx.navigation.NavController
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 
 fun NavController.safeNavigate(
     route: String,
@@ -24,7 +24,7 @@ fun NavController.safeNavigate(
         )
     } else {
         navigate(route) {
-            popUpTo(MovieScreenDestination.route)
+            popUpTo(HomeScreenDestination.route)
         }
     }
 }

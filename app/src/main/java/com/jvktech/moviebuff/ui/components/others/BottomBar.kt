@@ -28,7 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 
 
@@ -42,7 +42,7 @@ fun BottomBar(
 ) {
     val bottomBarRoutes = remember {
         mutableSetOf(
-            MovieScreenDestination.route,
+            HomeScreenDestination.route,
             TvShowScreenDestination.route,
             FavoriteScreenDestination.route,
         )
@@ -53,7 +53,7 @@ fun BottomBar(
         else -> {
             backQueueRoutes.firstOrNull { route ->
                 route in bottomBarRoutes
-            } ?: MovieScreenDestination.route
+            } ?: HomeScreenDestination.route
         }
     }
     val paddingValues = WindowInsets.navigationBars.asPaddingValues()
@@ -67,9 +67,9 @@ fun BottomBar(
             containerColor = MaterialTheme.colorScheme.background,
         ) {
             NavBarItem(
-                selected = selectedRoute == MovieScreenDestination.route,
+                selected = selectedRoute == HomeScreenDestination.route,
                 onClick = {
-                    onItemClicked(MovieScreenDestination.route)
+                    onItemClicked(HomeScreenDestination.route)
                 },
                 label = "Home",
                 selectedIcon = Icons.Rounded.Home,

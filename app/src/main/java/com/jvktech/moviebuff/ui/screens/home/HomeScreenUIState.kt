@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens.movie
+package com.jvktech.moviebuff.ui.screens.home
 
 import androidx.compose.runtime.Stable
 import androidx.paging.PagingData

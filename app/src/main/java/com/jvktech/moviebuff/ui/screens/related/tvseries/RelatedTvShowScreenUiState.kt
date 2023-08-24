@@ -4,7 +4,7 @@ import androidx.compose.runtime.Stable
 import androidx.paging.PagingData
 import com.jvktech.moviebuff.data.model.RelationType
 import com.jvktech.moviebuff.data.model.tvshow.TvShow
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -19,7 +19,7 @@ data class RelatedTvShowScreenUiState(
             return RelatedTvShowScreenUiState(
                 relationType = relationType,
                 tvShow = emptyFlow(),
-                startRoute = MovieScreenDestination.route
+                startRoute = HomeScreenDestination.route
             )
         }
     }

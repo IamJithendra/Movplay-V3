@@ -26,7 +26,7 @@ import com.jvktech.moviebuff.ui.components.dialogs.InfoDialog
 import com.jvktech.moviebuff.ui.components.others.BasicAppBar
 import com.jvktech.moviebuff.ui.components.sections.PresentableGridSection
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -50,7 +50,7 @@ fun AnimatedVisibilityScope.BrowseMoviesScreen(
     val onMovieClicked = { movieId: Int ->
         val destination = MovieDetailsScreenDestination(
             movieId = movieId,
-            startRoute = MovieScreenDestination.route
+            startRoute = HomeScreenDestination.route
         )
         navigator.navigate(destination)
     }

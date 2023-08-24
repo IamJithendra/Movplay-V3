@@ -3,7 +3,7 @@ package com.jvktech.moviebuff.ui.screens.reviews
 import androidx.compose.runtime.Stable
 import androidx.paging.PagingData
 import com.jvktech.moviebuff.data.model.Review
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -14,7 +14,7 @@ data class ReviewsScreenUiState(
 ) {
     companion object {
         val default: ReviewsScreenUiState = ReviewsScreenUiState(
-            startRoute = MovieScreenDestination.route,
+            startRoute = HomeScreenDestination.route,
             reviews = emptyFlow()
         )
     }

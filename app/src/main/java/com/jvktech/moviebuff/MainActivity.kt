@@ -32,7 +32,7 @@ import com.jvktech.moviebuff.data.paging.ConfigDataSource
 import com.jvktech.moviebuff.ui.components.others.BottomBar
 import com.jvktech.moviebuff.ui.screens.NavGraphs
 import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.jvktech.moviebuff.ui.theme.MovieBuffTheme
 import com.jvktech.moviebuff.ui.theme.spacing
@@ -112,7 +112,7 @@ class MainActivity : ComponentActivity() {
             val showBottomBar by derivedStateOf {
                 currentRoute in setOf(
                     null,
-                    MovieScreenDestination.route,
+                    HomeScreenDestination.route,
                     TvShowScreenDestination.route,
                     FavoriteScreenDestination.route,
                 )

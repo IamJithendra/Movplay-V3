@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens.movie
+package com.jvktech.moviebuff.ui.screens.home
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -48,7 +48,7 @@ import com.jvktech.moviebuff.ui.screens.destinations.BrowseTvShowsScreenDestinat
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverTvShowScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.jvktech.moviebuff.ui.theme.spacing
@@ -64,9 +64,9 @@ import kotlinx.coroutines.flow.collectLatest
 @RootNavGraph(start = true)
 @Destination
 @Composable
-fun AnimatedVisibilityScope.MovieScreen(
+fun AnimatedVisibilityScope.HomeScreen(
     mainViewModel: MainViewModel,
-    viewModel: MovieScreenViewModel = hiltViewModel(),
+    viewModel: HomeScreenViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -74,7 +74,7 @@ fun AnimatedVisibilityScope.MovieScreen(
 
     LaunchedEffect(Unit) {
         mainViewModel.sameBottomBarRoute.collectLatest { sameRoute ->
-            if (sameRoute == MovieScreenDestination.route) {
+            if (sameRoute == HomeScreenDestination.route) {
                 scrollState.animateScrollTo(0)
             }
         }
@@ -82,7 +82,7 @@ fun AnimatedVisibilityScope.MovieScreen(
     val onMovieClicked = { movieId: Int ->
         val destination = MovieDetailsScreenDestination(
             movieId = movieId,
-            startRoute = MovieScreenDestination.route
+            startRoute = HomeScreenDestination.route
         )
 
         navigator.navigate(destination)
@@ -149,7 +149,7 @@ fun AnimatedVisibilityScope.MovieScreen(
                 .padding(top = innerPadding.calculateTopPadding())
         ) {
 
-            MoviesScreenContent(
+            HomeScreenContent(
                 uiState = uiState,
                 scrollState = scrollState,
                 onMovieClicked = onMovieClicked,
@@ -168,7 +168,7 @@ fun AnimatedVisibilityScope.MovieScreen(
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun MoviesScreenContent(
+fun HomeScreenContent(
     uiState: MovieScreenUIState,
     scrollState: ScrollState,
     // Movie

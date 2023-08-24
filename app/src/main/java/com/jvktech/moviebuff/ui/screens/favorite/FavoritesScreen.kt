@@ -49,7 +49,7 @@ fun AnimatedVisibilityScope.FavoriteScreen(
         navigator.navigate(destination)
     }
     val onNavigateToMoviesButtonClicked: () -> Unit = {
-        navigator.navigate(MovieScreenDestination) {
+        navigator.navigate(HomeScreenDestination) {
             popUpTo(MovieDetailsScreenDestination.route) {
                 inclusive = true
             }
@@ -57,7 +57,7 @@ fun AnimatedVisibilityScope.FavoriteScreen(
     }
     val onNavigateToTvShowButtonClicked: () -> Unit = {
         navigator.navigate(TvShowScreenDestination) {
-            popUpTo(MovieScreenDestination.route) {
+            popUpTo(HomeScreenDestination.route) {
                 inclusive = true
             }
         }

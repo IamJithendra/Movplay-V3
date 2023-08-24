@@ -38,7 +38,7 @@ import com.jvktech.moviebuff.ui.components.others.BasicAppBar
 import com.jvktech.moviebuff.ui.components.others.FilterEmptyState
 import com.jvktech.moviebuff.ui.components.sections.PresentableGridSection
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.discover.components.FilterMoviesModalBottomSheetContent
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isEmpty
@@ -60,7 +60,7 @@ fun DiscoverMoviesScreen(
     val onMovieClicked: (movieId: Int) -> Unit = { id ->
         val destination = MovieDetailsScreenDestination(
             movieId = id,
-            startRoute = MovieScreenDestination.route
+            startRoute = HomeScreenDestination.route
         )
 
         navigator.navigate(destination)

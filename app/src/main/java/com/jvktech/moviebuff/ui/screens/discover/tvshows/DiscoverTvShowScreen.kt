@@ -38,7 +38,7 @@ import com.jvktech.moviebuff.ui.components.button.SortTypeDropdownButton
 import com.jvktech.moviebuff.ui.components.others.BasicAppBar
 import com.jvktech.moviebuff.ui.components.others.FilterEmptyState
 import com.jvktech.moviebuff.ui.components.sections.PresentableGridSection
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.discover.components.FilterTvShowsModalBottomSheetContent
 import com.jvktech.moviebuff.ui.theme.spacing
@@ -64,7 +64,7 @@ fun AnimatedVisibilityScope.DiscoverTvShowScreen(
     val onTvShowClicked: (tvShowId: Int) -> Unit = { id ->
         val destination = TvShowDetailsScreenDestination(
             tvShowId = id,
-            startRoute = MovieScreenDestination.route
+            startRoute = HomeScreenDestination.route
         )
 
         navigator.navigate(destination)

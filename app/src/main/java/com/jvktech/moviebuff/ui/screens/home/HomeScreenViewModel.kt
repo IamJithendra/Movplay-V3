@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens.movie
+package com.jvktech.moviebuff.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieScreenViewModel @Inject constructor(
+class HomeScreenViewModel @Inject constructor(
     // Movies
     private val getDeviceLanguageUseCase: GetDeviceLanguageUseCaseImpl,
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCaseImpl,

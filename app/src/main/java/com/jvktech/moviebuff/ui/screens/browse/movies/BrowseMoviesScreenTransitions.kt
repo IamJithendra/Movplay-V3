@@ -7,7 +7,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.navigation.NavBackStackEntry
 import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.ramcosta.composedestinations.spec.DestinationStyle
 
@@ -16,7 +16,7 @@ import com.ramcosta.composedestinations.spec.DestinationStyle
 object BrowseMoviesScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.enterTransition(): EnterTransition? {
         return when (initialState.destination.route) {
-            MovieScreenDestination.route -> slideIntoContainer(
+            HomeScreenDestination.route -> slideIntoContainer(
                 towards = AnimatedContentScope.SlideDirection.Up,
                 animationSpec = tween(300)
             )
@@ -26,7 +26,7 @@ object BrowseMoviesScreenTransitions : DestinationStyle.Animated {
 
     override fun AnimatedContentScope<NavBackStackEntry>.popEnterTransition(): EnterTransition? {
         return when (initialState.destination.route) {
-            MovieScreenDestination.route -> slideIntoContainer(
+            HomeScreenDestination.route -> slideIntoContainer(
                 towards = AnimatedContentScope.SlideDirection.Up,
                 animationSpec = tween(300)
             )
@@ -37,7 +37,7 @@ object BrowseMoviesScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.exitTransition(): ExitTransition? {
         return when (targetState.destination.route) {
             TvShowScreenDestination.route,
-            MovieScreenDestination.route,
+            HomeScreenDestination.route,
             FavoriteScreenDestination.route -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
@@ -49,7 +49,7 @@ object BrowseMoviesScreenTransitions : DestinationStyle.Animated {
     override fun AnimatedContentScope<NavBackStackEntry>.popExitTransition(): ExitTransition? {
         return when (targetState.destination.route) {
             TvShowScreenDestination.route,
-            MovieScreenDestination.route,
+            HomeScreenDestination.route,
             FavoriteScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
