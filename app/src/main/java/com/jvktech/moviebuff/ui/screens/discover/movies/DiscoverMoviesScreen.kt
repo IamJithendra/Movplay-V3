@@ -107,7 +107,8 @@ fun DiscoverMoviesScreenContent(
     val orderIconRotation by animateFloatAsState(
         targetValue = if (uiState.sortInfo.sortOrder == SortOrder.Desc) {
             0f
-        } else 180f
+        } else 180f,
+        label = ""
     )
 
     BackHandler(sheetState.isVisible) {
