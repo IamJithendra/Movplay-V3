@@ -23,6 +23,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -100,7 +101,8 @@ fun AnimatedVisibilityScope.MovieScreen(
                     Image(
                         painter = painterResource(id = R.drawable.ic_launcher_foreground),
                         contentDescription = "App Logo",
-                        modifier = Modifier.size(100.dp)
+                        modifier = Modifier.size(100.dp),
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.surfaceTint)
                     )
                 },
                 actions = {
