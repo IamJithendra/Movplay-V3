@@ -7,7 +7,6 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -22,9 +21,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -40,12 +39,18 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.jvktech.moviebuff.MainViewModel
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
+import com.jvktech.moviebuff.data.model.tvshow.TvShowType
 import com.jvktech.moviebuff.ui.components.dialogs.ExitDialog
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
+import com.jvktech.moviebuff.ui.components.sections.PresentableTopSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.BrowseTvShowsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverMoviesScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.DiscoverTvShowScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.TvShowDetailsScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isAnyRefreshing
 import com.jvktech.moviebuff.utils.isNotEmpty
@@ -91,6 +96,24 @@ fun AnimatedVisibilityScope.MovieScreen(
         navigator.navigate(DiscoverMoviesScreenDestination)
     }
 
+    val onTvShowClicked = { tvShowId: Int ->
+        val destination =
+            TvShowDetailsScreenDestination(
+                tvShowId = tvShowId,
+                startRoute = TvShowScreenDestination.route
+            )
+
+        navigator.navigate(destination)
+    }
+
+    val onBrowseTvShowClicked: (TvShowType) -> Unit = { type ->
+        navigator.navigate(BrowseTvShowsScreenDestination(type))
+    }
+
+    val onDiscoverTvShowClicked = {
+        navigator.navigate(DiscoverTvShowScreenDestination)
+    }
+
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
@@ -131,7 +154,10 @@ fun AnimatedVisibilityScope.MovieScreen(
                 scrollState = scrollState,
                 onMovieClicked = onMovieClicked,
                 onBrowseMoviesClicked = onBrowseMoviesClicked,
-                onDiscoverMoviesClicked = onDiscoverMoviesClicked
+                onDiscoverMoviesClicked = onDiscoverMoviesClicked,
+                onTvShowClicked = onTvShowClicked,
+                onBrowseTvShowClicked = onBrowseTvShowClicked,
+                onDiscoverTvShowClicked = onDiscoverTvShowClicked
             )
 
         }
@@ -145,24 +171,38 @@ fun AnimatedVisibilityScope.MovieScreen(
 fun MoviesScreenContent(
     uiState: MovieScreenUIState,
     scrollState: ScrollState,
+    // Movie
     onMovieClicked: (movieId: Int) -> Unit,
     onBrowseMoviesClicked: (type: MovieType) -> Unit,
-    onDiscoverMoviesClicked: () -> Unit
+    onDiscoverMoviesClicked: () -> Unit,
+    // Tv Series
+    onTvShowClicked: (tvShowId: Int) -> Unit,
+    onBrowseTvShowClicked: (type: TvShowType) -> Unit,
+    onDiscoverTvShowClicked: () -> Unit
 ) {
     val context = LocalContext.current
     val density = LocalDensity.current
-
-    val discoverLazyItems = uiState.moviesState.discover.collectAsLazyPagingItems()
-    val upcomingLazyItems = uiState.moviesState.upcoming.collectAsLazyPagingItems()
-    val topRatedLazyItems = uiState.moviesState.topRated.collectAsLazyPagingItems()
-    val trendingLazyItems = uiState.moviesState.trending.collectAsLazyPagingItems()
-    val nowPlayingLazyItems = uiState.moviesState.nowPlaying.collectAsLazyPagingItems()
-    val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
-    val recentlyBrowsedLazyItems = uiState.recentlyBrowsed.collectAsLazyPagingItems()
+    // Movies
+    val discoverMoviesLazyItems = uiState.moviesState.discoverMovies.collectAsLazyPagingItems()
+    val upcomingMoviesLazyItems = uiState.moviesState.upcomingMovies.collectAsLazyPagingItems()
+    val topRatedMoviesLazyItems = uiState.moviesState.topRatedMovies.collectAsLazyPagingItems()
+    val trendingMoviesLazyItems = uiState.moviesState.trendingMovies.collectAsLazyPagingItems()
+    val nowPlayingMoviesLazyItems = uiState.moviesState.nowPlayingMovies.collectAsLazyPagingItems()
+    val favoriteMoviesLazyItems = uiState.favoriteMovies.collectAsLazyPagingItems()
+    val recentlyBrowsedMoviesLazyItems = uiState.recentlyBrowsedMovies.collectAsLazyPagingItems()
+    // Tv series
+    val topRatedTvSeriesLazyItems = uiState.moviesState.topRatedTvSeries.collectAsLazyPagingItems()
+    val discoverTvSeriesLazyItems = uiState.moviesState.discoverTvSeries.collectAsLazyPagingItems()
+    val onTheAirTvSeriesLazyItems = uiState.moviesState.onTheAirTvSeries.collectAsLazyPagingItems()
+    val trendingTvSeriesLazyItems = uiState.moviesState.trendingTvSeries.collectAsLazyPagingItems()
+    val airingTodayTvSeriesLazyItems = uiState.moviesState.airingTodayTvSeries.collectAsLazyPagingItems()
+    val favoriteTvSeriesLazyItems = uiState.favoriteTvSeries.collectAsLazyPagingItems()
+    val recentlyBrowsedTvSeriesLazyItems = uiState.recentlyBrowsedTvSeries.collectAsLazyPagingItems()
 
     var topSectionHeight: Float? by remember {
         mutableStateOf(null)
     }
+
     val appBarHeight = density.run { 56.dp.toPx() }
     val topSectionScrollLimitValue: Float? = topSectionHeight?.minus(appBarHeight)
     var showExitDialog by remember {
@@ -188,11 +228,18 @@ fun MoviesScreenContent(
 
     val isRefreshing by derivedStateOf {
         listOf(
-            discoverLazyItems,
-            upcomingLazyItems,
-            topRatedLazyItems,
-            trendingLazyItems,
-            nowPlayingLazyItems
+            // Movies
+            discoverMoviesLazyItems,
+            upcomingMoviesLazyItems,
+            topRatedMoviesLazyItems,
+            trendingMoviesLazyItems,
+            nowPlayingMoviesLazyItems,
+            // Tv Series
+            topRatedTvSeriesLazyItems,
+            discoverTvSeriesLazyItems,
+            onTheAirTvSeriesLazyItems,
+            trendingTvSeriesLazyItems,
+            airingTodayTvSeriesLazyItems,
         ).isAnyRefreshing()
     }
 
@@ -200,11 +247,18 @@ fun MoviesScreenContent(
 
     val refreshAllPagingData = {
         listOf(
-            discoverLazyItems,
-            upcomingLazyItems,
-            topRatedLazyItems,
-            trendingLazyItems,
-            nowPlayingLazyItems
+            // Movies
+            discoverMoviesLazyItems,
+            upcomingMoviesLazyItems,
+            topRatedMoviesLazyItems,
+            trendingMoviesLazyItems,
+            nowPlayingMoviesLazyItems,
+            // Tv Series
+            topRatedTvSeriesLazyItems,
+            discoverTvSeriesLazyItems,
+            onTheAirTvSeriesLazyItems,
+            trendingTvSeriesLazyItems,
+            airingTodayTvSeriesLazyItems,
         ).refreshAll()
     }
 
@@ -241,27 +295,45 @@ fun MoviesScreenContent(
                     .fillMaxWidth()
                     .animateContentSize(),
                 title = stringResource(R.string.now_playing_movies),
-                state = nowPlayingLazyItems,
+                state = nowPlayingMoviesLazyItems,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = {
                     onBrowseMoviesClicked(MovieType.NowPlaying)
                 }
             )
+
             PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
                 title = stringResource(R.string.explore_movies),
-                state = discoverLazyItems,
+                state = discoverMoviesLazyItems,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = onDiscoverMoviesClicked
             )
+
+            PresentableTopSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onGloballyPositioned { coordinates ->
+                        topSectionHeight = coordinates.size.height.toFloat()
+                    },
+                title = stringResource(R.string.now_airing_tv_series),
+                state = onTheAirTvSeriesLazyItems,
+                scrollState = scrollState,
+                scrollValueLimit = topSectionScrollLimitValue,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(TvShowType.OnTheAir)
+                }
+            )
+
             PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
                 title = stringResource(R.string.upcoming_movies),
-                state = upcomingLazyItems,
+                state = upcomingMoviesLazyItems,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = {
                     onBrowseMoviesClicked(MovieType.Upcoming)
@@ -272,41 +344,98 @@ fun MoviesScreenContent(
                     .fillMaxWidth()
                     .animateContentSize(),
                 title = stringResource(R.string.trending_movies),
-                state = trendingLazyItems,
+                state = trendingMoviesLazyItems,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = { onBrowseMoviesClicked(MovieType.Trending) }
             )
+
+            PresentableSection(
+                title = stringResource(R.string.explore_tv_series),
+                state = discoverTvSeriesLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = onDiscoverTvShowClicked
+            )
+
             PresentableSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
                 title = stringResource(R.string.top_rated_movies),
-                state = topRatedLazyItems,
+                state = topRatedMoviesLazyItems,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = { onBrowseMoviesClicked(MovieType.TopRated) }
             )
-            if (favoritesLazyItems.isNotEmpty()) {
+
+            PresentableSection(
+                title = stringResource(R.string.top_rated_tv_series),
+                state = topRatedTvSeriesLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(TvShowType.TopRated)
+                }
+            )
+
+            PresentableSection(
+                title = stringResource(R.string.trending_tv_series),
+                state = trendingTvSeriesLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(TvShowType.Trending)
+                }
+            )
+            PresentableSection(
+                title = stringResource(R.string.today_airing_tv_series),
+                state = airingTodayTvSeriesLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(TvShowType.AiringToday)
+                }
+            )
+
+            if (favoriteMoviesLazyItems.isNotEmpty()) {
                 PresentableSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .animateContentSize(),
                     title = stringResource(R.string.favourite_movies),
-                    state = favoritesLazyItems,
+                    state = favoriteMoviesLazyItems,
                     onPresentableClick = onMovieClicked,
                     onMoreClick = { onBrowseMoviesClicked(MovieType.Favorite) }
                 )
             }
-            if (recentlyBrowsedLazyItems.isNotEmpty()) {
+            if (recentlyBrowsedMoviesLazyItems.isNotEmpty()) {
                 PresentableSection(
                     modifier = Modifier
                         .fillMaxWidth()
                         .animateContentSize(),
                     title = stringResource(R.string.recently_browsed_movies),
-                    state = recentlyBrowsedLazyItems,
+                    state = recentlyBrowsedMoviesLazyItems,
                     onPresentableClick = onMovieClicked,
                     onMoreClick = { onBrowseMoviesClicked(MovieType.RecentlyBrowsed) }
                 )
             }
+
+            if(favoriteTvSeriesLazyItems.isNotEmpty()){
+                PresentableSection(
+                    title = stringResource(R.string.favourites_tv_series),
+                    state = favoriteTvSeriesLazyItems,
+                    onPresentableClick = onTvShowClicked,
+                    onMoreClick = {
+                        onBrowseTvShowClicked(TvShowType.Favorite)
+                    }
+                )
+            }
+            if (recentlyBrowsedTvSeriesLazyItems.isNotEmpty()){
+                PresentableSection(
+                    title = stringResource(R.string.recently_browsed_tv_series),
+                    state = recentlyBrowsedTvSeriesLazyItems,
+                    onPresentableClick = onTvShowClicked,
+                    onMoreClick = {
+                        onBrowseTvShowClicked(TvShowType.RecentlyBrowsed)
+                    }
+                )
+            }
+
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
         }
     }

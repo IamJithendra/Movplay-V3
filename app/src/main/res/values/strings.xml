@@ -29,25 +29,25 @@
     <string name="favourites_label">Favourites</string>
     <string name="search_label">Search</string>
 
-    <string name="now_playing_movies">Now playing</string>
-    <string name="explore_movies">Explore</string>
-    <string name="popular_movies">Popular</string>
-    <string name="upcoming_movies">Upcoming</string>
-    <string name="top_rated_movies">Top rated</string>
+    <string name="now_playing_movies">Now playing Movies</string>
+    <string name="explore_movies">Explore Movies</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="top_rated_movies">Top rated Movies</string>
     <string name="movies_more">more</string>
-    <string name="favourite_movies">Favourites</string>
-    <string name="recently_browsed_movies">Recently browsed</string>
-    <string name="trending_movies">Trending</string>
+    <string name="favourite_movies">Favourite Movies</string>
+    <string name="recently_browsed_movies">Recently browsed Movies</string>
+    <string name="trending_movies">Trending Movies</string>
     <string name="available_at">Available at</string>
 
-    <string name="now_airing_tv_series">Now airing</string>
-    <string name="top_rated_tv_series">Top rated</string>
-    <string name="explore_tv_series">Explore</string>
-    <string name="today_airing_tv_series">Today</string>
-    <string name="popular_tv_series">Popular</string>
-    <string name="favourites_tv_series">Favourites</string>
-    <string name="recently_browsed_tv_series">Recently browsed</string>
-    <string name="trending_tv_series">Trending</string>
+    <string name="now_airing_tv_series">Now airing Tv series</string>
+    <string name="top_rated_tv_series">Top rated Tv series</string>
+    <string name="explore_tv_series">Explore Tv series</string>
+    <string name="today_airing_tv_series">Today Tv series</string>
+    <string name="popular_tv_series">Popular Tv series</string>
+    <string name="favourites_tv_series">Favourite Tv series</string>
+    <string name="recently_browsed_tv_series">Recently browsed Tv series</string>
+    <string name="trending_tv_series">Trending Tv series</string>
 
     <string name="show_more">Show\u00A0more</string>
     <string name="show_less">Show\u00A0less</string>
