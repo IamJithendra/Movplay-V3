@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -18,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -49,7 +51,7 @@ fun MovieListItem(
                 .data(R.drawable.ic_demo_poster)
                 .crossfade(true)
                 .build(),
-            contentDescription = null,
+            contentDescription = "Poster item",
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .constrainAs(imagePoster) {
@@ -60,6 +62,7 @@ fun MovieListItem(
                 }
                 .width(120.dp) // Adjust the width as needed
                 .height(175.dp) // Reduced height by 5dp
+                .clip(RoundedCornerShape(8.dp))
         )
 
         Text(
@@ -166,6 +169,6 @@ fun MovieListItem(
 
 @Composable
 @Preview
-fun PreviewPosterLayout() {
+fun PreviewMovieListItem() {
     MovieListItem()
 }
