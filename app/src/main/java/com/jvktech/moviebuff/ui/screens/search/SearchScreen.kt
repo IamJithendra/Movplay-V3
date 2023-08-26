@@ -15,10 +15,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Sort
+import androidx.compose.material.icons.filled.SwapHoriz
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -36,6 +41,7 @@ import com.jvktech.moviebuff.ui.components.sections.SearchGridSection
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.SearchScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowDetailsScreenDestination
+import com.jvktech.moviebuff.ui.screens.search.components.DiscoverChipRow
 import com.jvktech.moviebuff.ui.screens.search.components.QueryTextField
 import com.jvktech.moviebuff.ui.screens.search.components.SearchEmptyState
 import com.jvktech.moviebuff.ui.theme.spacing
@@ -170,6 +176,22 @@ fun SearchScreenContent(
             clearFocus()
             onQuerySuggestionSelected(suggestion)
         }
+
+        // Add Chip items
+        val filterOptions = listOf(
+            Pair("Movies", Icons.Default.SwapHoriz),
+            Pair("Popularity", Icons.Default.Sort),
+            Pair("Watch providers", Icons.Default.ArrowDropDown),
+            Pair("Genres", Icons.Default.ArrowDropDown)
+        )
+        val selectedFilters by remember { mutableStateOf(setOf<String>()) }
+
+        DiscoverChipRow(
+            filterOptions = filterOptions,
+            selectedFilters = selectedFilters,
+            onChipClicked = { }
+        )
+
         Crossfade(
             modifier = Modifier.fillMaxSize(),
             targetState = uiState.resultState,

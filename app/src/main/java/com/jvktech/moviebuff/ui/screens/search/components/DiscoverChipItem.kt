@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens
+package com.jvktech.moviebuff.ui.screens.search.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DesignScreen(
+fun DiscoverChipRow(
     filterOptions: List<Pair<String, ImageVector>>,
     selectedFilters: Set<String>,
     onChipClicked: () -> Unit // Updated parameter
@@ -89,7 +89,7 @@ fun FilterChipRowPreview() {
     )
     val selectedFilters by remember { mutableStateOf(setOf<String>()) }
 
-    DesignScreen(
+    DiscoverChipRow(
         filterOptions = filterOptions,
         selectedFilters = selectedFilters
     ) { }
