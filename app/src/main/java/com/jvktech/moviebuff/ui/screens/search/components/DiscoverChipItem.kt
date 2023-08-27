@@ -1,6 +1,5 @@
 package com.jvktech.moviebuff.ui.screens.search.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +47,7 @@ fun DiscoverChipRow(
 
             AssistChip(
                 onClick = {
-                    Log.d("Assist chip", "hello world")
+                    Timber.tag("Assist chip").d("hello world")
                     if (filterOption == "Watch providers" || filterOption == "Genres") {
                         selectedIconStates[filterOption] = !isArrowUp
                     } else if (index == 0) {
