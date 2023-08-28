@@ -1,8 +1,6 @@
 package com.jvktech.moviebuff.ui.screens.home
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
@@ -40,7 +38,6 @@ import com.jvktech.moviebuff.MainViewModel
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
 import com.jvktech.moviebuff.data.model.tvshow.TvShowType
-import com.jvktech.moviebuff.ui.components.dialogs.ExitDialog
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseTvShowsScreenDestination
@@ -204,26 +201,28 @@ fun HomeScreenContent(
 
     val appBarHeight = density.run { 56.dp.toPx() }
     val topSectionScrollLimitValue: Float? = topSectionHeight?.minus(appBarHeight)
-    var showExitDialog by remember {
-        mutableStateOf(false)
-    }
-    val dismissDialog = {
-        showExitDialog = false
-    }
-    BackHandler {
-        showExitDialog = true
-    }
 
-    if (showExitDialog) {
-        ExitDialog(
-            onDismissRequest = dismissDialog,
-            onCancelClick = dismissDialog,
-            onConfirmClick = {
-                val activity = (context as? Activity)
-                activity?.finish()
-            }
-        )
-    }
+    // show Alert dialog on back pressed
+//    var showExitDialog by remember {
+//        mutableStateOf(false)
+//    }
+//    val dismissDialog = {
+//        showExitDialog = false
+//    }
+//    BackHandler {
+//        showExitDialog = true
+//    }
+//
+//    if (showExitDialog) {
+//        ExitDialog(
+//            onDismissRequest = dismissDialog,
+//            onCancelClick = dismissDialog,
+//            onConfirmClick = {
+//                val activity = (context as? Activity)
+//                activity?.finish()
+//            }
+//        )
+//    }
 
     val isRefreshing by derivedStateOf {
         listOf(
