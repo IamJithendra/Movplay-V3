@@ -43,7 +43,7 @@ fun BottomBar(
     val bottomBarRoutes = remember {
         mutableSetOf(
             HomeScreenDestination.route,
-            TvShowScreenDestination.route,
+            DiscoverScreenDestination.route,
             WatchlistScreenDestination.route,
         )
     }
