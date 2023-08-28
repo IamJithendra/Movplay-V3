@@ -1,97 +1,56 @@
 package com.jvktech.moviebuff.ui.screens
 
-import android.util.Log
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.icons.filled.Sort
-import androidx.compose.material.icons.filled.SwapHoriz
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DesignScreen(
-    filterOptions: List<Pair<String, ImageVector>>,
-    selectedFilters: Set<String>,
-    onChipClicked: () -> Unit // Updated parameter
+fun ScrenPreied(
+
 ) {
-    val selectedIconStates = remember(filterOptions) { mutableStateMapOf<String, Boolean>() }
-    var isFirstChipMovies by remember { mutableStateOf(true) }
 
-    LazyRow(contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)) {
-        itemsIndexed(filterOptions) { index, (filterOption, icon) ->
-            val isSelected = selectedFilters.contains(filterOption)
-            val isArrowUp = selectedIconStates[filterOption] ?: false
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp)),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
-            val adjustedFilterOption = when {
-                index == 0 && !isFirstChipMovies -> "TV series"
-                index == 0 && isFirstChipMovies -> "Movies"
-                else -> filterOption
-            }
-
-            val adjustedIcon = if ((filterOption == "Watch providers" || filterOption == "Genres") && isArrowUp) {
-                Icons.Default.ArrowDropUp
-            } else {
-                icon
-            }
-
-            AssistChip(
-                onClick = {
-                    Log.d("Assist chip", "hello world")
-                    if (filterOption == "Watch providers" || filterOption == "Genres") {
-                        selectedIconStates[filterOption] = !isArrowUp
-                    } else if (index == 0) {
-                        isFirstChipMovies = !isFirstChipMovies
-                    }
-
-                },
-                label = {
-                    Text(
-                        text = adjustedFilterOption,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                },
+            androidx.compose.material3.OutlinedTextField(
+                enabled = false,
+                value = "",
+                onValueChange = { /* Handle text change */ },
+                label = { androidx.compose.material3.Text(text = "Search Movie, show or Actor") },
                 leadingIcon = {
-                    Icon(
-                        imageVector = adjustedIcon,
-                        contentDescription = "Localized description",
-                        Modifier.size(AssistChipDefaults.IconSize)
+                    androidx.compose.material3.Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = null
                     )
                 },
-                // Apply padding to the chip
-                modifier = Modifier.padding(start = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
             )
         }
     }
 }
 
 
-
-
-@Composable
-@Preview
-fun FilterChipRowPreview() {
-    val filterOptions = listOf(
-        Pair("Movies", Icons.Default.SwapHoriz),
-        Pair("Popularity", Icons.Default.Sort),
-        Pair("Watch providers", Icons.Default.ArrowDropDown),
-        Pair("Genres", Icons.Default.ArrowDropDown)
-    )
-    val selectedFilters by remember { mutableStateOf(setOf<String>()) }
-
-    DesignScreen(
-        filterOptions = filterOptions,
-        selectedFilters = selectedFilters
-    ) { }
-}
-
+//@Preview
+//@Composable
+//fun CustomOutlinedTextFieldPreview() {
+//    var text by remember { mutableStateOf(TextFieldValue()) }
+//    CustomOutlinedTextField(value = text, label = "Label")
+//}

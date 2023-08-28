@@ -35,14 +35,14 @@ fun AnimatedVisibilityScope.WatchlistScreen(
             FavoriteType.Movie -> {
                 MovieDetailsScreenDestination(
                     movieId = id,
-                    startRoute = FavoriteScreenDestination.route
+                    startRoute = WatchlistScreenDestination.route
                 )
             }
 
             FavoriteType.TvShow -> {
                 TvShowDetailsScreenDestination(
                     tvShowId = id,
-                    startRoute = FavoriteScreenDestination.route
+                    startRoute = WatchlistScreenDestination.route
                 )
             }
         }

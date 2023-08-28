@@ -5,9 +5,9 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.navigation.NavBackStackEntry
-import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.WatchlistScreenDestination
 import com.ramcosta.composedestinations.spec.DestinationStyle
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -16,7 +16,7 @@ object ReviewsScreenTransitions : DestinationStyle.Animated {
         return when (targetState.destination.route) {
             HomeScreenDestination.route,
             TvShowScreenDestination.route,
-            FavoriteScreenDestination.route  -> slideOutOfContainer(
+            WatchlistScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
             )
@@ -28,7 +28,7 @@ object ReviewsScreenTransitions : DestinationStyle.Animated {
         return when (targetState.destination.route) {
             HomeScreenDestination.route,
             TvShowScreenDestination.route,
-            FavoriteScreenDestination.route  -> slideOutOfContainer(
+            WatchlistScreenDestination.route  -> slideOutOfContainer(
                 towards = AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(300)
             )

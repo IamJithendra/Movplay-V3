@@ -26,10 +26,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.DiscoverScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.SearchScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.WatchlistScreenDestination
 
 
 @Composable
@@ -44,7 +44,7 @@ fun BottomBar(
         mutableSetOf(
             HomeScreenDestination.route,
             TvShowScreenDestination.route,
-            FavoriteScreenDestination.route,
+            WatchlistScreenDestination.route,
         )
     }
 
@@ -79,9 +79,9 @@ fun BottomBar(
 
             )
             NavBarItem(
-                selected = selectedRoute == SearchScreenDestination.route,
+                selected = selectedRoute == DiscoverScreenDestination.route,
                 onClick = {
-                    onItemClicked(SearchScreenDestination.route)
+                    onItemClicked(DiscoverScreenDestination.route)
                 },
                 label = "Discover",
                 selectedIcon = Icons.Rounded.Search,
@@ -89,9 +89,9 @@ fun BottomBar(
                 contentDescription = "Discover"
             )
             NavBarItem(
-                selected = selectedRoute == FavoriteScreenDestination.route,
+                selected = selectedRoute == WatchlistScreenDestination.route,
                 onClick = {
-                    onItemClicked(FavoriteScreenDestination.route)
+                    onItemClicked(WatchlistScreenDestination.route)
                 },
                 label = "Watchlist",
                 selectedIcon = Icons.Filled.Bookmark,
