@@ -48,7 +48,7 @@ fun DiscoverScreen(
             color = MaterialTheme.colorScheme.primary
         )
 
-        DiscoverScreenTextField()
+        DiscoverScreenTextField(navigator)
 
         Text(
             text = "Top categories",
