@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens.favorite
+package com.jvktech.moviebuff.ui.screens.watchlist
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.Crossfade
@@ -24,8 +24,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination
 @Composable
-fun AnimatedVisibilityScope.FavoriteScreen(
-    viewModel: FavoritesScreenViewModel = hiltViewModel(),
+fun AnimatedVisibilityScope.WatchlistScreen(
+    viewModel: WatchlistScreenViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -62,7 +62,7 @@ fun AnimatedVisibilityScope.FavoriteScreen(
             }
         }
     }
-    FavoriteScreenContent(
+    WatchlistScreenContent(
         uiState = uiState,
         onFavoriteTypeSelected = onFavoriteTypeSelected,
         onFavoriteClicked = onFavoriteClicked,
@@ -72,8 +72,8 @@ fun AnimatedVisibilityScope.FavoriteScreen(
 }
 
 @Composable
-fun FavoriteScreenContent(
-    uiState: FavoritesScreenUIState,
+fun WatchlistScreenContent(
+    uiState: WatchlistScreenUIState,
     onFavoriteTypeSelected: (type: FavoriteType) -> Unit,
     onFavoriteClicked: (favouriteId: Int) -> Unit,
     onNavigateToMoviesButtonClicked: () -> Unit,

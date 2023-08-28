@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens.favorite
+package com.jvktech.moviebuff.ui.screens.watchlist
 
 import androidx.compose.runtime.Stable
 import androidx.paging.PagingData
@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
 @Stable
-data class FavoritesScreenUIState(
+data class WatchlistScreenUIState(
     val selectedFavouriteType: FavoriteType,
     val favorites: Flow<PagingData<Presentable>>,
 ) {
     companion object {
-        val default: FavoritesScreenUIState = FavoritesScreenUIState(
+        val default: WatchlistScreenUIState = WatchlistScreenUIState(
             selectedFavouriteType = FavoriteType.Movie,
             favorites = emptyFlow()
         )

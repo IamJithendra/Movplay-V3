@@ -1,4 +1,4 @@
-package com.jvktech.moviebuff.ui.screens.favorite
+package com.jvktech.moviebuff.ui.screens.watchlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,21 +12,21 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoritesScreenViewModel @Inject constructor(
+class WatchlistScreenViewModel @Inject constructor(
     private val getFavouritesUseCaseImpl: GetFavoritesUseCaseImpl
 ) : ViewModel() {
     private val _selectedFavouriteType: MutableStateFlow<FavoriteType> =
         MutableStateFlow(FavoriteType.Movie)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val uiState: StateFlow<FavoritesScreenUIState> = _selectedFavouriteType.mapLatest { type ->
+    val uiState: StateFlow<WatchlistScreenUIState> = _selectedFavouriteType.mapLatest { type ->
         val favorites = getFavouritesUseCaseImpl(type).cachedIn(viewModelScope)
 
-        FavoritesScreenUIState(
+        WatchlistScreenUIState(
             selectedFavouriteType = type,
             favorites = favorites
         )
-    }.stateIn(viewModelScope, SharingStarted.Eagerly, FavoritesScreenUIState.default)
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, WatchlistScreenUIState.default)
 
     fun onFavoriteTypeSelected(type: FavoriteType) {
         viewModelScope.launch {

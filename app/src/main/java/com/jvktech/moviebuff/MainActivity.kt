@@ -27,20 +27,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jvktech.moviebuff.data.model.SnackBarEvent
 import com.jvktech.moviebuff.data.paging.ConfigDataSource
 import com.jvktech.moviebuff.ui.components.others.BottomBar
 import com.jvktech.moviebuff.ui.screens.NavGraphs
+import com.jvktech.moviebuff.ui.screens.destinations.DiscoverScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.FavoriteScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
 import com.jvktech.moviebuff.ui.theme.MovieBuffTheme
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.ImageUrlParser
 import com.jvktech.moviebuff.utils.safeNavigate
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
@@ -113,7 +113,7 @@ class MainActivity : ComponentActivity() {
                 currentRoute in setOf(
                     null,
                     HomeScreenDestination.route,
-                    TvShowScreenDestination.route,
+                    DiscoverScreenDestination.route,
                     FavoriteScreenDestination.route,
                 )
             }
