@@ -27,7 +27,6 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.ui.components.chips.EpisodeChip
-
 import com.jvktech.moviebuff.ui.components.dialogs.ErrorDialog
 import com.jvktech.moviebuff.ui.components.others.AnimatedContentContainer
 import com.jvktech.moviebuff.ui.components.others.BasicAppBar
@@ -56,9 +55,7 @@ fun AnimatedVisibilityScope.SeasonDetailsScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
-    val onCloseClicked: () -> Unit = {
-        navigator.popBackStack(uiState.startRoute, inclusive = false)
-    }
+
     val onMemberClicked = { personId: Int ->
         val destination = PersonDetailsScreenDestination(
             personId = personId,
@@ -71,7 +68,6 @@ fun AnimatedVisibilityScope.SeasonDetailsScreen(
 
     SeasonDetailsContent(
         uiState = uiState,
-        onCloseClicked = onCloseClicked,
         onBackClicked = onBackClicked,
         onMemberClicked = onMemberClicked,
         onEpisodeExpanded = onEpisodeExpanded
@@ -82,7 +78,6 @@ fun AnimatedVisibilityScope.SeasonDetailsScreen(
 @Composable
 fun SeasonDetailsContent(
     uiState: SeasonDetailsScreenUiState,
-    onCloseClicked: () -> Unit,
     onBackClicked: () -> Unit,
     onMemberClicked: (Int) -> Unit,
     onEpisodeExpanded: (episodeNumber: Int) -> Unit

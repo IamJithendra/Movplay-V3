@@ -64,9 +64,7 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
             viewModel.onLikeClick(details)
         }
     }
-    val onCloseClicked: () -> Unit = {
-        navigator.popBackStack(uiState.startRoute, inclusive = false)
-    }
+
     val onExternalIdClicked = { id: ExternalId ->
         openExternalId(
             context = context,
@@ -150,7 +148,6 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
         onShareClicked = onShareClicked,
         onVideoClicked = onVideoClicked,
         onFavouriteClicked = onFavouriteClicked,
-        onCloseClicked = onCloseClicked,
         onMemberClicked = onMemberClicked,
         onMovieClicked = onMovieClicked,
         onSimilarMoreClicked = onSimilarMoreClicked,
@@ -168,7 +165,6 @@ fun MovieDetailsScreenContent(
     onShareClicked: (details: ShareDetails) -> Unit,
     onVideoClicked: (video: Video) -> Unit,
     onFavouriteClicked: (details: MovieDetails) -> Unit,
-    onCloseClicked: () -> Unit,
     onMemberClicked: (personId: Int) -> Unit,
     onMovieClicked: (movieId: Int) -> Unit,
     onSimilarMoreClicked: () -> Unit,

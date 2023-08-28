@@ -66,9 +66,7 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
             viewModel.onLikeClick(details)
         }
     }
-    val onCloseClicked: () -> Unit = {
-        navigator.popBackStack(uiState.startRoute, inclusive = false)
-    }
+
     val onExternalIdClicked = { id: ExternalId ->
         openExternalId(
             context = context,
@@ -164,7 +162,6 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
         onShareClicked = onShareClicked,
         onVideoClicked = onVideoClicked,
         onFavoriteClicked = onFavoriteClicked,
-        onCloseClicked = onCloseClicked,
         onCreatorClicked = onCreatorClicked,
         onTvShowClicked = onTvShowClicked,
         onSeasonClicked = onSeasonClicked,
@@ -183,7 +180,6 @@ fun TvShowDetailsScreenContent(
     onShareClicked: (details: ShareDetails) -> Unit,
     onVideoClicked: (video: Video) -> Unit,
     onFavoriteClicked: (details: TvShowDetails) -> Unit,
-    onCloseClicked: () -> Unit,
     onCreatorClicked: (personId: Int) -> Unit,
     onTvShowClicked: (tvShowId: Int) -> Unit,
     onSeasonClicked: (seasonNumber: Int) -> Unit,
