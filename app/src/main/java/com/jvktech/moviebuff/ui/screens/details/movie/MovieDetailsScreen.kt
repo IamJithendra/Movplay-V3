@@ -434,7 +434,7 @@ fun MovieDetailsScreenContent(
             }
             Spacer(
                 modifier = Modifier.windowInsetsBottomHeight(
-                    insets = WindowInsets(bottom = MaterialTheme.spacing.medium)
+                    insets = WindowInsets(bottom = MaterialTheme.spacing.extraLarge)
                 )
             )
         }
