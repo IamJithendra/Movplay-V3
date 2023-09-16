@@ -16,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jvktech.moviebuff.R
@@ -28,7 +27,6 @@ import com.jvktech.moviebuff.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(navArgsDelegate = RelatedMoviesScreenArgs::class)
 @Composable
 fun AnimatedVisibilityScope.RelatedMoviesScreen(

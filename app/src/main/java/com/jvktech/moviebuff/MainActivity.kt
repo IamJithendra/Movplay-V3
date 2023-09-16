@@ -23,7 +23,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -59,7 +58,6 @@ class MainActivity : ComponentActivity() {
     @OptIn(
         ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class,
         ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class,
-        ExperimentalLifecycleComposeApi::class
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

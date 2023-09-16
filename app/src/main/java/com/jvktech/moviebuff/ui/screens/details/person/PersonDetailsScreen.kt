@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.ExternalId
@@ -43,7 +42,6 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import timber.log.Timber
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = PersonDetailsScreenArgs::class,
     style = PersonDetailsScreenTransitions::class

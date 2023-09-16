@@ -23,7 +23,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.ui.components.chips.EpisodeChip
@@ -43,7 +42,6 @@ import com.jvktech.moviebuff.utils.openVideo
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = SeasonDetailsScreenArgs::class,
     style = SeasonDetailsScreenTransitions::class

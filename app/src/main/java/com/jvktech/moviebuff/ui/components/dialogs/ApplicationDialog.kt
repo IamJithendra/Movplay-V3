@@ -24,7 +24,7 @@ fun ApplicationDialog(
         icon = {
             Image(
                 modifier = Modifier.height(50.dp),
-                painter = painterResource(R.drawable.ic_movplay),
+                painter = painterResource(R.drawable.ic_launcher_foreground),
                 contentDescription = null,
             )
         },

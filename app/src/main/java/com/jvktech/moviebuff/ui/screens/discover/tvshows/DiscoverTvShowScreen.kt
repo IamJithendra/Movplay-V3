@@ -27,7 +27,6 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jvktech.moviebuff.R
@@ -48,7 +47,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
 
-@OptIn(FlowPreview::class, ExperimentalLifecycleComposeApi::class)
+@OptIn(FlowPreview::class)
 @Destination(
     style = DiscoverTvShowsScreenTransitions::class
 )

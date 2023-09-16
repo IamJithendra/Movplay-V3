@@ -17,7 +17,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jvktech.moviebuff.data.model.tvshow.TvShowType
@@ -32,7 +31,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.jvktech.moviebuff.R
 
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = BrowseTvShowsScreenArgs::class,
     style = BrowseTvShowsScreenTransitions::class

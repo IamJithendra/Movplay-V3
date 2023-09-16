@@ -18,7 +18,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jvktech.moviebuff.data.model.movie.MovieType
@@ -34,7 +33,7 @@ import kotlinx.coroutines.FlowPreview
 import com.jvktech.moviebuff.R
 
 
-@OptIn(FlowPreview::class, ExperimentalLifecycleComposeApi::class)
+@OptIn(FlowPreview::class)
 @Destination(
     navArgsDelegate = BrowseMoviesScreenArgs::class,
     style = BrowseMoviesScreenTransitions::class
