@@ -111,7 +111,8 @@ fun DiscoverTvSeriesScreenContent(
     val orderIconRotation by animateFloatAsState(
         targetValue = if (uiState.sortInfo.sortOrder == SortOrder.Desc) {
             0f
-        } else 180f
+        } else 180f,
+        label = ""
     )
 
     BackHandler(sheetState.isVisible) {
@@ -193,7 +194,8 @@ fun DiscoverTvSeriesScreenContent(
                     modifier = Modifier
                         .fillMaxSize()
                         .navigationBarsPadding(),
-                    targetState = !tvSeries.isEmpty()
+                    targetState = !tvSeries.isEmpty(),
+                    label = ""
                 ) { hasFilterResults ->
                     if (hasFilterResults) {
                         PresentableGridSection(

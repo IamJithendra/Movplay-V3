@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jvktech.moviebuff.ui.screens.destinations.DiscoverMoviesScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.DiscoverTvShowScreenDestination
 import com.jvktech.moviebuff.ui.screens.search.components.DiscoverScreenTextField
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
@@ -63,7 +65,7 @@ fun DiscoverScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp) // Adjust the spacing value as needed
         ) {
             AssistChip(
-                onClick = { Timber.tag("Assist chip").d("Movies clicked") },
+                onClick = { navigator.navigate(DiscoverMoviesScreenDestination) },
                 label = {
                     Text(
                         text = "Movies",
@@ -73,14 +75,14 @@ fun DiscoverScreen(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Movie,
-                        contentDescription = "Localized description",
+                        contentDescription = "Discover Movies",
                         modifier = Modifier.size(AssistChipDefaults.IconSize)
                     )
                 }
             )
 
             AssistChip(
-                onClick = { Timber.tag("Assist chip").d("Tv shows clicked") },
+                onClick = { navigator.navigate(DiscoverTvShowScreenDestination) },
                 label = {
                     Text(
                         text = "Tv shows",
@@ -90,7 +92,7 @@ fun DiscoverScreen(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Tv,
-                        contentDescription = "Localized description",
+                        contentDescription = "Discover Tv shows",
                         modifier = Modifier.size(AssistChipDefaults.IconSize)
                     )
                 }

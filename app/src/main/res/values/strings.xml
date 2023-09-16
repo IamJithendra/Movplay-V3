@@ -146,8 +146,8 @@
     <string name="clear_recent_movies_dialog_text">Are you sure you want to clear recent browsed Movies?</string>
     <string name="clear_recent_tv_series_dialog_text">Are you sure you want to clear recent browsed Tv series?</string>
 
-    <string name="discover_movies_appbar_title">Explore</string>
-    <string name="discover_tv_series_appbar_title">Explore</string>
+    <string name="discover_movies_appbar_title">Explore Movies</string>
+    <string name="discover_tv_series_appbar_title">Explore Tv shows</string>
 
     <string name="sort_type_popularity_label">Popularity</string>
     <string name="sort_type_release_date_label">Date</string>
