@@ -39,6 +39,7 @@ import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
 import com.jvktech.moviebuff.data.model.tvshow.TvShowType
 import com.jvktech.moviebuff.ui.components.others.AboutBottomSheet
+import com.jvktech.moviebuff.ui.components.others.DonateBottomSheet
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseTvShowsScreenDestination
