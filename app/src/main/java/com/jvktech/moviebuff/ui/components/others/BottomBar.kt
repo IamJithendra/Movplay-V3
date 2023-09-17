@@ -1,8 +1,11 @@
 package com.jvktech.moviebuff.ui.components.others
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
@@ -15,11 +18,14 @@ import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -58,7 +64,9 @@ fun BottomBar(
         enter = slideInVertically { it },
         exit = slideOutVertically { it }
     ) {
-        NavigationBar {
+        NavigationBar(
+            containerColor = MaterialTheme.colorScheme.background,
+        ) {
             NavBarItem(
                 selected = selectedRoute == HomeScreenDestination.route,
                 onClick = {
@@ -98,7 +106,7 @@ fun BottomBar(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun RowScope.NavBarItem(
     label: String,
@@ -112,38 +120,52 @@ fun RowScope.NavBarItem(
 
     ) {
     NavigationBarItem(
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            selectedTextColor = MaterialTheme.colorScheme.onSurface,
+            indicatorColor = MaterialTheme.colorScheme.secondaryContainer
+        ),
         selected = selected,
         onClick = onClick,
         label = {
             Text(
+                modifier = Modifier.basicMarquee(),
                 text = label,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 1
             )
         },
         icon = {
-            BadgedBox(
-                badge = {
-                    if (badgeCount != null) {
-                        Badge(
-                            containerColor = LightGreen,
-                        ) {
-                            Text(
-                                text = badgeCount.toString(),
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold
+            Crossfade(
+                targetState = selected,
+                label = "navigation items animation"
+            ) { selected ->
+                BadgedBox(
+                    badge = {
+                        if (badgeCount != null) {
+                            Badge(
+                                containerColor = LightGreen,
+                            ) {
+                                Text(
+                                    text = badgeCount.toString(),
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        } else if (hasNews == true) {
+                            Badge(
+                                containerColor = LightGreen
                             )
                         }
-                    } else if (hasNews == true) {
-                        Badge(
-                            containerColor = LightGreen
-                        )
                     }
+                ) {
+                    Icon(
+                        imageVector = if (selected) selectedIcon else unSelectedIcon,
+                        contentDescription = contentDescription
+                    )
                 }
-            ) {
-                Icon(
-                    imageVector = if (selected) selectedIcon else unSelectedIcon,
-                    contentDescription = contentDescription
-                )
             }
         }
     )

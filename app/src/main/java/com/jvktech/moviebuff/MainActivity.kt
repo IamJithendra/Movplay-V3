@@ -17,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -132,8 +133,8 @@ class MainActivity : ComponentActivity() {
 
             CompositionLocalProvider(LocalImageUrlParser provides imageUrlParser) {
                 MovieBuffTheme {
-                    val navigationBarColor = MaterialTheme.colorScheme.surface
-                    val experiment = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
+                    val navigationBarColor = MaterialTheme.colorScheme.background
+                    val experiment = MaterialTheme.colorScheme.background
                     val checkTheme = isSystemInDarkTheme()
                     SideEffect {
                         if (checkTheme) {
