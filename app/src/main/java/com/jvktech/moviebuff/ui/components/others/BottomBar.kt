@@ -32,7 +32,9 @@ import androidx.compose.ui.text.font.FontWeight
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.WatchlistScreenDestination
+import com.jvktech.moviebuff.ui.theme.LightCyan
 import com.jvktech.moviebuff.ui.theme.LightGreen
+import com.jvktech.moviebuff.ui.theme.Orange
 
 
 @Composable
@@ -65,6 +67,7 @@ fun BottomBar(
         exit = slideOutVertically { it }
     ) {
         NavigationBar(
+            contentColor = MaterialTheme.colorScheme.onSurface,
             containerColor = MaterialTheme.colorScheme.background,
         ) {
             NavBarItem(

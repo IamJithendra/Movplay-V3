@@ -17,7 +17,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -34,8 +33,8 @@ import com.jvktech.moviebuff.data.paging.ConfigDataSource
 import com.jvktech.moviebuff.ui.components.others.BottomBar
 import com.jvktech.moviebuff.ui.screens.NavGraphs
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.WatchlistScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.WatchlistScreenDestination
 import com.jvktech.moviebuff.ui.theme.MovieBuffTheme
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.ImageUrlParser
@@ -58,7 +57,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnrememberedMutableState")
     @OptIn(
         ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class,
-        ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class,
+        ExperimentalMaterialNavigationApi::class,
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
