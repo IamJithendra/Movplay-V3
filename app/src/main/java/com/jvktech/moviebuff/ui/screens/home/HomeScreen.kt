@@ -50,6 +50,7 @@ import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.UpdatesChannelDestination
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isAnyRefreshing
 import com.jvktech.moviebuff.utils.isNotEmpty
@@ -83,7 +84,6 @@ fun AnimatedVisibilityScope.HomeScreen(
             movieId = movieId,
             startRoute = HomeScreenDestination.route
         )
-
         navigator.navigate(destination)
     }
 
@@ -101,7 +101,6 @@ fun AnimatedVisibilityScope.HomeScreen(
                 tvShowId = tvShowId,
                 startRoute = TvShowScreenDestination.route
             )
-
         navigator.navigate(destination)
     }
 
@@ -130,7 +129,7 @@ fun AnimatedVisibilityScope.HomeScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    StoryLogo()
+                    StoryLogo(onClick = { navigator.navigate(UpdatesChannelDestination) })
                 },
                 actions = {
                     IconButton(
