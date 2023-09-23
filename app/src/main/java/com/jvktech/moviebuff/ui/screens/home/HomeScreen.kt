@@ -3,7 +3,6 @@ package com.jvktech.moviebuff.ui.screens.home
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -20,12 +19,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,7 +36,6 @@ import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
 import com.jvktech.moviebuff.data.model.tvshow.TvShowType
 import com.jvktech.moviebuff.ui.components.others.AboutBottomSheet
-import com.jvktech.moviebuff.ui.components.others.DonateBottomSheet
 import com.jvktech.moviebuff.ui.components.others.StoryLogo
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
@@ -124,12 +120,16 @@ fun AnimatedVisibilityScope.HomeScreen(
         )
     }
 
+    val onStoryLogoClicked = {
+        navigator.navigate(UpdatesChannelDestination)
+    }
+
     Scaffold(
         modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    StoryLogo(onClick = { navigator.navigate(UpdatesChannelDestination) })
+                    StoryLogo(onStoryLogoClicked = onStoryLogoClicked)
                 },
                 actions = {
                     IconButton(

@@ -23,7 +23,7 @@ import com.jvktech.moviebuff.R
 
 @Composable
 fun StoryLogo(
-    onClick: () -> Unit
+    onStoryLogoClicked: () -> Unit
 ) {
 
     // TODO if there is no update to show then just show the app log without any background
@@ -69,5 +69,5 @@ fun StoryLogo(
 @Composable
 @Preview
 fun StoryLogoPreview() {
-    StoryLogo(onClick = { })
+    StoryLogo(onStoryLogoClicked = { })
 }
