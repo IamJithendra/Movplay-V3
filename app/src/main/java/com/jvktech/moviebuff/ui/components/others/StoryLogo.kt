@@ -66,8 +66,8 @@ fun StoryLogo(
 }
 
 
-@Composable
-@Preview
-fun StoryLogoPreview() {
-    StoryLogo(onStoryLogoClicked = { })
-}
+//@Composable
+//@Preview
+//fun StoryLogoPreview() {
+//    StoryLogo(onStoryLogoClicked = { })
+//}
