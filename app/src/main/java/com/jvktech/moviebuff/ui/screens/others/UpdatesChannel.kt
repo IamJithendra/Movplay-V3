@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.jvktech.moviebuff.R
+import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -34,8 +35,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun UpdatesChannel(
     navigator: DestinationsNavigator
 ) {
-
-    val onBackClicked: () -> Unit = { navigator.navigateUp() }
 
     Scaffold(
         topBar = {
@@ -48,7 +47,7 @@ fun UpdatesChannel(
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = { onBackClicked }
+                        onClick = { navigator.navigate(HomeScreenDestination) }
                     ) {
                         Icon(Icons.Filled.ArrowBack, "")
                     }
@@ -72,7 +71,7 @@ fun UpdatesChannel(
                     Text(
                         modifier = Modifier.padding(MaterialTheme.spacing.small),
                         text = "26 September 2023",
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.labelSmall
                     )
                 }
 
