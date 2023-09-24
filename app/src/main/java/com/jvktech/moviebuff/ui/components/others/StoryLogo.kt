@@ -3,6 +3,7 @@ package com.jvktech.moviebuff.ui.components.others
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,20 +18,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jvktech.moviebuff.R
+import com.jvktech.moviebuff.ui.screens.destinations.UpdatesStoryDestination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
 fun StoryLogo(
-    onStoryLogoClicked: () -> Unit
+    navigator: DestinationsNavigator
 ) {
 
     // TODO if there is no update to show then just show the app log without any background
 
     Card(
         modifier = Modifier.size(50.dp)
-            .clip(CircleShape),
+            .clip(CircleShape)
+            .clickable {
+                navigator.navigate(UpdatesStoryDestination)
+            },
         shape = CircleShape,
         border = BorderStroke(
             2.5.dp,

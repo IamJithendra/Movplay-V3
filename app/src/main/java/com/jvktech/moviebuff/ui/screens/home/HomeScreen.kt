@@ -120,16 +120,12 @@ fun AnimatedVisibilityScope.HomeScreen(
         )
     }
 
-    val onStoryLogoClicked = {
-        navigator.navigate(UpdatesChannelDestination)
-    }
-
     Scaffold(
         modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    StoryLogo(onStoryLogoClicked = onStoryLogoClicked)
+                    StoryLogo(navigator = navigator)
                 },
                 actions = {
                     IconButton(
