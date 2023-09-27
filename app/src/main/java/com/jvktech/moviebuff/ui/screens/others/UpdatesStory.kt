@@ -132,7 +132,7 @@ fun UpdatesStory(
             }
         }
 
-        WhatsAppProgressIndicator(
+        StoryProgressIndicator(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp),
@@ -149,7 +149,7 @@ fun UpdatesStory(
 }
 
 @Composable
-fun WhatsAppProgressIndicator(
+fun StoryProgressIndicator(
     modifier: Modifier = Modifier,
     stepCount: Int,
     stepDuration: Int,
