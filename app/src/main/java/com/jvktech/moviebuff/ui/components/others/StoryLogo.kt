@@ -41,8 +41,8 @@ fun StoryLogo(
             2.5.dp,
             Brush.linearGradient(
                 colors = listOf(
-                    Color(0xFF00ee6e),
-                    Color(0xFF0c75e6)
+                    Color(0xFF0dc34b),
+                    Color(0xFF0a9bd3)
                 )
             )
         ),
