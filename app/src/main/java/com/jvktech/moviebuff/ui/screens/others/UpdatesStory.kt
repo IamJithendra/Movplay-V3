@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -98,37 +99,50 @@ fun UpdatesStory(
                         }
                     }
                 )
-
             }
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = images[currentStep.value]),
-                contentDescription = "StoryImage",
-                contentScale = ContentScale.Fit,
-                modifier = imageModifier
-            )
-            Spacer(modifier = Modifier.height(16.dp)) // Adjust the spacing as needed
+            Box(
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(id = images[currentStep.value]),
+                    contentDescription = "StoryImage",
+                    contentScale = ContentScale.Fit,
+                    modifier = imageModifier
+                )
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
             Text(
                 modifier = Modifier.padding(MaterialTheme.spacing.medium),
                 text = "The ICC Men's Cricket World Cup is almost here! Access All Areas via our WhatsApp channel \uD83C\uDFCF",
                 color = Color.White,
                 style = MaterialTheme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.height(100.dp)) // Adjust the spacing as needed
-            IconButton(
-                modifier = Modifier.size(24.dp)
-                    .graphicsLayer(scaleX = scale, scaleY = scale),
-                onClick = { navigator.navigate(UpdatesChannelDestination) }
+
+            Column(
+                modifier = Modifier.padding(top = 32.dp),
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Icon(
-                    Icons.Filled.KeyboardDoubleArrowUp,
-                    "Arrow up",
-                )
+                IconButton(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .graphicsLayer(scaleX = scale, scaleY = scale),
+                    onClick = { navigator.navigate(UpdatesChannelDestination) }
+                ) {
+                    Icon(
+                        Icons.Filled.KeyboardDoubleArrowUp,
+                        "Arrow up",
+                    )
+                }
             }
         }
 
@@ -145,6 +159,7 @@ fun UpdatesStory(
             isPaused = isPaused.value,
             onComplete = { navigator.navigate(HomeScreenDestination) }
         )
+
     }
 }
 
