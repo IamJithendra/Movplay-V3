@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowUp
@@ -32,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -179,11 +181,15 @@ fun WhatsAppProgressIndicator(
                     .weight(1f)
                     .padding(2.dp)
                     .height(3.dp)
+                    .clip(RoundedCornerShape(16.dp))
             )
         }
     }
 
-    LaunchedEffect(isPaused, currentStep) {
+    LaunchedEffect(
+        isPaused,
+        currentStep
+    ) {
         if (isPaused) {
             progress.stop()
         } else {
