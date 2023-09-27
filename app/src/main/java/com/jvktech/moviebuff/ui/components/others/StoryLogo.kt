@@ -31,7 +31,8 @@ fun StoryLogo(
     // TODO if there is no update to show then just show the app log without any background
 
     Card(
-        modifier = Modifier.size(50.dp)
+        modifier = Modifier
+            .size(50.dp)
             .clip(CircleShape)
             .clickable {
                 navigator.navigate(UpdatesStoryDestination)
@@ -39,16 +40,16 @@ fun StoryLogo(
         shape = CircleShape,
         border = BorderStroke(
             2.5.dp,
-            Brush.linearGradient(
+            Brush.verticalGradient(
                 colors = listOf(
-                    Color(0xFF0dc34b),
-                    Color(0xFF0a9bd3)
+                    Color(0xFF0dc34b), // Top half color
+                    Color(0xFF0dc34b), // Top half color
+                    Color(0xFF0a9bd3), // Bottom half color
+                    Color(0xFF0a9bd3)  // Bottom half color
                 )
             )
-        ),
-    )
-    {
-
+        )
+    ) {
         // Create a circular gap by adding padding with a transparent color
         Box(
             modifier = Modifier
