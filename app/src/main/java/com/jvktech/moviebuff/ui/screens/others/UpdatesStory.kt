@@ -2,18 +2,15 @@ package com.jvktech.moviebuff.ui.screens.others
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,14 +26,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -66,21 +62,11 @@ fun UpdatesStory(
     val currentStep = remember { mutableStateOf(0) }
     val isPaused = remember { mutableStateOf(false) }
 
-    val isAnimating by remember { mutableStateOf(true) }
-
-    // Create an animation value for scaling
-    val scale by animateFloatAsState(
-        targetValue = if (isAnimating) 1.0f else 0f, // Scale up and down
-        animationSpec = spring(dampingRatio = Spring.DampingRatioHighBouncy),
-        label = "" // Adjust the dampingRatio as needed
-    )
-
     BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = MaterialTheme.spacing.large)
+        modifier = Modifier.fillMaxSize()
     ) {
         val imageModifier = Modifier
+            .clip(RoundedCornerShape(8.dp))
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = { offset ->
@@ -101,41 +87,41 @@ fun UpdatesStory(
                 )
             }
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
-            Box(
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = images[currentStep.value]),
-                    contentDescription = "StoryImage",
-                    contentScale = ContentScale.Fit,
-                    modifier = imageModifier
-                )
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            Text(
-                modifier = Modifier.padding(MaterialTheme.spacing.medium),
-                text = "The ICC Men's Cricket World Cup is almost here! Access All Areas via our WhatsApp channel \uD83C\uDFCF",
-                color = Color.White,
-                style = MaterialTheme.typography.bodyMedium
+            // Center the image vertically
+            Image(
+                painter = painterResource(id = images[currentStep.value]),
+                contentDescription = "StoryImage",
+                contentScale = ContentScale.FillWidth,
+                modifier = imageModifier
             )
+        }
 
+        // Move the second Box to the bottom of the screen
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .height(150.dp) // Height of the gradient background
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(Color.Transparent, Color(0x80000000)), // Dimmed black gradient
+                        startY = .3f,
+                        endY = 50.dp.value // Height of the gradient background in pixels
+                    )
+                )
+        ) {
             Column(
-                modifier = Modifier.padding(top = 32.dp),
-                verticalArrangement = Arrangement.Bottom,
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+
                 IconButton(
-                    modifier = Modifier
-                        .size(24.dp)
-                        .graphicsLayer(scaleX = scale, scaleY = scale),
+                    modifier = Modifier.size(48.dp),
                     onClick = { navigator.navigate(UpdatesChannelDestination) }
                 ) {
                     Icon(
@@ -143,13 +129,22 @@ fun UpdatesStory(
                         "Arrow up",
                     )
                 }
+
+                Text(
+                    text = "The ICC Men's Cricket World Cup is almost here! Access All Areas via our WhatsApp channel \uD83C\uDFCF",
+                    color = Color.White,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.align(Alignment.CenterHorizontally) // Align the text horizontally to center
+                        .padding(start = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium)
+                )
             }
         }
 
         StoryProgressIndicator(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(5.dp),
+                .padding(5.dp)
+                .padding(top = MaterialTheme.spacing.large),
             stepCount = stepCount,
             stepDuration = 10_000,
             unSelectedColor = Color.DarkGray,
@@ -159,8 +154,10 @@ fun UpdatesStory(
             isPaused = isPaused.value,
             onComplete = { navigator.navigate(HomeScreenDestination) }
         )
-
     }
+
+
+
 }
 
 @Composable
