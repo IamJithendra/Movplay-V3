@@ -39,10 +39,11 @@ fun AboutBottomSheet(
     val bottomSheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
-
         onDismissRequest = onDismiss,
         sheetState = bottomSheetState,
-        windowInsets = WindowInsets(0, 0, 0, 0)
+        windowInsets = WindowInsets(0, 0, 0, 0),
+        tonalElevation = 10.dp,
+        containerColor = MaterialTheme.colorScheme.background
     ) {
 
         Column(
