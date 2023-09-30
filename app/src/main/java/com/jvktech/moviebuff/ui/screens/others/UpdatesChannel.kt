@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,11 +48,13 @@ fun UpdatesChannel(
                 },
                 navigationIcon = {
                     IconButton(
+                        // TODO remove all items from stack on click
                         onClick = { navigator.navigate(HomeScreenDestination) }
                     ) {
                         Icon(Icons.Filled.ArrowBack, "")
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.background),
             )
         },
         content = { innerPadding ->
