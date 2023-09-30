@@ -29,12 +29,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.jvktech.moviebuff.ui.screens.destinations.DiscoverScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.WatchlistScreenDestination
-import com.jvktech.moviebuff.ui.theme.LightCyan
 import com.jvktech.moviebuff.ui.theme.LightGreen
-import com.jvktech.moviebuff.ui.theme.Orange
 
 
 @Composable
@@ -67,8 +66,9 @@ fun BottomBar(
         exit = slideOutVertically { it }
     ) {
         NavigationBar(
-            contentColor = MaterialTheme.colorScheme.onSurface,
+            contentColor = MaterialTheme.colorScheme.primaryContainer,
             containerColor = MaterialTheme.colorScheme.background,
+            tonalElevation = 10.dp
         ) {
             NavBarItem(
                 selected = selectedRoute == HomeScreenDestination.route,

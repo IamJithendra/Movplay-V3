@@ -124,6 +124,7 @@ fun AnimatedVisibilityScope.HomeScreen(
         modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CenterAlignedTopAppBar(
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(MaterialTheme.colorScheme.background),
                 title = {
                     StoryLogo(navigator = navigator)
                 },
