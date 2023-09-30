@@ -20,7 +20,7 @@ fun DetailsAppBar(
     modifier: Modifier = Modifier,
     scrollState: ScrollState? = null,
     transparentScrollValueLimit: Float? = null,
-    backgroundColor: Color = Color.Black,
+    backgroundColor: Color = MaterialTheme.colorScheme.background,
     action: @Composable () -> Unit = {},
     trailing: @Composable () -> Unit = {}
 ) {
@@ -39,7 +39,6 @@ fun DetailsAppBar(
 
     Row(
         modifier = modifier
-            .background(backgroundColor.copy(alpha))
             .fillMaxWidth()
             .statusBarsPadding(),
         verticalAlignment = Alignment.CenterVertically

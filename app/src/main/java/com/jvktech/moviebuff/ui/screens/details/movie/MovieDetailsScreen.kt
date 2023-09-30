@@ -439,7 +439,7 @@ fun MovieDetailsScreenContent(
         DetailsAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
             title = null,
-            backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
+            backgroundColor = MaterialTheme.colorScheme.background,
             scrollState = scrollState,
             transparentScrollValueLimit = topSectionScrollLimitValue,
             action = {
