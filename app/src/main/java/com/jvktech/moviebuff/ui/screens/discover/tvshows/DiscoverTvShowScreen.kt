@@ -128,7 +128,7 @@ fun DiscoverTvSeriesScreenContent(
             FilterTvShowsModalBottomSheetContent(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.9f)
+                    .fillMaxHeight(0.7f)
                     .navigationBarsPadding(),
                 sheetState = sheetState,
                 filterState = uiState.filterState,
@@ -145,7 +145,7 @@ fun DiscoverTvSeriesScreenContent(
                 }
             )
         },
-        sheetBackgroundColor = MaterialTheme.colorScheme.surface
+        sheetBackgroundColor = MaterialTheme.colorScheme.background
     ) {
         Box(
             modifier = Modifier
@@ -165,7 +165,9 @@ fun DiscoverTvSeriesScreenContent(
                         }
                     },
                     trailing = {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             IconButton(
                                 modifier = Modifier.rotate(orderIconRotation),
                                 onClick = {

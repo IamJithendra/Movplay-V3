@@ -123,7 +123,7 @@ fun DiscoverMoviesScreenContent(
             FilterMoviesModalBottomSheetContent(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.9f)
+                    .fillMaxHeight(0.7f)
                     .navigationBarsPadding(),
                 sheetState = sheetState,
                 filterState = uiState.filterState,
@@ -140,7 +140,7 @@ fun DiscoverMoviesScreenContent(
                 }
             )
         },
-        sheetBackgroundColor = MaterialTheme.colorScheme.surface
+        sheetBackgroundColor = MaterialTheme.colorScheme.background
     ) {
         Box(
             modifier = Modifier
@@ -158,7 +158,9 @@ fun DiscoverMoviesScreenContent(
                         }
                     },
                     trailing = {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             IconButton(
                                 modifier = Modifier.rotate(orderIconRotation),
                                 onClick = {
@@ -189,7 +191,8 @@ fun DiscoverMoviesScreenContent(
                     modifier = Modifier
                         .fillMaxSize()
                         .navigationBarsPadding(),
-                    targetState = !movies.isEmpty()
+                    targetState = !movies.isEmpty(),
+                    label = ""
                 ) { hasFilterResults ->
                     if (hasFilterResults) {
                         PresentableGridSection(

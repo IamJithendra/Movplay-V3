@@ -70,19 +70,6 @@ fun FilterMoviesModalBottomSheetContent(
             modifier = Modifier.width(64.dp),
             thickness = 4.dp
         )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
-        ) {
-            IconButton(
-                onClick = onCloseClick
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Close,
-                    contentDescription = "close filter",
-                )
-            }
-        }
 
         Column(
             modifier = Modifier
