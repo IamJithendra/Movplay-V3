@@ -19,7 +19,7 @@ fun ScrollToStartButton(
     IconButton(
         modifier = modifier
             .clip(shape = CircleShape)
-            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)),
+            .background(MaterialTheme.colorScheme.background),
         onClick = onClick
     ) {
         Icon(
