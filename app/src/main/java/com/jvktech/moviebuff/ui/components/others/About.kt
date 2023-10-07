@@ -1,6 +1,9 @@
 package com.jvktech.moviebuff.ui.components.others
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
@@ -9,9 +12,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 
 
@@ -40,8 +48,82 @@ fun AboutBottomSheet(
                     val (buttonsRow) = createRefs()
 
 
-                    // Rest of your layout remains the same.
-                    // ...
+                    Box(
+                        modifier = Modifier
+                            .fillMaxHeight(0.3f) // Adjust the fraction to control the height of the line
+                            .clip(shape = RoundedCornerShape(16.dp)) // Adjust the corner radius as needed
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "0 days left",
+                                    color = Color.White,
+                                    fontSize = 16.sp
+                                )
+                                TextButton(onClick = {
+                                    // Add your button click action here
+                                }) {
+                                    Text(text = "REFILL", color = Color.White)
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(10.dp)) // Add vertical space of 5dp
+
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(15.dp),
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                repeat(40) {index ->
+                                    Card(
+                                        modifier = Modifier
+                                            .weight(1f) // Each card takes an equal portion of the available space
+                                            .fillMaxHeight(),
+                                        colors = CardDefaults.cardColors(if (index < 15) Color.Green else Color.Gray),
+                                        shape = RoundedCornerShape(4.dp)
+                                    ) {
+                                        // Content inside the card, if any
+                                    }
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(15.dp)) // Add vertical space of 5dp
+
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                // Display "0" as the first number
+                                Text(
+                                    text = "0",
+                                    color = Color.White,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.align(Alignment.CenterVertically)
+                                )
+
+                                for (i in 1..8) {
+                                    Text(
+                                        text = i.toString(),
+                                        color = Color.White,
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Bold, // Optional, for better visibility
+                                        modifier = Modifier.align(Alignment.CenterVertically)
+                                    )
+                                }
+                            }
+                        }
+                    }
+
 
                     // Align the buttons row to the bottom center
                     val buttonsAlignment = Modifier.constrainAs(buttonsRow) {
@@ -67,9 +149,7 @@ fun AboutBottomSheet(
                         }
 
                         Text(
-                            text = "•",
-                            modifier = Modifier
-                                .padding(vertical = 16.dp)
+                            text = "•", modifier = Modifier.padding(vertical = 16.dp)
                         )
 
                         TextButton(
@@ -82,8 +162,7 @@ fun AboutBottomSheet(
                         }
                     }
                 }
-            }
-        )
+            })
 
     }
 }
