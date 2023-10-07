@@ -5,7 +5,7 @@
     <string name="no">No</string>
 
     <string name="snack_bar_network_connected_label">Connected to network</string>
-    <string name="snack_bar_network_disconnected_label">Network connection lost</string>
+    <string name="snack_bar_network_disconnected_label">⛔ Network connection lost</string>
 
     <string name="camera_permission_rationale_info">In order to use the functionality, it is necessary to grant the appropriate permission</string>
     <string name="camera_permission_rationale_request_permission_button_label">Grant permission</string>
