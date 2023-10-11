@@ -21,6 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.jvktech.moviebuff.ui.theme.DarkGreen
+import com.jvktech.moviebuff.ui.theme.spacing
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,6 +41,7 @@ fun AboutBottomSheet(
     ) {
 
         Scaffold(
+            modifier = Modifier.fillMaxHeight(0.5f),
             content = { innerPadding ->
                 ConstraintLayout(
                     modifier = Modifier
@@ -50,7 +53,7 @@ fun AboutBottomSheet(
 
                     Box(
                         modifier = Modifier
-                            .fillMaxHeight(0.3f) // Adjust the fraction to control the height of the line
+                            .fillMaxHeight() // Adjust the fraction to control the height of the line
                             .clip(shape = RoundedCornerShape(16.dp)) // Adjust the corner radius as needed
                     ) {
                         Column(
@@ -64,14 +67,14 @@ fun AboutBottomSheet(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "0 days left",
+                                    text = "3 Ad-free days left",
                                     color = Color.White,
                                     fontSize = 16.sp
                                 )
                                 TextButton(onClick = {
                                     // Add your button click action here
                                 }) {
-                                    Text(text = "REFILL", color = Color.White)
+                                    Text(text = "REFILL", color = DarkGreen)
                                 }
                             }
 
@@ -88,7 +91,7 @@ fun AboutBottomSheet(
                                         modifier = Modifier
                                             .weight(1f) // Each card takes an equal portion of the available space
                                             .fillMaxHeight(),
-                                        colors = CardDefaults.cardColors(if (index < 15) Color.Green else Color.Gray),
+                                        colors = CardDefaults.cardColors(if (index < 15) DarkGreen else Color.Gray),
                                         shape = RoundedCornerShape(4.dp)
                                     ) {
                                         // Content inside the card, if any
@@ -136,7 +139,7 @@ fun AboutBottomSheet(
                     Row(
                         modifier = buttonsAlignment
                             .fillMaxWidth()
-                            .padding(bottom = 16.dp), // Adjust bottom padding as needed
+                            .padding(MaterialTheme.spacing.medium), // Adjust bottom padding as needed
                         horizontalArrangement = Arrangement.Center,
                     ) {
                         TextButton(
