@@ -368,7 +368,7 @@ fun MovieDetailsScreenContent(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(R.string.movie_details_recommendations),
                     state = moviesRecommendationState,
-                    showLoadingAtRefresh = false,
+                    showLoadingAtRefresh = true,
                     onMoreClick = onRecommendationsMoreClicked,
                     onPresentableClick = { movieId ->
                         if (movieId != uiState.movieDetails?.id) {
@@ -397,7 +397,7 @@ fun MovieDetailsScreenContent(
                         stringResource(id = R.string.movie_details_similar)
                     },
                     state = similarMoviesState,
-                    showLoadingAtRefresh = false,
+                    showLoadingAtRefresh = true,
                     onMoreClick = onSimilarMoreClicked,
                     onPresentableClick = { movieId ->
                         if (movieId != uiState.movieDetails?.id) {
