@@ -66,7 +66,7 @@ fun BottomBar(
         exit = slideOutVertically { it }
     ) {
         NavigationBar(
-            contentColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.primary,
             containerColor = MaterialTheme.colorScheme.background,
             tonalElevation = 10.dp
         ) {
