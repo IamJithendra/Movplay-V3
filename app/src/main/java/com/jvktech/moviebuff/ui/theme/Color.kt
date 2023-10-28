@@ -3,9 +3,9 @@ package com.jvktech.moviebuff.ui.theme
 import androidx.compose.ui.graphics.Color
 
 
-internal val lightPrimary = Color(0xFF0D61A4)
-internal val lightOnPrimary = Color(0xFFFFFFFF)
-internal val lightPrimaryContainer = Color(0xF500B0FF)
+internal val lightPrimary = Color(0xFF2196F3)
+internal val lightOnPrimary = Color(0xFF2196F3)
+internal val lightPrimaryContainer = Color(0xFF2196F3)
 internal val lightOnPrimaryContainer = Color(0xFF001C37)
 internal val lightSecondary = Color(0xFF675A6E)
 internal val lightOnSecondary = Color(0xFFFFFFFF)
@@ -33,9 +33,9 @@ internal val lightSurfaceTint = Color(0xFF794A99)
 internal val lightOutlineVariant = Color(0xFFCDC3CE)
 internal val lightScrim = Color(0xFF000000)
 
-internal val darkPrimary = Color(0xFF009688)
-internal val darkOnPrimary = Color(0xFF067268)
-internal val darkPrimaryContainer = Color(0xFF03A9F4)
+internal val darkPrimary = Color(0xFF2196F3)
+internal val darkOnPrimary = Color(0xFF2196F3)
+internal val darkPrimaryContainer = Color(0xFF2196F3)
 internal val darkOnPrimaryContainer = Color(0xFFF3DAFF)
 internal val darkSecondary = Color(0xFFD2C1D9)
 internal val darkOnSecondary = Color(0xFF382C3E)
