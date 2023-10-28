@@ -69,7 +69,6 @@ fun AboutBottomSheet(
                             ) {
                                 Text(
                                     text = "3 Ad-free days left",
-                                    color = Color.White,
                                     fontSize = 16.sp
                                 )
                                 TextButton(onClick = {
@@ -87,7 +86,7 @@ fun AboutBottomSheet(
                                     .height(15.dp),
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
-                                repeat(40) {index ->
+                                repeat(40) { index ->
                                     Card(
                                         modifier = Modifier
                                             .weight(1f) // Each card takes an equal portion of the available space
@@ -109,7 +108,6 @@ fun AboutBottomSheet(
                                 // Display "0" as the first number
                                 Text(
                                     text = "0",
-                                    color = Color.White,
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier.align(Alignment.CenterVertically)
@@ -118,9 +116,8 @@ fun AboutBottomSheet(
                                 for (i in 1..8) {
                                     Text(
                                         text = i.toString(),
-                                        color = Color.White,
                                         fontSize = 16.sp,
-                                        fontWeight = FontWeight.Bold, // Optional, for better visibility
+                                        fontWeight = FontWeight.Bold,
                                         modifier = Modifier.align(Alignment.CenterVertically)
                                     )
                                 }
@@ -152,9 +149,7 @@ fun AboutBottomSheet(
                             Text(text = "Privacy policy")
                         }
 
-                        Text(
-                            text = "•", modifier = Modifier.padding(vertical = 16.dp)
-                        )
+                        Text(text = "•", modifier = Modifier.padding(vertical = 16.dp))
 
                         TextButton(
                             onClick = {
