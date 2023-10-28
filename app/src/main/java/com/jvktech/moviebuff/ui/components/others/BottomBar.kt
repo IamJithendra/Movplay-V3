@@ -135,6 +135,7 @@ fun RowScope.NavBarItem(
             Text(
                 modifier = Modifier.basicMarquee(),
                 text = label,
+                color = if (selected) MaterialTheme.colorScheme.primary else Color.Gray,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 1
@@ -166,7 +167,8 @@ fun RowScope.NavBarItem(
                 ) {
                     Icon(
                         imageVector = if (selected) selectedIcon else unSelectedIcon,
-                        contentDescription = contentDescription
+                        contentDescription = contentDescription,
+                        tint = if (selected) MaterialTheme.colorScheme.primary else Color.Gray
                     )
                 }
             }
