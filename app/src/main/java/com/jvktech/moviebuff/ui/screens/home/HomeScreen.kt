@@ -36,6 +36,7 @@ import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieType
 import com.jvktech.moviebuff.data.model.tvshow.TvShowType
 import com.jvktech.moviebuff.ui.components.others.AboutBottomSheet
+import com.jvktech.moviebuff.ui.components.others.NativeAdCard
 import com.jvktech.moviebuff.ui.components.others.StoryLogo
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
@@ -46,7 +47,6 @@ import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.TvShowScreenDestination
-import com.jvktech.moviebuff.ui.screens.destinations.UpdatesChannelDestination
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isAnyRefreshing
 import com.jvktech.moviebuff.utils.isNotEmpty
@@ -355,6 +355,8 @@ fun HomeScreenContent(
                 onPresentableClick = onTvShowClicked,
                 onMoreClick = onDiscoverTvShowClicked
             )
+
+            NativeAdCard()
 
             PresentableSection(
                 modifier = Modifier
