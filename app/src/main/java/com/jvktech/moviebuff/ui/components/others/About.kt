@@ -33,6 +33,7 @@ fun AboutBottomSheet(
     val bottomSheetState = rememberModalBottomSheetState()
 
     ModalBottomSheet(
+        modifier = Modifier.padding(bottom = 16.dp),
         onDismissRequest = onDismiss,
         sheetState = bottomSheetState,
         windowInsets = WindowInsets(0, 0, 0, 0),
