@@ -155,6 +155,7 @@ fun LargeNativeAdCard() {
                     Text(
                         text = "Install",
                         style = typography.labelSmall,
+                        fontSize = 16.sp,
                         color = MaterialTheme.colorScheme.inverseSurface
                     )
                 }
