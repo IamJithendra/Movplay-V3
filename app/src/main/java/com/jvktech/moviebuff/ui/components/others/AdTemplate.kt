@@ -60,7 +60,7 @@ fun LargeNativeAdCard() {
                 .padding(8.dp)
         ) {
             Text(
-                text = "advertisement",
+                text = "recommended",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 8.sp,
@@ -118,8 +118,9 @@ fun LargeNativeAdCard() {
                 ) {
                     // App name
                     Text(
-                        text = "Truecaller: Caller ID & Block",
-                        style = typography.labelSmall
+                        text = "Movie Buff",
+                        style = typography.labelSmall,
+                        maxLines = 1
                     )
 
                     // App details
@@ -127,7 +128,7 @@ fun LargeNativeAdCard() {
                         modifier = Modifier.padding(top = 8.dp)
                     ) {
                         Text(
-                            text = "4.0 ★",
+                            text = "4.7 ★",
                             style = typography.labelSmall,
                             modifier = Modifier.padding(start = 4.dp)
                         )
@@ -140,7 +141,7 @@ fun LargeNativeAdCard() {
                     }
 
                     Text(
-                        text = "In-app purchases",
+                        text = "Best movie app for android",
                         style = typography.labelSmall,
                         modifier = Modifier.padding(top = 8.dp)
                     )
@@ -153,7 +154,7 @@ fun LargeNativeAdCard() {
                     colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.inverseSurface.copy(alpha = .5f))
                 ) {
                     Text(
-                        text = "Install",
+                        text = "Rate us",
                         style = typography.labelSmall,
                         fontSize = 16.sp,
                         color = MaterialTheme.colorScheme.inverseSurface
@@ -165,11 +166,114 @@ fun LargeNativeAdCard() {
 }
 
 
+@Composable
+fun SmallNativeAdCard() {
+    Card(
+        modifier = Modifier.padding(16.dp),
+        shape = MaterialTheme.shapes.medium.copy(
+            bottomStart = CornerSize(16.dp),
+            bottomEnd = CornerSize(16.dp)
+        ),
+        colors = CardDefaults.cardColors(Color.Blue.copy(alpha = 0.5f)) // Transparent black background
+    ) {
+        Box(
+            modifier = Modifier
+                .background(
+                    Color.Black.copy(alpha = 0.5f),
+                    shape = RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 0.dp,
+                        bottomStart = 0.dp,
+                        bottomEnd = 12.dp
+                    )
+                )
+                .padding(8.dp)
+        ) {
+            Text(
+                text = "recommended",
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 8.sp,
+                    color = Color.Yellow.copy(alpha = 0.5f),
+                    letterSpacing = 0.15.sp
+                )
+            )
+        }
+
+
+        Column(
+            modifier = Modifier.padding(top = 0.dp, bottom = 16.dp, start = 16.dp, end = 16.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween, // Align elements to the left, center, and right
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                // App logo
+                Image(
+                    painter = painterResource(id = R.drawable.ic_telegraam),
+                    contentDescription = "app logo"
+                )
+
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                        .weight(1f) // Occupy available space in the center
+                ) {
+                    // App name
+                    Text(
+                        text = "Movie Buff",
+                        style = typography.labelSmall,
+                        maxLines = 1
+                    )
+
+                    // App details
+                    Row(
+                        modifier = Modifier.padding(top = 8.dp)
+                    ) {
+                        Text(
+                            text = "4.7 ★",
+                            style = typography.labelSmall,
+                            modifier = Modifier.padding(start = 4.dp)
+                        )
+
+                        Text(
+                            text = "Rated for 3+",
+                            style = typography.labelSmall,
+                            modifier = Modifier.padding(start = 4.dp)
+                        )
+                    }
+
+                    Text(
+                        text = "Best movie app for android",
+                        style = typography.labelSmall,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+
+                // Install button
+                Button(
+                    onClick = { /* Handle install button click */ },
+                    modifier = Modifier.padding(start = 16.dp),
+                    colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.inverseSurface.copy(alpha = .5f))
+                ) {
+                    Text(
+                        text = "Rate us",
+                        style = typography.labelSmall,
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.inverseSurface
+                    )
+                }
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewNativeAdScreen() {
     MovieBuffTheme {
-        LargeNativeAdCard()
+        SmallNativeAdCard()
     }
 }
 

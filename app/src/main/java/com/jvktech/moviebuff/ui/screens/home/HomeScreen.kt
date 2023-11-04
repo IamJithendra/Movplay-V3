@@ -37,6 +37,7 @@ import com.jvktech.moviebuff.data.model.movie.MovieType
 import com.jvktech.moviebuff.data.model.tvshow.TvShowType
 import com.jvktech.moviebuff.ui.components.others.AboutBottomSheet
 import com.jvktech.moviebuff.ui.components.others.LargeNativeAdCard
+import com.jvktech.moviebuff.ui.components.others.SmallNativeAdCard
 import com.jvktech.moviebuff.ui.components.others.StoryLogo
 import com.jvktech.moviebuff.ui.components.sections.PresentableSection
 import com.jvktech.moviebuff.ui.screens.destinations.BrowseMoviesScreenDestination
@@ -393,6 +394,8 @@ fun HomeScreenContent(
                     onBrowseTvShowClicked(TvShowType.AiringToday)
                 }
             )
+
+            SmallNativeAdCard()
 
             if (favoriteMoviesLazyItems.isNotEmpty()) {
                 PresentableSection(
