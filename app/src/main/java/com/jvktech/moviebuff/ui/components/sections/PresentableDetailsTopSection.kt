@@ -114,7 +114,7 @@ fun PresentableDetailsTopSection(
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                     },
-                    size = MaterialTheme.sizes.presentableItemBig,
+                    size = MaterialTheme.sizes.presentableItemSmall,
                     showScore = false,
                     showTitle = false,
                     showAdult = true,
