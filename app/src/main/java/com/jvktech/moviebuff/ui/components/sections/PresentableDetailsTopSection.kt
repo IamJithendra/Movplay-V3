@@ -17,6 +17,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jvktech.moviebuff.data.model.DetailPresentable
 import com.jvktech.moviebuff.data.model.DetailPresentableItemState
 import com.jvktech.moviebuff.data.model.Image
@@ -53,47 +55,17 @@ fun PresentableDetailsTopSection(
         (currentScrollValue / scrollValueLimit).coerceIn(0f, 1f)
     } else 0f
 
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(color = Color.Transparent)
+    }
+
     Box(modifier = modifier.clip(RectangleShape)) {
         AnimatedBackdrops(
             modifier = Modifier
-                .blur(8.dp)
-                .matchParentSize()
-                .graphicsLayer {
-                    clip = true
-                    shape = BottomRoundedArcShape(
-                        ratio = ratio
-                    )
-                },
+                .matchParentSize(),
             paths = availableBackdropPaths
-        )
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .matchParentSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            MaterialTheme.colorScheme.background
-                        )
-                    )
-                )
-        )
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .height(160.dp)
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            MaterialTheme.colorScheme.background
-                        )
-                    )
-                )
         )
 
         Column(

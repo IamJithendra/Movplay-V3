@@ -1,81 +1,83 @@
 package com.jvktech.moviebuff.ui.components.others
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.AnimationEndReason
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.layout.ContentScale
-import coil.size.Scale
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
+import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.ImageUrlParser
-import com.jvktech.moviebuff.utils.getMaxSizeInt
-import com.jvktech.moviebuff.utils.rememberTmdbImagePainter
+import com.jvktech.moviebuff.utils.TmdbImage
 
+@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun AnimatedBackdrops(
     paths: List<String>,
     modifier: Modifier = Modifier
 ) {
-    var currentBackdropPathIndex by remember {
-        mutableStateOf(0)
-    }
-    val currentBackdropPath by derivedStateOf {
-        paths.getOrNull(0)
-    }
-    BoxWithConstraints(modifier = modifier) {
-        val (maxWidth, maxHeight) = getMaxSizeInt()
 
-        Crossfade(
-            modifier = Modifier.fillMaxSize(),
-            animationSpec = tween(1000),
-            targetState = currentBackdropPath,
-            label = ""
-        ) { path ->
-            val backgroundPainter = rememberTmdbImagePainter(
-                path = path,
-                type = ImageUrlParser.ImageType.Backdrop,
-                preferredSize = android.util.Size(maxWidth, maxHeight),
-                builder = {
-                    size(coil.size.Size.ORIGINAL)
-                    scale(Scale.FILL)
-                    transformations(
+    Box(
+        modifier = modifier
+    ) {
 
+        val pagerState = rememberPagerState(initialPage = 0)
+
+        HorizontalPager(
+            pageCount = paths.size,
+            state = pagerState
+        ) { page ->
+            val currentBackdropPath = paths[page]
+
+
+            TmdbImage(
+                imagePath = currentBackdropPath,
+                imageType = ImageUrlParser.ImageType.Backdrop,
+            )
+
+        }
+
+
+        if (paths.isNotEmpty()) {
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(bottom = MaterialTheme.spacing.medium)
+            ) {
+
+                Surface(
+                    modifier = Modifier
+                        .padding(end = 8.dp, top = 8.dp)
+                        .align(Alignment.BottomEnd)
+                        .clip(RoundedCornerShape(12.dp)),
+                    color = MaterialTheme.colorScheme.background
+
+                ) {
+                    Text(
+                        text = "${pagerState.currentPage + 1} / ${paths.size}",
+                        modifier = Modifier
+                            .padding(
+                                start = 8.dp,
+                                top = 2.dp,
+                                end = 8.dp,
+                                bottom = 2.dp
+                            ),
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 1
                     )
                 }
-            )
-            val backdropScale = remember { Animatable(1f) }
-            LaunchedEffect(path) {
-                val result = backdropScale.animateTo(
-                    targetValue = 1.6f,
-                    animationSpec = tween(durationMillis = 10000, easing = LinearEasing)
-                )
-
-                when (result.endReason) {
-                    AnimationEndReason.Finished -> {
-                        val backdropCount = paths.count()
-                        val nextIndex = currentBackdropPathIndex + 1
-
-                        currentBackdropPathIndex = if (nextIndex >= backdropCount) 0 else nextIndex
-                    }
-                    else -> Unit
-                }
             }
-            Image(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .scale(backdropScale.value),
-                painter = backgroundPainter,
-                contentDescription = null,
-                contentScale = ContentScale.FillHeight
-            )
         }
     }
 }
