@@ -41,19 +41,18 @@ fun LikeButton(
                     animationSpec = tween(200),
                     targetScale = 0.8f
                 )
-            }
+            },
+            label = "like button"
         ) { favourite ->
             if (favourite) {
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "add to favourite",
-                    tint = MaterialTheme.colorScheme.primary
                 )
             } else {
                 Icon(
                     imageVector = Icons.Outlined.FavoriteBorder,
                     contentDescription = "remove from favourites",
-                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
