@@ -6,18 +6,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jvktech.moviebuff.data.model.DetailPresentable
 import com.jvktech.moviebuff.data.model.DetailPresentableItemState
@@ -26,7 +22,6 @@ import com.jvktech.moviebuff.ui.components.items.DetailPresentableItem
 import com.jvktech.moviebuff.ui.components.others.AnimatedBackdrops
 import com.jvktech.moviebuff.ui.theme.sizes
 import com.jvktech.moviebuff.ui.theme.spacing
-import com.jvktech.moviebuff.utils.BottomRoundedArcShape
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -61,23 +56,34 @@ fun PresentableDetailsTopSection(
         systemUiController.setStatusBarColor(color = Color.Transparent)
     }
 
-    Box(modifier = modifier.clip(RectangleShape)) {
+    Box(
+        modifier = modifier.clip(RectangleShape)
+    ) {
         AnimatedBackdrops(
-            modifier = Modifier
-                .matchParentSize(),
+            modifier = Modifier.height(200.dp)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,        // Fully transparent
+//                            Color.Black.copy(alpha = 0.7F),  // 70% transparent black
+                            Color.Black               // Fully opaque black
+                        ),
+                    )
+                ),
             paths = availableBackdropPaths
         )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .statusBarsPadding()
-                .padding(top = 56.dp)
+                .background(MaterialTheme.colorScheme.background)
         ) {
             ConstraintLayout(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(MaterialTheme.spacing.medium)
+                    .padding(
+                        start = MaterialTheme.spacing.medium, top = 150.dp,
+                        end = MaterialTheme.spacing.medium, bottom = MaterialTheme.spacing.medium)
             ) {
                 val (presentableRef, contentRef) = createRefs()
 
@@ -86,7 +92,7 @@ fun PresentableDetailsTopSection(
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                     },
-                    size = MaterialTheme.sizes.presentableItemSmall,
+                    size = MaterialTheme.sizes.presentableItemExtraSmall,
                     showScore = false,
                     showTitle = false,
                     showAdult = true,

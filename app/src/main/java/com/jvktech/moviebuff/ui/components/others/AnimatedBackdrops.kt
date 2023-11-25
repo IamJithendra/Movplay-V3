@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -15,6 +16,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.ImageUrlParser
@@ -46,6 +48,7 @@ fun AnimatedBackdrops(
                 TmdbImage(
                     imagePath = currentBackdropPath,
                     imageType = ImageUrlParser.ImageType.Backdrop,
+                    contentScale = ContentScale.FillWidth
                 )
 
             }
