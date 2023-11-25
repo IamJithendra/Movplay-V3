@@ -28,54 +28,57 @@ fun AnimatedBackdrops(
     modifier: Modifier = Modifier
 ) {
 
-    Box(
-        modifier = modifier
-    ) {
 
-        val pagerState = rememberPagerState(initialPage = 0)
+    if (paths.isNotEmpty()) {
+        Box(
+            modifier = modifier
+        ) {
 
-        HorizontalPager(
-            pageCount = paths.size,
-            state = pagerState
-        ) { page ->
-            val currentBackdropPath = paths[page]
+            val pagerState = rememberPagerState(initialPage = 0)
 
-
-            TmdbImage(
-                imagePath = currentBackdropPath,
-                imageType = ImageUrlParser.ImageType.Backdrop,
-            )
-
-        }
+            HorizontalPager(
+                pageCount = paths.size,
+                state = pagerState
+            ) { page ->
+                val currentBackdropPath = paths[page]
 
 
-        if (paths.isNotEmpty()) {
-            Box(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(bottom = MaterialTheme.spacing.medium)
-            ) {
+                TmdbImage(
+                    imagePath = currentBackdropPath,
+                    imageType = ImageUrlParser.ImageType.Backdrop,
+                )
 
-                Surface(
-                    modifier = Modifier
-                        .padding(end = 8.dp, top = 8.dp)
-                        .align(Alignment.BottomEnd)
-                        .clip(RoundedCornerShape(12.dp)),
-                    color = MaterialTheme.colorScheme.background
+            }
 
+
+            if (paths.size > 1) {
+                Box(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(bottom = MaterialTheme.spacing.medium)
                 ) {
-                    Text(
-                        text = "${pagerState.currentPage + 1} / ${paths.size}",
+
+                    Surface(
                         modifier = Modifier
-                            .padding(
-                                start = 8.dp,
-                                top = 2.dp,
-                                end = 8.dp,
-                                bottom = 2.dp
-                            ),
-                        style = MaterialTheme.typography.labelSmall,
-                        maxLines = 1
-                    )
+                            .padding(end = 8.dp, top = 8.dp)
+                            .align(Alignment.BottomEnd)
+                            .clip(RoundedCornerShape(12.dp)),
+                        color = MaterialTheme.colorScheme.background
+
+                    ) {
+                        Text(
+                            text = "${pagerState.currentPage + 1} / ${paths.size}",
+                            modifier = Modifier
+                                .padding(
+                                    start = 8.dp,
+                                    top = 2.dp,
+                                    end = 8.dp,
+                                    bottom = 2.dp
+                                ),
+                            style = MaterialTheme.typography.labelSmall,
+                            maxLines = 1
+                        )
+                    }
                 }
             }
         }
