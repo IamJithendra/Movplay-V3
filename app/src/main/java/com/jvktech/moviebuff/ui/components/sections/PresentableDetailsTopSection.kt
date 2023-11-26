@@ -44,12 +44,6 @@ fun PresentableDetailsTopSection(
         )
     }
 
-    val currentScrollValue = scrollState?.value
-
-    val ratio = if (currentScrollValue != null && scrollValueLimit != null) {
-        (currentScrollValue / scrollValueLimit).coerceIn(0f, 1f)
-    } else 0f
-
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
@@ -65,7 +59,7 @@ fun PresentableDetailsTopSection(
                     brush = Brush.verticalGradient(
                         colors = listOf(
                             Color.Transparent,        // Fully transparent
-//                            Color.Black.copy(alpha = 0.7F),  // 70% transparent black
+                            Color.Black.copy(alpha = 0.5F),  // 70% transparent black
                             Color.Black               // Fully opaque black
                         ),
                     )
@@ -76,7 +70,6 @@ fun PresentableDetailsTopSection(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background)
         ) {
             ConstraintLayout(
                 modifier = Modifier

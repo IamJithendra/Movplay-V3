@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -66,7 +65,7 @@ fun AnimatedBackdrops(
                             .padding(end = 8.dp, top = 8.dp)
                             .align(Alignment.BottomEnd)
                             .clip(RoundedCornerShape(12.dp)),
-                        color = MaterialTheme.colorScheme.background
+                        color = MaterialTheme.colorScheme.background.copy(alpha = .5f)
 
                     ) {
                         Text(
