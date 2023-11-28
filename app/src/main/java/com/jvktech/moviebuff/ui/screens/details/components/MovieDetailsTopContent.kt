@@ -178,22 +178,25 @@ fun MovieRuntimeDetails(
         if (details != null) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Box(
                     modifier = Modifier
                         .border(
-                            1.dp,
-                            MaterialTheme.colorScheme.inverseSurface,
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.inverseSurface,
                             shape = RoundedCornerShape(10.dp)
                         )
                 ) {
+                    // TODO show actual certification
                     Text(
                         modifier = Modifier.padding(MaterialTheme.spacing.extraSmall),
                         text = "UA",
                         fontFamily = FontFamily.SansSerif,
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.Black
                     )
                 }
 
@@ -201,7 +204,8 @@ fun MovieRuntimeDetails(
                     Text(
                         text = it,
                         fontFamily = FontFamily.SansSerif,
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Black
                     )
                 }
 
@@ -209,7 +213,8 @@ fun MovieRuntimeDetails(
                     Text(
                         text = convertDate(details.releaseDate),
                         fontFamily = FontFamily.SansSerif,
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Black
                     )
                 }
 
