@@ -62,10 +62,10 @@ fun AnimatedBackdrops(
 
                     Surface(
                         modifier = Modifier
-                            .padding(end = 8.dp, top = 8.dp)
+                            .padding(end = 4.dp, top = 4.dp)
                             .align(Alignment.BottomEnd)
-                            .clip(RoundedCornerShape(12.dp)),
-                        color = MaterialTheme.colorScheme.background.copy(alpha = .5f)
+                            .clip(RoundedCornerShape(8.dp)),
+                        color = MaterialTheme.colorScheme.background.copy(alpha = .7f)
 
                     ) {
                         Text(

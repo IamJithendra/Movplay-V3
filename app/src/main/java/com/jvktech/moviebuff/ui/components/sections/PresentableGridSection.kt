@@ -81,6 +81,7 @@ fun PresentableGridSection(
                             )
                         }
                     }
+
                     loadState.append is LoadState.Loading -> {
                         items(3) {
                             PresentableItem(
@@ -107,6 +108,90 @@ fun PresentableGridSection(
             ScrollToTopButton(
                 onClick = onScrollToStartClick
             )
+        }
+    }
+}
+
+
+@OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
+@SuppressLint("UnrememberedMutableState")
+@Composable
+fun DefaultGridMovies(
+    state: LazyPagingItems<out Presentable>,
+    modifier: Modifier = Modifier,
+    gridState: LazyGridState = rememberLazyGridState(),
+    showRefreshLoading: Boolean = true,
+    contentPadding: PaddingValues = PaddingValues(MaterialTheme.spacing.default),
+    scrollToBeginningItemsStart: Int = 30,
+    onPresentableClick: (Int) -> Unit = {}
+) {
+    val coroutineScope = rememberCoroutineScope()
+    val isScrollingLeft = gridState.isScrollingTowardsStart()
+    val showScrollToBeginningButton by derivedStateOf {
+        val visibleMaxItem = gridState.firstVisibleItemIndex > scrollToBeginningItemsStart
+
+        visibleMaxItem && isScrollingLeft
+    }
+    val onScrollToStartClick: () -> Unit = {
+        coroutineScope.launch {
+            gridState.animateScrollToItem(0)
+        }
+    }
+
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        state = gridState,
+        contentPadding = contentPadding,
+        columns = GridCells.Fixed(3), // Adjust the number of columns as needed
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+    ) {
+        items(state) { presentable ->
+            presentable?.let {
+                PresentableItem(
+                    presentableState = PresentableItemState.Result(it),
+                    onClick = { onPresentableClick(it.id) }
+                )
+            }
+        }
+
+        item {
+            when {
+                state.loadState.refresh is LoadState.Loading && showRefreshLoading -> {
+                    repeat(12) {
+                        PresentableItem(
+                            presentableState = PresentableItemState.Loading
+                        )
+                    }
+                }
+
+                state.loadState.append is LoadState.Loading -> {
+                    repeat(3) {
+                        PresentableItem(
+                            presentableState = PresentableItemState.Loading
+                        )
+                    }
+                }
+            }
+        }
+
+        item {
+            AnimatedVisibility(
+                modifier = Modifier
+                    .padding(end = MaterialTheme.spacing.small, top = MaterialTheme.spacing.small),
+                visible = showScrollToBeginningButton,
+                enter = slideIn(
+                    animationSpec = tween(),
+                    initialOffset = { size -> IntOffset(size.width, 0) }),
+                exit = fadeOut(animationSpec = spring()) + scaleOut(
+                    animationSpec = spring(),
+                    targetScale = 0.3f
+                )
+            ) {
+                ScrollToTopButton(
+                    onClick = onScrollToStartClick
+                )
+            }
         }
     }
 }

@@ -22,7 +22,6 @@ import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.timeString
 import java.util.*
 
-@OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun MovieDetailsInfoSection(
