@@ -1,24 +1,27 @@
 package com.jvktech.moviebuff.ui.components.sections
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.jvktech.moviebuff.data.model.Genre
 import com.jvktech.moviebuff.ui.components.chips.GenreChip
 import com.jvktech.moviebuff.ui.theme.spacing
-import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun GenresSection(
     genres: List<Genre>,
     modifier: Modifier = Modifier
 ) {
-    FlowRow(
+    LazyRow(
         modifier = modifier,
-        mainAxisSpacing = MaterialTheme.spacing.extraSmall,
-        crossAxisSpacing = MaterialTheme.spacing.extraSmall
+        contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.extraSmall),
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
     ) {
-        genres.map { genre ->
+        items(genres.size) { index ->
+            val genre = genres[index]
             GenreChip(text = genre.name)
         }
     }

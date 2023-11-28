@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 fun GenreChip(
     text: String,
 ) {
-    SuggestionChip(
+    AssistChip(
         onClick = {},
         label = { Text(text) },
         colors = SuggestionChipDefaults.suggestionChipColors(
