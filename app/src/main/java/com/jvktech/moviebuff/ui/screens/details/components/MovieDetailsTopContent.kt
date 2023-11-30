@@ -34,12 +34,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieDetails
+import com.jvktech.moviebuff.ui.components.texts.AdditionalInfoText
 import com.jvktech.moviebuff.ui.components.texts.LabeledText
 import com.jvktech.moviebuff.ui.theme.Yellow
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.convertDate
 import com.jvktech.moviebuff.utils.formattedMoney
 import com.jvktech.moviebuff.utils.formattedRuntime
+import com.jvktech.moviebuff.utils.timeString
+import java.util.Date
 
 
 @Composable
@@ -99,7 +102,7 @@ fun MovieTitle(
 
                 if (details.originalTitle.isNotEmpty()) {
                     Text(
-                        text = details.originalTitle,
+                        text = details.title,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp,
                         style = MaterialTheme.typography.titleSmall
@@ -112,66 +115,18 @@ fun MovieTitle(
 }
 
 
-@Composable
-fun MovieBasicDetailsContent(
-    movieDetails: MovieDetails?,
-    modifier: Modifier = Modifier
-) {
-    Crossfade(
-        modifier = modifier,
-        targetState = movieDetails,
-        label = ""
-    ) { details ->
-        if (details != null) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .border(
-                            1.dp,
-                            MaterialTheme.colorScheme.inverseSurface,
-                            shape = RoundedCornerShape(10.dp)
-                        )
-                ) {
-                    Text(
-                        modifier = Modifier.padding(MaterialTheme.spacing.extraSmall),
-                        text = "UA",
-                        fontFamily = FontFamily.SansSerif,
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                }
-
-                details.runtime?.formattedRuntime()?.let {
-                    Text(
-                        text = it,
-                        fontFamily = FontFamily.SansSerif,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-
-                details.releaseDate?.let {
-                    Text(
-                        text = convertDate(details.releaseDate),
-                        fontFamily = FontFamily.SansSerif,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-
-            }
-
-        }
-    }
-}
-
 
 @Composable
 fun MovieRuntimeDetails(
     movieDetails: MovieDetails?,
+    watchAtTime: Date?,
     modifier: Modifier = Modifier
 ) {
+
+    val watchAtTimeString = watchAtTime?.let { time ->
+        stringResource(R.string.movie_details_watch_at, time.timeString())
+    }
+
     Crossfade(
         modifier = modifier,
         targetState = movieDetails,
@@ -221,6 +176,16 @@ fun MovieRuntimeDetails(
                 }
 
             }
+
+            // TODO add end watching at
+//            if (watchAtTimeString != null) {
+//                Text(
+//                    text = watchAtTimeString,
+//                    fontFamily = FontFamily.SansSerif,
+//                    style = MaterialTheme.typography.bodyMedium,
+//                    fontWeight = FontWeight.Black
+//                )
+//            }
 
         }
     }
