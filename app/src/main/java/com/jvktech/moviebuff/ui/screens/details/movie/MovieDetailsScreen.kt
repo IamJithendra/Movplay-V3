@@ -265,7 +265,7 @@ fun MovieDetailsScreenContent(
             MovieDetailsInfoSection(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = MaterialTheme.spacing.medium)
+                    .padding(horizontal = MaterialTheme.spacing.small)
                     .animateContentSize(),
                 movieDetails = uiState.movieDetails,
                 watchAtTime = uiState.additionalMovieDetailsInfo.watchAtTime,
@@ -349,7 +349,7 @@ fun MovieDetailsScreenContent(
                     ),
                     state = otherDirectorMoviesState,
                     showLoadingAtRefresh = false,
-                    showMoreButton = false,
+                    showMoreButton = true,
                     onMoreClick = onSimilarMoreClicked,
                     onPresentableClick = { movieId ->
                         if (movieId != uiState.movieDetails?.id) {
