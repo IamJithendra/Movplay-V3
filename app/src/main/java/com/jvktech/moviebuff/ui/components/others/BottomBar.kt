@@ -124,10 +124,7 @@ fun RowScope.NavBarItem(
     ) {
     NavigationBarItem(
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
-            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            selectedTextColor = MaterialTheme.colorScheme.onSurface,
-            indicatorColor = MaterialTheme.colorScheme.secondaryContainer
+            indicatorColor = Color(0XFFD5EBFF).copy(alpha = 0.5F)
         ),
         selected = selected,
         onClick = onClick,

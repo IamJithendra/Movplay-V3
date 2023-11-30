@@ -252,15 +252,18 @@ fun MovieDetailsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(MaterialTheme.spacing.small),
+                    watchAtTime = uiState.additionalMovieDetailsInfo.watchAtTime,
                     movieDetails = uiState.movieDetails
                 )
             }
 
-            MovieRatingsDetails(
-                modifier = Modifier
-                    .padding(start = MaterialTheme.spacing.medium),
-                movieDetails = uiState.movieDetails
-            )
+            if ((uiState.movieDetails?.voteCount) != 0) {
+                MovieRatingsDetails(
+                    modifier = Modifier
+                        .padding(start = MaterialTheme.spacing.medium),
+                    movieDetails = uiState.movieDetails
+                )
+            }
 
             MovieDetailsInfoSection(
                 modifier = Modifier
