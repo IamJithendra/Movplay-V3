@@ -36,13 +36,13 @@ fun PresentableListSection(
             SectionLabel(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = MaterialTheme.spacing.medium),
+                    .padding(start = MaterialTheme.spacing.small),
                 text = title
             )
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = MaterialTheme.spacing.medium),
+                    .padding(top = MaterialTheme.spacing.small),
                 state = lazyListState,
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
                 contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium)
