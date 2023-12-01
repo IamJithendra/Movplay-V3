@@ -54,7 +54,7 @@ fun PresentableDetailsTopSection(
         modifier = modifier.clip(RectangleShape)
     ) {
         AnimatedBackdrops(
-            modifier = Modifier.height(250.dp)
+            modifier = Modifier.height(225.dp)
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -75,7 +75,7 @@ fun PresentableDetailsTopSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = MaterialTheme.spacing.medium, top = 150.dp,
+                        start = MaterialTheme.spacing.medium, top = 175.dp,
                         end = MaterialTheme.spacing.medium, bottom = MaterialTheme.spacing.medium)
             ) {
                 val (presentableRef, contentRef) = createRefs()
