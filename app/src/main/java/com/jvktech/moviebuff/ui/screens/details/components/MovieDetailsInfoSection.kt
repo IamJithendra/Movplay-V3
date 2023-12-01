@@ -104,7 +104,10 @@ fun MovieDetailsInfoSection(
                     GenresSection(genres = details.genres)
                 }
                 Column(
-                    modifier = Modifier.padding(MaterialTheme.spacing.small),
+                    modifier = Modifier.padding(
+                        top = MaterialTheme.spacing.small,
+                        start = MaterialTheme.spacing.small, end = MaterialTheme.spacing.small
+                    ),
                     verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraSmall)
                 ) {
                     details.tagline?.let { tagline ->
