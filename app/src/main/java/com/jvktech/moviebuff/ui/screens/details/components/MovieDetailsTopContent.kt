@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -115,7 +117,6 @@ fun MovieTitle(
 }
 
 
-
 @Composable
 fun MovieRuntimeDetails(
     movieDetails: MovieDetails?,
@@ -203,134 +204,67 @@ fun MovieRatingsDetails(
         label = ""
     ) { details ->
         if (details != null) {
-            Row(
+            Surface(
                 modifier = Modifier
-                    .background(
-                        color = MaterialTheme.colorScheme.background,
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .clickable { }
-                    .width(120.dp)
-                    .clip(RoundedCornerShape(16.dp)),
-//                horizontalArrangement = Arrangement.Center,
-//                verticalAlignment = Alignment.CenterVertically
+                    .background(MaterialTheme.colorScheme.background)
+                    .clickable { /* Handle click here */ }
+                    .width(125.dp),// Set your desired background color
+                shape = RoundedCornerShape(8.dp)
             ) {
-                // First Column - IMDb Icon
-                Box(
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_imdb),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(50.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(4.dp))
-
-                // Second Column - Text and Icon
-                Column(
+                Row(
                     modifier = Modifier
-                        .padding(start = 8.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly // Adjusted vertical arrangement to top
+                        .fillMaxSize()
+                        .padding(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = details.voteAverage.toString(),
-                        modifier = Modifier.padding(bottom = 8.dp),
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                    )
+                    // First Column - IMDb Icon
+                    Box(
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.logo_imdb),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(50.dp)
+                                .padding(4.dp)
+                        )
+                    }
 
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
+                    Spacer(modifier = Modifier.width(4.dp))
+
+                    // Second Column - Text and Icon
+                    Column(
+                        modifier = Modifier
+                            .padding(start = 8.dp),
+                        verticalArrangement = Arrangement.SpaceEvenly // Adjusted vertical arrangement to top
                     ) {
                         Text(
-                            text = details.voteCount.toString(),
-                            style = MaterialTheme.typography.bodySmall
+                            text = "6.0",
+                            modifier = Modifier.padding(bottom = 8.dp),
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
                         )
 
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "400",
+                                style = MaterialTheme.typography.bodySmall
+                            )
 
-                        Icon(
-                            imageVector = Icons.Default.People,
-                            contentDescription = null,
-                            modifier = Modifier.size(24.dp)
-                        )
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            Icon(
+                                imageVector = Icons.Default.People,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
                     }
                 }
             }
         }
     }
-}
-
-
-@Composable
-fun RatingBox() {
-
-    Row(
-        modifier = Modifier
-            .clickable { }
-            .width(125.dp)
-            .clip(shape = RoundedCornerShape(20.dp))
-//                horizontalArrangement = Arrangement.Center,
-//                verticalAlignment = Alignment.CenterVertically
-    ) {
-        // First Column - IMDb Icon
-        Box(
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_imdb),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(RoundedCornerShape(12.dp))
-            )
-        }
-
-        Spacer(modifier = Modifier.width(4.dp))
-
-        // Second Column - Text and Icon
-        Column(
-            modifier = Modifier
-                .padding(start = 8.dp),
-            verticalArrangement = Arrangement.SpaceEvenly // Adjusted vertical arrangement to top
-        ) {
-            Text(
-                text = "6.0",
-                modifier = Modifier.padding(bottom = 8.dp),
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
-            )
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "400",
-                    style = MaterialTheme.typography.bodySmall
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Icon(
-                    imageVector = Icons.Default.People,
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
-        }
-    }
-
-
-}
-
-
-@Composable
-@Preview
-fun RatingBoxPreview() {
-    RatingBox()
 }
