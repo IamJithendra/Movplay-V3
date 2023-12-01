@@ -124,7 +124,7 @@ fun RowScope.NavBarItem(
     ) {
     NavigationBarItem(
         colors = NavigationBarItemDefaults.colors(
-            indicatorColor = Color(0XFFD5EBFF).copy(alpha = 0.5F)
+            indicatorColor = Color(0x4D15232E)
         ),
         selected = selected,
         onClick = onClick,
