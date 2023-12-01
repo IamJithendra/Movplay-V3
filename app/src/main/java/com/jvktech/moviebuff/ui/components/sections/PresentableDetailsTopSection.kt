@@ -54,12 +54,12 @@ fun PresentableDetailsTopSection(
         modifier = modifier.clip(RectangleShape)
     ) {
         AnimatedBackdrops(
-            modifier = Modifier.height(200.dp)
+            modifier = Modifier.height(250.dp)
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
                             Color.Transparent,        // Fully transparent
-                            Color.Black.copy(alpha = 0.5F),  // 70% transparent black
+                            Color.Black.copy(alpha = 0.3F),  // 70% transparent black
                             Color.Black               // Fully opaque black
                         ),
                     )
