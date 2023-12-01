@@ -239,7 +239,7 @@ fun MovieRatingsDetails(
                         verticalArrangement = Arrangement.SpaceEvenly // Adjusted vertical arrangement to top
                     ) {
                         Text(
-                            text = "6.0",
+                            text = details.voteAverage.toString(),
                             modifier = Modifier.padding(bottom = 8.dp),
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
@@ -250,7 +250,7 @@ fun MovieRatingsDetails(
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(
-                                text = "400",
+                                text = details.voteCount.toString(),
                                 style = MaterialTheme.typography.bodySmall
                             )
 
