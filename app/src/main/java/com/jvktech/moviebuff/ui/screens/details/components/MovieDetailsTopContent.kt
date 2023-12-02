@@ -27,6 +27,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieDetails
+import com.jvktech.moviebuff.ui.components.others.AboutBottomSheet
 import com.jvktech.moviebuff.ui.components.texts.AdditionalInfoText
 import com.jvktech.moviebuff.ui.components.texts.LabeledText
 import com.jvktech.moviebuff.ui.theme.Yellow
@@ -209,13 +214,24 @@ fun MovieRatingsDetails(
     ) { details ->
         if (details != null) {
 
+            var showMultiRatings by rememberSaveable {
+                mutableStateOf(false)
+            }
+
+            if (showMultiRatings) {
+                MultiRatingsBottomSheet(
+                    movieDetails = details,
+                    onDismiss = { showMultiRatings = false }
+                )
+            }
+
             Card(
                 colors = CardDefaults.cardColors(MaterialTheme.colorScheme.background),
                 shape = RoundedCornerShape(12.dp),
                 elevation = CardDefaults.cardElevation(8.dp),
                 modifier = Modifier
                     .wrapContentSize()
-                    .clickable { /* Handle click here */ }
+                    .clickable { showMultiRatings = true }
                     .width(125.dp)
             ) {
                 Row(
@@ -223,10 +239,13 @@ fun MovieRatingsDetails(
                 ) {
                     // First Column - IMDb Icon
                     Box(
+                        modifier = Modifier
+                            .padding(2.dp)
+                            .background(MaterialTheme.colorScheme.surface),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.logo_imdb),
+                            painter = painterResource(id = R.drawable.logo_tmdb),
                             contentDescription = null,
                             modifier = Modifier
                                 .size(50.dp)
