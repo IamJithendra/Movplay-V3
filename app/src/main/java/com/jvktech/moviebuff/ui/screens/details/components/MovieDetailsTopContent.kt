@@ -1,6 +1,7 @@
 package com.jvktech.moviebuff.ui.screens.details.components
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,9 +16,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.People
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -204,17 +208,17 @@ fun MovieRatingsDetails(
         label = ""
     ) { details ->
         if (details != null) {
-            Surface(
+
+            Card(
+                colors = CardDefaults.cardColors(MaterialTheme.colorScheme.background),
+                shape = RoundedCornerShape(12.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.background)
+                    .wrapContentSize()
                     .clickable { /* Handle click here */ }
-                    .width(125.dp),// Set your desired background color
-                shape = RoundedCornerShape(8.dp)
+                    .width(125.dp)
             ) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     // First Column - IMDb Icon
@@ -241,7 +245,7 @@ fun MovieRatingsDetails(
                         Text(
                             text = details.voteAverage.toString().take(3),
                             modifier = Modifier.padding(bottom = 8.dp),
-                            style = MaterialTheme.typography.bodyLarge,
+                            style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.Bold,
                         )
 
@@ -253,7 +257,6 @@ fun MovieRatingsDetails(
                                 modifier = Modifier.padding(vertical = 4.dp),
                                 text = details.voteCount.toString(),
                                 style = MaterialTheme.typography.bodySmall,
-                                fontWeight = FontWeight.Bold
                             )
 
                             Spacer(modifier = Modifier.width(8.dp))
@@ -261,7 +264,7 @@ fun MovieRatingsDetails(
                             Icon(
                                 imageVector = Icons.Default.People,
                                 contentDescription = null,
-                                modifier = Modifier.size(24.dp)
+                                modifier = Modifier.size(18.dp)
                             )
                         }
                     }
