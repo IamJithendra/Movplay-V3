@@ -163,7 +163,7 @@ fun MovieRuntimeDetails(
                         text = "UA",
                         fontFamily = FontFamily.SansSerif,
                         style = MaterialTheme.typography.bodySmall,
-                        fontWeight = FontWeight.Black
+                        fontWeight = FontWeight.SemiBold
                     )
                 }
 
@@ -172,7 +172,7 @@ fun MovieRuntimeDetails(
                         text = it,
                         fontFamily = FontFamily.SansSerif,
                         style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Black
+                        fontWeight = FontWeight.SemiBold
                     )
                 }
 
@@ -181,7 +181,7 @@ fun MovieRuntimeDetails(
                         text = convertDate(details.releaseDate),
                         fontFamily = FontFamily.SansSerif,
                         style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Black
+                        fontWeight = FontWeight.SemiBold
                     )
                 }
 
@@ -193,7 +193,7 @@ fun MovieRuntimeDetails(
 //                    text = watchAtTimeString,
 //                    fontFamily = FontFamily.SansSerif,
 //                    style = MaterialTheme.typography.bodyMedium,
-//                    fontWeight = FontWeight.Black
+//                    fontWeight = FontWeight.SemiBold
 //                )
 //            }
 
