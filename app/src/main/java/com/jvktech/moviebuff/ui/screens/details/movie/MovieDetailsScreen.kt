@@ -277,10 +277,10 @@ fun MovieDetailsScreenContent(
             )
 
 
-            MovieDetailedInfo(
-                modifier = Modifier,
-                movieDetails = uiState.movieDetails
-            )
+//            MovieDetailedInfo(
+//                modifier = Modifier,
+//                movieDetails = uiState.movieDetails
+//            )
 
             AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
