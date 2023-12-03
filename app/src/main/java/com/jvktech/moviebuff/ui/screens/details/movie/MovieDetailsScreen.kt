@@ -259,8 +259,7 @@ fun MovieDetailsScreenContent(
 
             if ((uiState.movieDetails?.voteCount) != 0) {
                 MovieRatingsDetails(
-                    modifier = Modifier
-                        .padding(start = MaterialTheme.spacing.medium),
+                    modifier = Modifier,
                     movieDetails = uiState.movieDetails
                 )
             }

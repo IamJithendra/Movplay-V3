@@ -230,6 +230,7 @@ fun MovieRatingsDetails(
                 shape = RoundedCornerShape(12.dp),
                 elevation = CardDefaults.cardElevation(8.dp),
                 modifier = Modifier
+                    .padding(start = MaterialTheme.spacing.medium)
                     .wrapContentSize()
                     .clickable { showMultiRatings = true }
                     .width(125.dp)
