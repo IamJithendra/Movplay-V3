@@ -33,6 +33,7 @@ import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestinati
 import com.jvktech.moviebuff.ui.screens.destinations.PersonDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.RelatedMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.ReviewsScreenDestination
+import com.jvktech.moviebuff.ui.screens.details.components.MovieDetailedInfo
 import com.jvktech.moviebuff.ui.screens.details.components.MovieDetailsInfoSection
 import com.jvktech.moviebuff.ui.screens.details.components.MovieRatingsDetails
 import com.jvktech.moviebuff.ui.screens.details.components.MovieRuntimeDetails
@@ -273,6 +274,12 @@ fun MovieDetailsScreenContent(
                 watchAtTime = uiState.additionalMovieDetailsInfo.watchAtTime,
                 imdbExternalId = imdbExternalId,
                 onShareClicked = onShareClicked
+            )
+
+
+            MovieDetailedInfo(
+                modifier = Modifier,
+                movieDetails = uiState.movieDetails
             )
 
             AnimatedContentContainer(

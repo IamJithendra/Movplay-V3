@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -38,7 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieDetails
-import com.jvktech.moviebuff.ui.components.texts.LabeledText
+import com.jvktech.moviebuff.ui.components.texts.DetailTextRow
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.convertDate
 import com.jvktech.moviebuff.utils.formattedMoney
@@ -48,7 +49,7 @@ import java.util.Date
 
 
 @Composable
-fun MovieDetailsTopContent(
+fun MovieDetailedInfo(
     movieDetails: MovieDetails?,
     modifier: Modifier = Modifier
 ) {
@@ -58,27 +59,98 @@ fun MovieDetailsTopContent(
         label = ""
     ) { details ->
         if (details != null) {
+
+
+
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                verticalArrangement = Arrangement.SpaceEvenly,
             ) {
-                LabeledText(
-                    label = stringResource(R.string.movie_details_status),
+
+                Text(
+                    modifier = modifier.padding(MaterialTheme.spacing.medium),
+                    text = "Information",
+                    fontSize = 24.sp
+                )
+
+                DetailTextRow(
+                    label = "Original Title",
+                    text = details.originalTitle
+                )
+
+                DetailTextRow(
+                    label = "Status",
                     text = stringResource(details.status.getLabel())
                 )
 
+
+                details.runtime?.formattedRuntime()?.let {
+                    DetailTextRow(
+                        label = "Runtime",
+                        text = it
+                    )
+                }
+
+                DetailTextRow(
+                    label = "Original language",
+                    text = details.originalLanguage
+                )
+
+
+                Row(
+                    modifier = modifier.height(50.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = modifier.padding(MaterialTheme.spacing.medium),
+                        text = "Production Countries"
+                    )
+
+                    details.productionCountries.map {
+                        Text(
+                            modifier = modifier.padding(MaterialTheme.spacing.medium),
+                            text = details.productionCountries.joinToString(", ") { it.name },
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+
+                }
+
+                Row(
+                    modifier = modifier.height(80.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = modifier.padding(MaterialTheme.spacing.medium),
+                        text = "Production Companies"
+                    )
+
+                    details.productionCountries.map {
+                        Text(
+                            modifier = modifier.padding(MaterialTheme.spacing.medium),
+                            text = details.productionCountries.joinToString(", ") { it.name },
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+
+                }
+
                 if (details.budget > 0) {
-                    LabeledText(
-                        label = stringResource(R.string.movie_details_budget),
+                    DetailTextRow(
+                        label = "Budget",
                         text = details.budget.formattedMoney()
                     )
                 }
+
                 if (details.revenue > 0) {
-                    LabeledText(
-                        label = stringResource(R.string.movie_details_boxoffice),
+                    DetailTextRow(
+                        label = "Box office",
                         text = details.revenue.formattedMoney()
                     )
                 }
+
             }
         }
     }
