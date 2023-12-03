@@ -132,14 +132,14 @@ fun MultiRatingsBottomSheet(
                         .padding(8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    MultipleRatings(rating = "6.3", "4.0K", R.drawable.logo_imdb)
+                    MultipleRatings(rating = null, null, R.drawable.logo_imdb)
                     MultipleRatings(
                         rating = "${
                             ((movieDetails.voteAverage.toDouble() / 10) * 100).toString().take(2)
                         }%",
                         ratingCount = movieDetails.voteCount.toString(), R.drawable.logo_tmdb
                     )
-                    MultipleRatings(rating = "7.9", "432", R.drawable.logo_trakt)
+                    MultipleRatings(rating = null, null, R.drawable.logo_trakt)
                     MultipleRatings(rating = null, ratingCount = null, R.drawable.logo_moviebase)
                 }
             }
