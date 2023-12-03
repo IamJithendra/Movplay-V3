@@ -276,6 +276,7 @@ fun MovieRatingsDetails(
                                 modifier = Modifier.padding(vertical = 4.dp),
                                 text = details.voteCount.toString(),
                                 style = MaterialTheme.typography.bodySmall,
+                                fontWeight = FontWeight.SemiBold
                             )
 
                             Spacer(modifier = Modifier.width(8.dp))
