@@ -1,6 +1,5 @@
 package com.jvktech.moviebuff.ui.screens.details.components
 
-import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,71 +38,67 @@ import com.jvktech.moviebuff.data.model.movie.MovieDetails
 
 @Composable
 fun MultipleRatings(
-    movieDetails: MovieDetails?,
+    rating: String?,
+    ratingCount: String?,
     imgSrc: Int
 ) {
-    Crossfade(
-        modifier = Modifier,
-        targetState = movieDetails,
-        label = ""
-    ) { details ->
-        if (details != null) {
-            Column(
+
+    Column(
+        modifier = Modifier
+            .wrapContentSize()
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .size(72.dp)
+                .clip(RoundedCornerShape(6.dp))
+                .background(MaterialTheme.colorScheme.surface)
+                .clickable { /* Handle click for imageLogo */ }
+        ) {
+            Image(
+                painter = painterResource(id = imgSrc),
+                contentDescription = null,
                 modifier = Modifier
-                    .wrapContentSize()
-                    .padding(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                    .fillMaxSize()
+                    .padding(8.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = rating ?: "-",
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
+        )
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+
+        if (ratingCount != null) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(72.dp)
-                        .clip(RoundedCornerShape(6.dp))
-                        .background(MaterialTheme.colorScheme.surface)
-                        .clickable { /* Handle click for imageLogo */ }
-                ) {
-                    Image(
-                        painter = painterResource(id = imgSrc),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(8.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
                 Text(
-                    text = details.voteAverage.toString().take(3),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
+                    text = ratingCount,
+                    style = MaterialTheme.typography.bodySmall,
+                    fontWeight = FontWeight.SemiBold
                 )
 
-                Spacer(modifier = Modifier.height(6.dp))
-
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = details.voteCount.toString(),
-                        style = MaterialTheme.typography.bodySmall,
-                        fontWeight = FontWeight.SemiBold
-                    )
-
-                    // Add the icon for PeopleAlt
-                    Icon(
-                        imageVector = Icons.Default.PeopleAlt,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(20.dp)
-                            .padding(4.dp)
-                    )
-                }
+                // Add the icon for PeopleAlt
+                Icon(
+                    imageVector = Icons.Default.PeopleAlt,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(20.dp)
+                        .padding(4.dp)
+                )
             }
         }
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -137,10 +133,15 @@ fun MultiRatingsBottomSheet(
                         .padding(8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    MultipleRatings(movieDetails, R.drawable.logo_imdb)
-                    MultipleRatings(movieDetails, R.drawable.logo_tmdb)
-                    MultipleRatings(movieDetails, R.drawable.logo_trakt)
-                    MultipleRatings(movieDetails, R.drawable.logo_moviebase)
+                    MultipleRatings(rating = "6.3", "4.0K", R.drawable.logo_imdb)
+                    MultipleRatings(
+                        rating = "${
+                            ((movieDetails.voteAverage.toDouble() / 10) * 100).toString().take(2)
+                        }%",
+                        ratingCount = movieDetails.voteCount.toString(), R.drawable.logo_tmdb
+                    )
+                    MultipleRatings(rating = "7.9", "432", R.drawable.logo_trakt)
+                    MultipleRatings(rating = null, ratingCount = null, R.drawable.logo_moviebase)
                 }
             }
         }
