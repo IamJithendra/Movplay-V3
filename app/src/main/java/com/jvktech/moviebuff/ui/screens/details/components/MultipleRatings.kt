@@ -37,7 +37,7 @@ import com.jvktech.moviebuff.R
 import com.jvktech.moviebuff.data.model.movie.MovieDetails
 
 @Composable
-fun MultiRatings(
+fun MultipleRatings(
     movieDetails: MovieDetails?,
     imgSrc: Int
 ) {
@@ -70,7 +70,7 @@ fun MultiRatings(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
                     text = details.voteAverage.toString().take(3),
@@ -78,14 +78,16 @@ fun MultiRatings(
                     fontWeight = FontWeight.Bold,
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(6.dp))
 
                 Row(
+                    horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = details.voteCount.toString(),
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold
                     )
 
                     // Add the icon for PeopleAlt
@@ -93,7 +95,7 @@ fun MultiRatings(
                         imageVector = Icons.Default.PeopleAlt,
                         contentDescription = null,
                         modifier = Modifier
-                            .size(25.dp)
+                            .size(20.dp)
                             .padding(4.dp)
                     )
                 }
@@ -124,8 +126,8 @@ fun MultiRatingsBottomSheet(
                 modifier = Modifier
                     .padding(vertical = 16.dp)
                     .heightIn(
-                        min = 100.dp,
-                        max = 100.dp
+                        min = 225.dp,
+                        max = 225.dp
                     ), // Adjust the max and min height as needed
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -135,10 +137,10 @@ fun MultiRatingsBottomSheet(
                         .padding(8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    MultiRatings(movieDetails, R.drawable.logo_imdb)
-                    MultiRatings(movieDetails, R.drawable.logo_tmdb)
-                    MultiRatings(movieDetails, R.drawable.logo_trakt)
-                    MultiRatings(movieDetails, R.drawable.logo_moviebase)
+                    MultipleRatings(movieDetails, R.drawable.logo_imdb)
+                    MultipleRatings(movieDetails, R.drawable.logo_tmdb)
+                    MultipleRatings(movieDetails, R.drawable.logo_trakt)
+                    MultipleRatings(movieDetails, R.drawable.logo_moviebase)
                 }
             }
         }
