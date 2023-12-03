@@ -325,7 +325,8 @@ fun MovieDetailsScreenContent(
                     PresentableListSection(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = MaterialTheme.spacing.small),
+                            .padding(vertical = MaterialTheme.spacing.small)
+                            .padding(start = MaterialTheme.spacing.small),
                         title = movieCollection.name,
                         list = movieCollection.parts.sortedBy { part -> part.releaseDate },
                         selectedId = uiState.movieDetails?.id,
