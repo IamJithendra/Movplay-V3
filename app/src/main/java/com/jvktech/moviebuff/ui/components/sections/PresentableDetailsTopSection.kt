@@ -88,7 +88,7 @@ fun PresentableDetailsTopSection(
                     size = MaterialTheme.sizes.presentableItemExtraSmall,
                     showScore = false,
                     showTitle = false,
-                    showAdult = true,
+                    showAdult = false,
                     presentableState = presentableItemState
                 )
 
