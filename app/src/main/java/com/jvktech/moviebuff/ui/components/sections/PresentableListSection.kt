@@ -8,7 +8,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideIn
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,14 +29,13 @@ import androidx.paging.compose.items
 import com.jvktech.moviebuff.data.model.Presentable
 import com.jvktech.moviebuff.data.model.PresentableItemState
 import com.jvktech.moviebuff.ui.components.button.ScrollToTopButton
-import com.jvktech.moviebuff.ui.components.items.GridItem
 import com.jvktech.moviebuff.ui.components.items.ListItem
 import com.jvktech.moviebuff.ui.components.others.listVerticalScrollBar
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isScrollingTowardsStart
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun PresentableListSection(
