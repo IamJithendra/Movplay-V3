@@ -100,6 +100,7 @@ fun AnimatedVisibilityScope.SearchScreen(
 
         navigator.navigate(destination)
     }
+
     val onQuerySuggestionSelected: (String) -> Unit = viewModel::onQuerySuggestionSelected
 
     SearchScreenContent(
@@ -139,6 +140,7 @@ fun SearchScreenContent(
             .fillMaxSize()
             .statusBarsPadding()
     ) {
+
         QueryTextField(
             query = uiState.query,
             focusRequester = queryTextFieldFocusRequester,

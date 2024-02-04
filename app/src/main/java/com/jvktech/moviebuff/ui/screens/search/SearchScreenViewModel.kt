@@ -13,6 +13,7 @@ import com.jvktech.moviebuff.domain.usecase.movie.GetPopularMoviesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -77,6 +78,8 @@ class SearchScreenViewModel @Inject constructor(
 
             queryJob?.cancel()
 
+            Timber.e("I am on query change")
+
             when {
                 queryText.isBlank() -> {
                     searchState.emit(SearchState.EmptyQuery)
@@ -91,9 +94,13 @@ class SearchScreenViewModel @Inject constructor(
                     val querySuggestions = mediaSearchQueriesUseCase(queryText)
                     suggestions.emit(querySuggestions)
 
+                    Timber.e("I am on query change $querySuggestions")
+
                     queryJob = createQueryJob(queryText).apply {
                         start()
                     }
+
+                    Timber.e("I am on query job $queryJob")
                 }
             }
         }
@@ -130,6 +137,9 @@ class SearchScreenViewModel @Inject constructor(
 
                 searchState.emit(SearchState.ValidQuery)
                 resultState.emit(ResultState.Search(searchResults))
+
+                Timber.e("I am on result State $resultState")
+
             } catch (_: CancellationException) {
 
             } finally {

@@ -21,12 +21,12 @@ plugins {
 
 android {
     namespace = "com.jvktech.moviebuff"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.jvktech.moviebuff"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

@@ -35,10 +35,9 @@ fun AnimatedBackdrops(
             modifier = modifier
         ) {
 
-            val pagerState = rememberPagerState(initialPage = 0)
+            val pagerState = rememberPagerState(initialPage = 0){paths.size}
 
             HorizontalPager(
-                pageCount = paths.size,
                 state = pagerState
             ) { page ->
                 val currentBackdropPath = paths[page]
