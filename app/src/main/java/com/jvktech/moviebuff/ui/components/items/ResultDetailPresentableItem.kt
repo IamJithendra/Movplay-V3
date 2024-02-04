@@ -82,16 +82,12 @@ fun ResultDetailPresentableItem(
             }
         }
 
-        if (presentable.voteCount > 0 && showScore) {
-            PresentableScoreItem(
-                score = presentable.voteAverage,
-//                modifier = Modifier
-//                    .align(Alignment.TopEnd)
-//                    .padding(
-//                        end = MaterialTheme.spacing.extraSmall,
-//                        top = MaterialTheme.spacing.extraSmall
-//                    ),
-            )
+        if (presentable.voteCount!! > 0 && showScore) {
+            presentable.voteAverage?.let {
+                PresentableScoreItem(
+                    score = it,
+                )
+            }
         }
 
         if (presentable.adult == true && showAdult) {

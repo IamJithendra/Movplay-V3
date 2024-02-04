@@ -7,8 +7,8 @@ interface Presentable {
     val id: Int
     val title: String
     val posterPath: String?
-    val voteAverage: Float
-    val voteCount: Int
+    val voteAverage: Float?
+    val voteCount: Int?
 }
 
 @Stable

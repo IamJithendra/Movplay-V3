@@ -80,10 +80,12 @@ fun ResultPresentableItem(
             }
         }
 
-        if (presentable.voteCount > 0 && showScore) {
-            PresentableScoreItem(
-                score = presentable.voteAverage,
-            )
+        if (presentable.voteCount!! > 0 && showScore) {
+            presentable.voteAverage?.let {
+                PresentableScoreItem(
+                    score = it,
+                )
+            }
         }
 
     }
