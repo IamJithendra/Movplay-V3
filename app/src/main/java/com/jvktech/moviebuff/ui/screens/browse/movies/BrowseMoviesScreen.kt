@@ -6,15 +6,22 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.ViewList
+import androidx.compose.material.icons.filled.ViewModule
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,6 +38,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.FlowPreview
 import com.jvktech.moviebuff.R
+import com.jvktech.moviebuff.ui.components.sections.PresentableListSection
 
 
 @OptIn(FlowPreview::class)
@@ -77,11 +85,18 @@ fun BrowseMoviesScreenContent(
             R.string.all_movies_favourites_label,
             uiState.favoriteMoviesCount
         )
+
         MovieType.RecentlyBrowsed -> stringResource(R.string.all_movies_recently_browsed_label)
         MovieType.Trending -> stringResource(R.string.all_movies_trending_label)
     }
     val showClearButton =
         uiState.selectedMovieType == MovieType.RecentlyBrowsed && movies.itemSnapshotList.isNotEmpty()
+
+    val gridState = rememberLazyGridState()
+
+    var isGridView by rememberSaveable { mutableStateOf(true) }
+
+    val listState = rememberLazyListState()
 
     var showClearDialog by remember {
         mutableStateOf(false)
@@ -122,33 +137,64 @@ fun BrowseMoviesScreenContent(
                 }
             },
             trailing = {
-                AnimatedVisibility(
-                    visible = showClearButton,
-                    enter = fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    IconButton(onClick = showDialog) {
-                        Icon(
-                            imageVector = Icons.Filled.Delete,
-                            contentDescription = "clear recent",
-                            tint = MaterialTheme.colorScheme.primary
-                        )
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        IconButton(
+                            onClick = { isGridView = !isGridView }
+                        ) {
+                            Icon(
+                                imageVector = if (isGridView) Icons.Filled.ViewList else Icons.Filled.ViewModule,
+                                contentDescription = if (isGridView) "list view" else "grid view",
+                            )
+                        }
+
+                        AnimatedVisibility(
+                            visible = showClearButton,
+                            enter = fadeIn(),
+                            exit = fadeOut()
+                        ) {
+
+                        IconButton(onClick = showDialog) {
+                            Icon(
+                                imageVector = Icons.Filled.Delete,
+                                contentDescription = "clear recent"
+                            )
+                        }
                     }
                 }
             }
         )
-        PresentableGridSection(
-            modifier = Modifier
-                .fillMaxSize()
-                .navigationBarsPadding(),
-            contentPadding = PaddingValues(
-                top = MaterialTheme.spacing.medium,
-                start = MaterialTheme.spacing.small,
-                end = MaterialTheme.spacing.small,
-                bottom = MaterialTheme.spacing.large
-            ),
-            state = movies,
-            onPresentableClick = onMovieClicked
-        )
+        if (isGridView) {
+            PresentableGridSection(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .navigationBarsPadding(),
+                gridState = gridState,
+                contentPadding = PaddingValues(
+                    top = MaterialTheme.spacing.medium,
+                    start = MaterialTheme.spacing.small,
+                    end = MaterialTheme.spacing.small,
+                    bottom = MaterialTheme.spacing.large
+                ),
+                state = movies,
+                onPresentableClick = onMovieClicked
+            )
+        } else {
+            PresentableListSection(
+                modifier = Modifier.fillMaxSize(),
+                listState = listState, // Assume you have a LazyListState for list view
+                contentPadding = PaddingValues(
+                    top = MaterialTheme.spacing.medium,
+                    start = MaterialTheme.spacing.small,
+                    end = MaterialTheme.spacing.small,
+                    bottom = MaterialTheme.spacing.large
+                ),
+                state = movies,
+                onPresentableClick = onMovieClicked
+            )
+        }
     }
 }
