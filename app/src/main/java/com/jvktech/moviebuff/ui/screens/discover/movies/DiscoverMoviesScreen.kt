@@ -1,10 +1,25 @@
 package com.jvktech.moviebuff.ui.screens.discover.movies
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.layout.*
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,7 +29,6 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDownward
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.ViewList
 import androidx.compose.material.icons.filled.ViewModule
 import androidx.compose.material.rememberModalBottomSheetState
@@ -24,7 +38,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -45,8 +58,8 @@ import com.jvktech.moviebuff.ui.components.others.BasicAppBar
 import com.jvktech.moviebuff.ui.components.others.FilterEmptyState
 import com.jvktech.moviebuff.ui.components.sections.PresentableGridSection
 import com.jvktech.moviebuff.ui.components.sections.PresentableListSection
-import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
+import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.discover.components.FilterMoviesModalBottomSheetContent
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isEmpty
@@ -277,7 +290,7 @@ fun DiscoverMoviesScreenContent(
                 )
             ) {
                 FilterFloatingButton(
-                    modifier = androidx.compose.ui.Modifier
+                    modifier = Modifier
                         .padding(MaterialTheme.spacing.medium)
                         .navigationBarsPadding()
                         .imePadding(),

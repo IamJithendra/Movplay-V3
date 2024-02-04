@@ -2,7 +2,6 @@ package com.jvktech.moviebuff.ui.screens.details.movie
 
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -48,7 +47,7 @@ import kotlinx.coroutines.launch
     style = MovieDetailsScreenTransitions::class
 )
 @Composable
-fun AnimatedVisibilityScope.MovieDetailsScreen(
+fun MovieDetailsScreen(
     viewModel: MovieDetailsScreenViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {

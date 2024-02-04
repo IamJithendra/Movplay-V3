@@ -1,7 +1,6 @@
 package com.jvktech.moviebuff.ui.screens.browse.movies
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
@@ -47,7 +46,7 @@ import com.jvktech.moviebuff.ui.components.sections.PresentableListSection
     style = BrowseMoviesScreenTransitions::class
 )
 @Composable
-fun AnimatedVisibilityScope.BrowseMoviesScreen(
+fun BrowseMoviesScreen(
     viewModel: BrowseMoviesViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
