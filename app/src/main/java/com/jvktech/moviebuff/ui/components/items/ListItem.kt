@@ -1,6 +1,7 @@
 package com.jvktech.moviebuff.ui.components.items
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,79 +45,87 @@ fun ListItem(
     transformations: GraphicsLayerScope.() -> Unit = {},
     onClick: (() -> Unit)? = null
 ) {
-    Row(
+    // TODO remove the square edge
+    Card(
         modifier = Modifier
             .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
             .padding(horizontal = MaterialTheme.spacing.small, vertical = MaterialTheme.spacing.extraSmall)
             .clickable { onClick?.invoke() },
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Center
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.background)
     ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Center
+        ) {
 
-        when (presentableState) {
-            is PresentableItemState.Loading -> {
-                LoadingPresentableItem(
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-
-            is PresentableItemState.Error -> {
-                ErrorPresentableItem(
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-
-            is PresentableItemState.Result -> {
-
-                Card(
-                    modifier = modifier
-                        .width(size.width)
-                        .aspectRatio(size.ratio)
-                        .graphicsLayer {
-                            transformations()
-                        },
-                    shape = MaterialTheme.shapes.medium,
-                    border = if (selected) BorderStroke(
-                        width = 2.dp,
-                        color = MaterialTheme.colorScheme.primary
-                    ) else null
-                ) {
-
-                    ResultPresentableItem(
-                        modifier = Modifier.fillMaxSize(),
-                        presentable = presentableState.presentable,
-                        showTitle = showTitle,
-                        onClick = onClick
+            when (presentableState) {
+                is PresentableItemState.Loading -> {
+                    LoadingPresentableItem(
+                        modifier = Modifier.fillMaxSize()
                     )
                 }
 
-                Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
-
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(
-                        text = presentableState.presentable.voteAverage.toString(),
-                        style = MaterialTheme.typography.labelMedium,
-                        modifier = Modifier.clickable { /* Handle click */ }
+                is PresentableItemState.Error -> {
+                    ErrorPresentableItem(
+                        modifier = Modifier.fillMaxSize()
                     )
+                }
 
-                    Spacer(modifier = Modifier.height(6.dp))
+                is PresentableItemState.Result -> {
 
-                    Text(
-                        text = presentableState.presentable.title,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Card(
+                        modifier = modifier
+                            .width(size.width)
+                            .aspectRatio(size.ratio)
+                            .graphicsLayer {
+                                transformations()
+                            },
+                        shape = MaterialTheme.shapes.medium,
+                        border = if (selected) BorderStroke(
+                            width = 2.dp,
+                            color = MaterialTheme.colorScheme.primary
+                        ) else null
+                    ) {
 
-                    Spacer(modifier = Modifier.height(6.dp))
+                        ResultPresentableItem(
+                            modifier = Modifier.fillMaxSize(),
+                            presentable = presentableState.presentable,
+                            showTitle = showTitle,
+                            onClick = onClick
+                        )
+                    }
 
-                    Text(
-                        text = presentableState.presentable.id.toString(),
-                        style = MaterialTheme.typography.labelMedium,
-                    )
+                    Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
+
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = presentableState.presentable.voteAverage.toString(),
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.clickable { /* Handle click */ }
+                        )
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
+                        Text(
+                            text = presentableState.presentable.title,
+                            style = MaterialTheme.typography.titleMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
+                        Text(
+                            text = presentableState.presentable.id.toString(),
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
                 }
             }
         }
