@@ -23,7 +23,7 @@ import com.jvktech.moviebuff.data.model.MediaType
 import com.jvktech.moviebuff.data.model.PresentableItemState
 import com.jvktech.moviebuff.data.model.SearchResult
 import com.jvktech.moviebuff.ui.components.button.ScrollToTopButton
-import com.jvktech.moviebuff.ui.components.items.PresentableItem
+import com.jvktech.moviebuff.ui.components.items.GridItem
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isScrollingTowardsStart
 import com.jvktech.moviebuff.utils.items
@@ -66,7 +66,7 @@ fun SearchGridSection(
         ) {
             items(state) { presentable ->
                 presentable?.let {
-                    PresentableItem(
+                    GridItem(
                         presentableState = PresentableItemState.Result(it),
                         onClick = { onSearchResultClick(it.id, it.mediaType) }
                     )
@@ -76,7 +76,7 @@ fun SearchGridSection(
                 when (loadState.append) {
                     is LoadState.Loading -> {
                         items(3) {
-                            PresentableItem(presentableState = PresentableItemState.Loading)
+                            GridItem(presentableState = PresentableItemState.Loading)
                         }
                     }
                     else -> Unit

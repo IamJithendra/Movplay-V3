@@ -10,7 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.jvktech.moviebuff.data.model.Presentable
 import com.jvktech.moviebuff.data.model.PresentableItemState
-import com.jvktech.moviebuff.ui.components.items.PresentableItem
+import com.jvktech.moviebuff.ui.components.items.GridItem
 import com.jvktech.moviebuff.ui.components.texts.SectionLabel
 import com.jvktech.moviebuff.ui.theme.spacing
 
@@ -48,7 +48,7 @@ fun CollectionGridSection(
                 contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium)
             ) {
                 items(list) { presentable ->
-                    PresentableItem(
+                    GridItem(
                         presentableState = PresentableItemState.Result(presentable),
                         selected = selectedId == presentable.id,
                         onClick = { onPresentableClick(presentable.id) }

@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.jvktech.moviebuff.data.model.PresentableItemState
 import com.jvktech.moviebuff.data.model.Season
-import com.jvktech.moviebuff.ui.components.items.PresentableItem
+import com.jvktech.moviebuff.ui.components.items.GridItem
 import com.jvktech.moviebuff.ui.components.texts.SectionLabel
 import com.jvktech.moviebuff.ui.theme.spacing
 
@@ -45,7 +45,7 @@ fun SeasonSection(
                 contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium)
             ) {
                 items(seasons) { season ->
-                    PresentableItem(
+                    GridItem(
                         presentableState = PresentableItemState.Result(season),
                         onClick = { onSeasonClick(season.seasonNumber) }
                     )

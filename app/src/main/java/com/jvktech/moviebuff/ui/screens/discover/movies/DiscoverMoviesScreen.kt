@@ -6,6 +6,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
@@ -13,13 +14,19 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.ViewList
+import androidx.compose.material.icons.filled.ViewModule
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -36,6 +43,7 @@ import com.jvktech.moviebuff.ui.components.button.SortTypeDropdownButton
 import com.jvktech.moviebuff.ui.components.others.BasicAppBar
 import com.jvktech.moviebuff.ui.components.others.FilterEmptyState
 import com.jvktech.moviebuff.ui.components.sections.PresentableGridSection
+import com.jvktech.moviebuff.ui.components.sections.PresentableListSection
 import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.HomeScreenDestination
 import com.jvktech.moviebuff.ui.screens.discover.components.FilterMoviesModalBottomSheetContent
@@ -95,6 +103,10 @@ fun DiscoverMoviesScreenContent(
         skipHalfExpanded = true
     )
     val gridState = rememberLazyGridState()
+
+    val listState = rememberLazyListState()
+
+    var isGridView by remember { mutableStateOf(true) }
 
     val showFloatingButton = if (gridState.isScrollInProgress) {
         false
@@ -161,6 +173,19 @@ fun DiscoverMoviesScreenContent(
                         Row(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+
+                            IconButton(
+                                onClick = {
+                                    isGridView = !isGridView
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = if (isGridView) Icons.Filled.ViewList else Icons.Filled.ViewModule,
+                                    contentDescription = if (isGridView) "list view" else "grid view",
+                                )
+                            }
+
+
                             IconButton(
                                 modifier = Modifier.rotate(orderIconRotation),
                                 onClick = {
@@ -195,18 +220,33 @@ fun DiscoverMoviesScreenContent(
                     label = ""
                 ) { hasFilterResults ->
                     if (hasFilterResults) {
-                        PresentableGridSection(
-                            modifier = Modifier.fillMaxSize(),
-                            gridState = gridState,
-                            contentPadding = PaddingValues(
-                                top = MaterialTheme.spacing.medium,
-                                start = MaterialTheme.spacing.small,
-                                end = MaterialTheme.spacing.small,
-                                bottom = MaterialTheme.spacing.large
-                            ),
-                            state = movies,
-                            onPresentableClick = onMovieClicked
-                        )
+                        if (isGridView) {
+                            PresentableGridSection(
+                                modifier = Modifier.fillMaxSize(),
+                                gridState = gridState,
+                                contentPadding = PaddingValues(
+                                    top = MaterialTheme.spacing.medium,
+                                    start = MaterialTheme.spacing.small,
+                                    end = MaterialTheme.spacing.small,
+                                    bottom = MaterialTheme.spacing.large
+                                ),
+                                state = movies,
+                                onPresentableClick = onMovieClicked
+                            )
+                        } else {
+                            PresentableListSection(
+                                modifier = Modifier.fillMaxSize(),
+                                listState = listState, // Assume you have a LazyListState for list view
+                                contentPadding = PaddingValues(
+                                    top = MaterialTheme.spacing.medium,
+                                    start = MaterialTheme.spacing.small,
+                                    end = MaterialTheme.spacing.small,
+                                    bottom = MaterialTheme.spacing.large
+                                ),
+                                state = movies,
+                                onPresentableClick = onMovieClicked
+                            )
+                        }
                     } else {
                         FilterEmptyState(
                             modifier = Modifier

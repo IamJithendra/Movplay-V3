@@ -16,7 +16,7 @@ import com.jvktech.moviebuff.ui.theme.Size
 import com.jvktech.moviebuff.ui.theme.sizes
 
 @Composable
-fun PresentableItem(
+fun GridItem(
     presentableState: PresentableItemState,
     modifier: Modifier = Modifier,
     size: Size = MaterialTheme.sizes.presentableItemSmall,

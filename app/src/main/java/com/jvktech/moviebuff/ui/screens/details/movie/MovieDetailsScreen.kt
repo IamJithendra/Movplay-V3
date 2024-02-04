@@ -33,7 +33,6 @@ import com.jvktech.moviebuff.ui.screens.destinations.MovieDetailsScreenDestinati
 import com.jvktech.moviebuff.ui.screens.destinations.PersonDetailsScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.RelatedMoviesScreenDestination
 import com.jvktech.moviebuff.ui.screens.destinations.ReviewsScreenDestination
-import com.jvktech.moviebuff.ui.screens.details.components.MovieDetailedInfo
 import com.jvktech.moviebuff.ui.screens.details.components.MovieDetailsInfoSection
 import com.jvktech.moviebuff.ui.screens.details.components.MovieRatingsDetails
 import com.jvktech.moviebuff.ui.screens.details.components.MovieRuntimeDetails
@@ -329,7 +328,7 @@ fun MovieDetailsScreenContent(
                 val movieCollection = uiState.associatedMovies.collection
 
                 if (movieCollection != null && movieCollection.parts.isNotEmpty()) {
-                    PresentableListSection(
+                    CollectionGridSection(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = MaterialTheme.spacing.small)

@@ -28,7 +28,7 @@ import androidx.paging.compose.items
 import com.jvktech.moviebuff.data.model.Presentable
 import com.jvktech.moviebuff.data.model.PresentableItemState
 import com.jvktech.moviebuff.ui.components.button.ScrollToStartButton
-import com.jvktech.moviebuff.ui.components.items.PresentableItem
+import com.jvktech.moviebuff.ui.components.items.GridItem
 import com.jvktech.moviebuff.ui.components.texts.SectionLabel
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isScrollingTowardsStart
@@ -110,7 +110,7 @@ fun PresentableSection(
                 ) {
                     items(state) { movie ->
                         movie?.let {
-                            PresentableItem(
+                            GridItem(
                                 //modifier = Modifier.animateItemPlacement(),
                                 presentableState = PresentableItemState.Result(movie),
                                 onClick = { onPresentableClick(it.id) }
@@ -121,11 +121,11 @@ fun PresentableSection(
                         when {
                             loadState.refresh is LoadState.Loading -> {
                                 items(10) {
-                                    PresentableItem(presentableState = PresentableItemState.Loading)
+                                    GridItem(presentableState = PresentableItemState.Loading)
                                 }
                             }
                             loadState.append is LoadState.Loading -> {
-                                item { PresentableItem(presentableState = PresentableItemState.Loading) }
+                                item { GridItem(presentableState = PresentableItemState.Loading) }
                             }
 //                            loadState.refresh is LoadState.Error -> {
 //                                val e = state.loadState.refresh as LoadState.Error

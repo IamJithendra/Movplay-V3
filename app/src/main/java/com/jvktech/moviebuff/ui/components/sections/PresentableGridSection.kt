@@ -20,7 +20,7 @@ import androidx.paging.compose.LazyPagingItems
 import com.jvktech.moviebuff.data.model.Presentable
 import com.jvktech.moviebuff.data.model.PresentableItemState
 import com.jvktech.moviebuff.ui.components.button.ScrollToTopButton
-import com.jvktech.moviebuff.ui.components.items.PresentableItem
+import com.jvktech.moviebuff.ui.components.items.GridItem
 import com.jvktech.moviebuff.ui.components.others.gridVerticalScrollBar
 import com.jvktech.moviebuff.ui.theme.spacing
 import com.jvktech.moviebuff.utils.isScrollingTowardsStart
@@ -65,7 +65,7 @@ fun PresentableGridSection(
         ) {
             items(state) { presentable ->
                 presentable?.let {
-                    PresentableItem(
+                    GridItem(
                         presentableState = PresentableItemState.Result(it),
                         onClick = { onPresentableClick(it.id) }
 
@@ -76,7 +76,7 @@ fun PresentableGridSection(
                 when {
                     loadState.refresh is LoadState.Loading && showRefreshLoading -> {
                         items(12) {
-                            PresentableItem(
+                            GridItem(
                                 presentableState = PresentableItemState.Loading
                             )
                         }
@@ -84,7 +84,7 @@ fun PresentableGridSection(
 
                     loadState.append is LoadState.Loading -> {
                         items(3) {
-                            PresentableItem(
+                            GridItem(
                                 presentableState = PresentableItemState.Loading
                             )
                         }
@@ -148,7 +148,7 @@ fun DefaultGridMovies(
     ) {
         items(state) { presentable ->
             presentable?.let {
-                PresentableItem(
+                GridItem(
                     presentableState = PresentableItemState.Result(it),
                     onClick = { onPresentableClick(it.id) }
                 )
@@ -159,7 +159,7 @@ fun DefaultGridMovies(
             when {
                 state.loadState.refresh is LoadState.Loading && showRefreshLoading -> {
                     repeat(12) {
-                        PresentableItem(
+                        GridItem(
                             presentableState = PresentableItemState.Loading
                         )
                     }
@@ -167,7 +167,7 @@ fun DefaultGridMovies(
 
                 state.loadState.append is LoadState.Loading -> {
                     repeat(3) {
-                        PresentableItem(
+                        GridItem(
                             presentableState = PresentableItemState.Loading
                         )
                     }
